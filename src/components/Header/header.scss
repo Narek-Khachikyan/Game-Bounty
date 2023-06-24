@@ -1,0 +1,19 @@
+.header{
+  color: #172554;
+}
+
+.header__container{
+  max-width: 1310px;
+  margin: 0 auto;
+  padding: 0px 15px;
+}
+.header__nav-link{
+  transition: all 0.3s ease-in-out;
+  padding: 5px;
+
+  &:hover{
+    box-shadow: 0px 0px 10px #172554;
+    background-color: #172554;
+    color: #FFFFFF;
+  }
+}
