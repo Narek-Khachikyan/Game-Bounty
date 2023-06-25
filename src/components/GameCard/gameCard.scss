@@ -4,6 +4,11 @@
 }
 .gameCard{
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    box-shadow: 0px 0px 80px #DD58D6;
+    transform: scale(1.02);
+  }
 }
 .gameCard__img{
   width: 100%;
@@ -22,7 +27,20 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 15px;
   }
+}
+.raiting{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  border-radius: 15px
+}
+.released{
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 15px
 }
 .gameCard:hover .gameCard__textWrapper{
   visibility: visible;
@@ -35,6 +53,10 @@
   bottom: 0;
   left: 0;
   right: 0;
+  border-radius: 10px;
 
   transition: all 0.3s ease-in-out;
+}
+.platform-wrapper{
+
 }

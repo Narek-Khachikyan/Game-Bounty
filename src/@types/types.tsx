@@ -1,7 +1,9 @@
-type Platform = {
-   id: 0;
-   slug: string;
-   name: string;
+type Platforms = {
+   platform: {
+      id: number;
+      slug: string;
+      name: string;
+   };
 };
 
 export type GameData = {
@@ -9,10 +11,8 @@ export type GameData = {
    name: string;
    released: string;
    background_image: string;
-   rating: number;
-   rating_top: number;
    metacritic: number;
-   platforms: Platform[];
+   platforms: Platforms[];
 };
 
 export type Games = {

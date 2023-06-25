@@ -9,11 +9,13 @@
 }
 .header__nav-link{
   transition: all 0.3s ease-in-out;
+  border-radius: 10px;
   padding: 5px;
 
   &:hover{
-    box-shadow: 0px 0px 10px #172554;
-    background-color: #172554;
+    box-shadow: 0px 0px 10px #4C1D95;
+    background-color: #4C1D95;
     color: #FFFFFF;
+
   }
 }
