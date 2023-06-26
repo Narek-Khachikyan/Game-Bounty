@@ -1,5 +1,9 @@
 .header{
   color: #172554;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 5;
 }
 
 .header__container{
@@ -7,6 +11,18 @@
   margin: 0 auto;
   padding: 0px 15px;
 }
+
+.header__logo{
+  transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+  padding: 5px;
+  &:hover{
+    box-shadow: 0px 0px 10px #4C1D95;
+    background-color: #4C1D95;
+    color: #FFFFFF;
+  }
+}
+
 .header__nav-link{
   transition: all 0.3s ease-in-out;
   border-radius: 10px;
@@ -18,4 +34,11 @@
     color: #FFFFFF;
 
   }
+}
+.active{
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0px 0px 10px #4C1D95;
+  background-color: #4C1D95;
+  color: #FFFFFF;
 }

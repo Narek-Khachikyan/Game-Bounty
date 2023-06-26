@@ -5,7 +5,6 @@ type Platforms = {
       name: string;
    };
 };
-
 export type GameData = {
    id: number;
    name: string;
@@ -14,7 +13,16 @@ export type GameData = {
    metacritic: number;
    platforms: Platforms[];
 };
-
 export type Games = {
    results: GameData[];
+};
+
+type GenresData = {
+   id: number;
+   name: string;
+   image_background: string;
+};
+
+export type Genres = {
+   results: GenresData[];
 };
