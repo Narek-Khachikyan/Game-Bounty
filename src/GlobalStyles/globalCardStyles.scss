@@ -1,8 +1,9 @@
-.gameCard,.gameCard__container,.gameCard__content{
+.card,.card__container,.card__content{
   height: 100%;
   width: 100%;
 }
-.gameCard{
+
+.card{
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   &:hover{
@@ -10,7 +11,7 @@
     transform: scale(1.02);
   }
 }
-.gameCard__img{
+.card__img{
   width: 100%;
   height: 100%;
   img{
@@ -19,7 +20,7 @@
     object-fit: cover;
   }
 }
-.gameCard__wrapper{
+.card__wrapper{
   position: relative;
   height: 100%;
   width: 100%;
@@ -27,14 +28,20 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 15px 15px 0px 0px;
+  }
+}
+.favorites---cardWrapper{
+  img{
     border-radius: 15px;
   }
 }
+
 .raiting{
   position: absolute;
   right: 0px;
   top: 0px;
-  border-radius: 15px
+  border-radius: 15px;
 }
 .released{
   position: absolute;
@@ -42,21 +49,39 @@
   top: 0;
   border-radius: 15px
 }
-.gameCard:hover .gameCard__textWrapper{
+.card:hover .card__textWrapper{
   visibility: visible;
   opacity: 1;
  }
-.gameCard__textWrapper{
+.card__textWrapper{
   visibility: hidden;
   opacity: 0;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  border-radius: 10px;
-
+  border-radius: 10px 10px 0px 0px;
   transition: all 0.3s ease-in-out;
 }
-.platform-wrapper{
+.favorites---textWrapepr{
+  border-radius: 0px 0px 10px 10px;
+}
 
+.add-button{
+  width: 100%;
+  border-radius: 0px 0px 15px 15px;
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    background-color: #6E3BBF;
+    color: white;
+  }
+}
+
+.clear-btn{
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    color: #4C1D95;
+    background-color: white;
+  }
 }

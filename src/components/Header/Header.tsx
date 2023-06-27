@@ -15,17 +15,6 @@ const Header = () => {
                   <ul className="header__nav-list flex gap-5">
                      <li className="header__nav-item">
                         <Link
-                           to={'/genres'}
-                           className={
-                              location.pathname === '/genres'
-                                 ? 'active'
-                                 : 'header__nav-link text-base'
-                           }>
-                           Genres
-                        </Link>
-                     </li>
-                     <li className="header__nav-item">
-                        <Link
                            to={'/platforms'}
                            className={
                               location.pathname === '/platforms'

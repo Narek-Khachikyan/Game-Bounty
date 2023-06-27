@@ -1,0 +1,44 @@
+.imgWrapper{
+  position: relative;
+  img{
+   width: 100%;
+   height: 100%;
+   border-radius: 15px;
+  }
+}
+.raiting{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.gameInfoWrapper{
+  border-radius: 15px;
+}
+.achivments{
+  img{
+    width: 40px;
+    height: 40px;
+    animation: achivments 1.5s infinite linear;
+  }
+  p{
+    border-radius: 15px;
+  }
+}
+
+@keyframes achivments {
+  0%{
+    transform: translateY(-8px);
+  }
+  25%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translateY(8px);
+  }
+  75%{
+    transform: translateY(0px);
+  }
+  100%{
+    transform: translateY(-8px);
+  }
+}
