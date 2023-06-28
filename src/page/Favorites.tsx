@@ -15,12 +15,12 @@ const Favorites: React.FC = () => {
    return (
       <div className="favorites py-10">
          <div className="textWrapper mb-8 flex items-center justify-between">
-            <h2 className="text-white text-3xl">Favorites</h2>
+            <h2 className="text-white text-2xl sm:text-2xl md:text-3xl">Favorites</h2>
             {cartItems.length === 0 ? null : (
                <button
-                  className="clear-btn text-white bg-violet-900 text-3xl py-3 px-2"
+                  className="clear-btn text-white bg-violet-900 text-sm md:text-xl py-3 px-2"
                   onClick={handleClearCart}>
-                  Clear Cart
+                  CLEAR FAVORITES
                </button>
             )}
          </div>

@@ -42,3 +42,14 @@
   background-color: #4C1D95;
   color: #FFFFFF;
 }
+
+@media (max-width:330px) {
+  .header__logo{
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .header__nav-link{
+    font-size: 14px;
+    line-height: 22px;
+  }
+}

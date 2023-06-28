@@ -8,8 +8,13 @@ const Games = () => {
 
    return (
       <div className="games py-10">
-         <p className="games-title text-white text-3xl mb-8">Popular Games</p>
-         <div className={'games__content grid grid-cols-4 grid-rows-3 gap-11'}>
+         <p className="games-title text-white mb-8 text-2xl sm:text-2xl md:text-3xl">
+            Popular Games
+         </p>
+         <div
+            className={
+               'games__content grid gap-10 sm:grid-cols-1 sm:grid-rows-1 md:grid-cols-2 md:grid-rows-1 lg:grid-cols-3 lg:grid-rows-2 xl:grid-cols-4 xl:grid-rows-3'
+            }>
             {gamesData
                ? gamesData.results.map((item) => <GameCard key={item.id} {...item} />)
                : skeletons}

@@ -11,30 +11,30 @@ const GameCardInfo = () => {
          <div className="content flex flex-col justify-center">
             <div className="imgWrapper">
                <img src={gamesInfoData?.background_image} alt="" />
-               <p className="released bg-white text-violet-800 py-1 px-3">
+               <p className="released bg-white text-violet-800 py-1 px-3 hoverActivity">
                   {gamesInfoData?.released}
                </p>
-               <p className="raiting text-xl bg-white text-violet-800 py-1 px-3">
+               <p className="raiting text-xl bg-white text-violet-800 py-1 px-3 hoverActivity">
                   {gamesInfoData?.metacritic}
                </p>
             </div>
             <div className="gameInfoWrapper bg-white p-4">
                <div className="textWrapper">
-                  <p className="gameInfo__name text-2xl mb-1 text-violet-950">
+                  <p className="gameInfo__name text-xl sm:text-xl md:text-2xl mb-1 text-violet-950">
                      {gamesInfoData?.name}
                   </p>
-                  <div className="mb-2 flex items-center gap-2 text-xl text-violet-950">
+                  <ul className="mb-2 grid grid-cols-2 grid-rows-1 gap-2 text-base md:text-xl text-violet-950 sm:flex sm:items-center">
                      {gamesInfoData?.platforms.map((item) => (
-                        <p>{item.platform.name}</p>
+                        <li>{item.platform.name}</li>
                      ))}
-                  </div>
+                  </ul>
                </div>
                <div className="infoWrapper">
                   <p className="gameInfo__descr text-base text-violet-950">
                      {gamesInfoData?.description}
                   </p>
                   <div className="achivments flex items-center gap-1 my-2">
-                     <p className="text-xl text-violet-950">Achievements Count:</p>
+                     <p className="text-base sm:text-xl text-violet-950">Achievements Count:</p>
                      <p className="text-base bg-violet-950 text-white py-1 px-3">
                         {gamesInfoData?.achievements_count}
                      </p>
