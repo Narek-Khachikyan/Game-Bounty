@@ -10,7 +10,7 @@ export const gameApi = createApi({
    }),
    endpoints: (builder) => ({
       getGamesData: builder.query<Games, string>({
-         query: () => `/games?key=${api}`,
+         query: (filterByGenres) => `/games?key=${api}&genres=${filterByGenres}`,
       }),
       getGamesInfoData: builder.query<GamesInfo, string>({
          query: (id) => `/games/${id}?key=${api}`,

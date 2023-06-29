@@ -1,0 +1,20 @@
+.genres__list{
+  width: 82%;
+  overflow: scroll;
+  margin: 0 auto;
+  li{
+    cursor: pointer;
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+      background-color: #895ae7;
+      color: white;
+    }
+  }
+}
+
+.activeGenre{
+  background-color: #6c22d9 !important;
+  color: #FFFFFF !important;
+}
+

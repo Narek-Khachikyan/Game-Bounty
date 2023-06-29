@@ -1,13 +1,17 @@
+import { useState } from 'react';
 import { useGetGamesDataQuery } from '../app/redux/features/apiSlice';
 import GameCard from '../components/GameCard/GameCard';
-import Skeleton from '../components/Skeleton/Skeleton';
+import { SkeletonCard } from '../components/Skeleton/Skeleton';
+import FilterByGenres from '../components/Filters/FilterByGenres';
 
 const Games = () => {
-   const { data: gamesData } = useGetGamesDataQuery('');
-   const skeletons = [...new Array(12)].map((_, index) => <Skeleton key={index} />);
-
+   const [filterByGenres, setFilterByGenres] = useState('action');
+   const { data: gamesData } = useGetGamesDataQuery(filterByGenres);
+   const skeletons = [...new Array(12)].map((_, index) => <SkeletonCard key={index} />);
+   console.log(filterByGenres);
    return (
       <div className="games py-10">
+         <FilterByGenres setFilterByGenres={setFilterByGenres} />
          <p className="games-title text-white mb-8 text-2xl sm:text-2xl md:text-3xl">
             Popular Games
          </p>

@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
-
-const Skeleton = () => (
+import './skeleton.scss';
+export const SkeletonCard = () => (
    <ContentLoader
       speed={2}
       width={300}
@@ -13,4 +13,6 @@ const Skeleton = () => (
    </ContentLoader>
 );
 
-export default Skeleton;
+export const FilterSkeleton = () => {
+   return <div className="filterSkeleton w-16 h-8 bg-white"></div>;
+};
