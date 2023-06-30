@@ -3,7 +3,6 @@ import { useGetGamesInfoDataQuery } from '../../app/redux/features/apiSlice';
 import './gamesInfoCard.scss';
 import achivments from '../../assets/achivments.png';
 import { GamesInfoCardSkelton } from '../Skeleton/Skeleton';
-import { useState } from 'react';
 
 const GameCardInfo = () => {
    const { id } = useParams();
