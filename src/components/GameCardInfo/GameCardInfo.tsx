@@ -2,10 +2,14 @@ import { useParams } from 'react-router-dom';
 import { useGetGamesInfoDataQuery } from '../../app/redux/features/apiSlice';
 import './gamesInfoCard.scss';
 import achivments from '../../assets/achivments.png';
+import { GamesInfoCardSkelton } from '../Skeleton/Skeleton';
+import { useState } from 'react';
 
 const GameCardInfo = () => {
    const { id } = useParams();
-   const { data: gamesInfoData } = useGetGamesInfoDataQuery(id ?? '');
+   const { data: gamesInfoData, isLoading: gamesInfoDataLoading } = useGetGamesInfoDataQuery(
+      id ?? '',
+   );
    return (
       <div className="cardInfo py-7">
          <div className="content flex flex-col justify-center">
@@ -43,6 +47,7 @@ const GameCardInfo = () => {
                </div>
             </div>
          </div>
+         {gamesInfoDataLoading && <GamesInfoCardSkelton />}
       </div>
    );
 };

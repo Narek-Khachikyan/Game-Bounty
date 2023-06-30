@@ -14,5 +14,13 @@ export const SkeletonCard = () => (
 );
 
 export const FilterSkeleton = () => {
-   return <div className="filterSkeleton w-16 h-8 bg-white"></div>;
+   return <div className="filterSkeleto text-center"></div>;
+};
+
+export const GamesInfoCardSkelton = () => {
+   return (
+      <div className="GamesInfoCardSkeleton text-center text-3xl text-white">
+         <p>GameBounty</p>
+      </div>
+   );
 };

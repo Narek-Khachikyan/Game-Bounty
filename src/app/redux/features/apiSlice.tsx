@@ -9,8 +9,9 @@ export const gameApi = createApi({
       baseUrl: 'https://api.rawg.io/api',
    }),
    endpoints: (builder) => ({
-      getGamesData: builder.query<Games, string>({
-         query: (filterByGenres) => `/games?key=${api}&genres=${filterByGenres}`,
+      getGamesData: builder.query<Games, { filterByGenres: string; debouncedQuery: string }>({
+         query: ({ filterByGenres, debouncedQuery }) =>
+            `/games?key=${api}&genres=${filterByGenres}&search=${debouncedQuery}`,
       }),
       getGamesInfoData: builder.query<GamesInfo, string>({
          query: (id) => `/games/${id}?key=${api}`,
