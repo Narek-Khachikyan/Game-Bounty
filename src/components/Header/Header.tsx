@@ -1,9 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
 import './header.scss';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
    const location = useLocation();
-
+   const count = useSelector((state: any) => state.favorites.count);
    return (
       <div className="header bg-white">
          <div className="header__container">
@@ -24,7 +25,7 @@ const Header = () => {
                            Platforms
                         </Link>
                      </li>
-                     <li className="header__nav-item">
+                     <li className="header__nav-item relative">
                         <Link
                            to={'/favorites'}
                            className={
@@ -33,6 +34,9 @@ const Header = () => {
                                  : 'header__nav-link sm:text-sm md:text-base'
                            }>
                            Favorites
+                           <p className="count absolute text-white bg-violet-950 text-sm">
+                              {count}
+                           </p>
                         </Link>
                      </li>
                   </ul>
