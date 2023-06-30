@@ -4,7 +4,7 @@ import GameCard from '../components/GameCard/GameCard';
 import { SkeletonCard } from '../components/Skeleton/Skeleton';
 import FilterByGenres from '../components/Filters/FilterByGenres';
 import useDebounce from '../hooks/useDebounce';
-
+import '../GlobalStyles/globalCardStyles.scss';
 const Games = () => {
    const [query, setQuery] = useState('');
    const debouncedQuery = useDebounce(query, 500);

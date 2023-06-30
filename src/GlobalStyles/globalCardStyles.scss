@@ -85,3 +85,11 @@
     background-color: white;
   }
 }
+
+
+@media (max-width:425px) {
+.games__content{
+  justify-content: center;
+  align-items: center;
+}
+}
