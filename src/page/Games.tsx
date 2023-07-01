@@ -5,16 +5,23 @@ import { SkeletonCard } from '../components/Skeleton/Skeleton';
 import FilterByGenres from '../components/Filters/FilterByGenres';
 import useDebounce from '../hooks/useDebounce';
 import '../GlobalStyles/globalCardStyles.scss';
+import FilterByPlatforms from '../components/Filters/FilterByPlatforms';
 const Games = () => {
    const [query, setQuery] = useState('');
    const debouncedQuery = useDebounce(query, 500);
    const [filterByGenres, setFilterByGenres] = useState('action');
-   const { data: gamesData } = useGetGamesDataQuery({ filterByGenres, debouncedQuery });
+   const [filterByPlatforms, setFilterByPlatforms] = useState(1);
+   const { data: gamesData } = useGetGamesDataQuery({
+      filterByGenres,
+      debouncedQuery,
+      filterByPlatforms,
+   });
    const skeletons = [...new Array(12)].map((_, index) => <SkeletonCard key={index} />);
 
    return (
       <div className="games py-10">
          <FilterByGenres setFilterByGenres={setFilterByGenres} />
+         <FilterByPlatforms setFilterByPlatforms={setFilterByPlatforms} />
          <div className="titleSearch my-8 flex flex-wrap justify-center items-center gap-2 sm:items-center sm:justify-between sm:flex-nowrap">
             <p className="games-title text-white text-2xl sm:text-2xl md:text-3xl">Popular Games</p>
             <input

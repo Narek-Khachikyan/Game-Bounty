@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { Games, Genres, GamesInfo } from '../../../@types/types';
+import type { Games, Genres, GamesInfo, PlatformsData } from '../../../@types/types';
 
 const api = '1bc8a2cdaf9b4ba49e0e798f5113a1dc';
 
@@ -9,9 +9,12 @@ export const gameApi = createApi({
       baseUrl: 'https://api.rawg.io/api',
    }),
    endpoints: (builder) => ({
-      getGamesData: builder.query<Games, { filterByGenres: string; debouncedQuery: string }>({
-         query: ({ filterByGenres, debouncedQuery }) =>
-            `/games?key=${api}&genres=${filterByGenres}&platforms=1&search=${debouncedQuery}`,
+      getGamesData: builder.query<
+         Games,
+         { filterByGenres: string; debouncedQuery: string; filterByPlatforms: number }
+      >({
+         query: ({ filterByGenres, debouncedQuery, filterByPlatforms }) =>
+            `/games?key=${api}&genres=${filterByGenres}&platforms=${filterByPlatforms}&search=${debouncedQuery}`,
       }),
       getGamesInfoData: builder.query<GamesInfo, string>({
          query: (id) => `/games/${id}?key=${api}`,
@@ -19,7 +22,15 @@ export const gameApi = createApi({
       getGenresData: builder.query<Genres, string>({
          query: () => `/genres?key=${api}`,
       }),
+      getPlatformsData: builder.query<PlatformsData, string>({
+         query: () => `/platforms?key=${api}`,
+      }),
    }),
 });
 
-export const { useGetGamesDataQuery, useGetGenresDataQuery, useGetGamesInfoDataQuery } = gameApi;
+export const {
+   useGetGamesDataQuery,
+   useGetGenresDataQuery,
+   useGetGamesInfoDataQuery,
+   useGetPlatformsDataQuery,
+} = gameApi;

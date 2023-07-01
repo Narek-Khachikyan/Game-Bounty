@@ -18,3 +18,20 @@
   color: #FFFFFF !important;
 }
 
+.dropdown-menu__item{
+  padding: 0px 5px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 15px;
+  cursor: pointer;
+  &:hover{
+    background-color: #6c22d9;
+    color: white;
+  }
+}
+.dropdown-toggle{
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    background-color: #6c22d9;
+    color: white;
+  }
+}

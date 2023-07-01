@@ -23,7 +23,15 @@ export type GenresData = {
 export type Genres = {
    results: GenresData[];
 };
-
+export type PlatformsData = {
+   results: [
+      {
+         id: number;
+         name: string;
+         slug: string;
+      },
+   ];
+};
 export type GamesInfo = {
    id: number;
    name: string;
