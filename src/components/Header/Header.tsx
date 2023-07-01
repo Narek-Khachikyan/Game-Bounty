@@ -14,17 +14,6 @@ const Header = () => {
                </Link>
                <nav className="header__nav">
                   <ul className="header__nav-list flex gap-2 items-center">
-                     <li className="header__nav-item">
-                        <Link
-                           to={'/platforms'}
-                           className={
-                              location.pathname === '/platforms'
-                                 ? 'active'
-                                 : 'header__nav-link sm:text-sm md:text-base'
-                           }>
-                           Platforms
-                        </Link>
-                     </li>
                      <li className="header__nav-item relative">
                         <Link
                            to={'/favorites'}
