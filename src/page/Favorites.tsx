@@ -26,7 +26,9 @@ const Favorites: React.FC = () => {
          </div>
 
          {cartItems.length === 0 ? (
-            <p className="text-white text-3xl my-8 text-center">Favorites is empty</p>
+            <p className="text-violet-950 text-3xl my-8 text-center bg-white py-2 rounded-2xl">
+               Favorites is empty
+            </p>
          ) : (
             <ul className=" flex flex-col gap-8">
                {cartItems.map((item: GameData) => (

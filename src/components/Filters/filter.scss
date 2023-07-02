@@ -1,8 +1,6 @@
 .genres__list{
-  width: 82%;
-  overflow-x: scroll;
   margin: 0 auto;
-  li{
+  .genreItem{
     cursor: pointer;
     border-radius: 15px;
     transition: all 0.3s ease-in-out;
@@ -34,4 +32,14 @@
     background-color: #6c22d9;
     color: white;
   }
+}
+
+.swiper-scrollbar{
+  background-color: white !important;
+  height: 10px !important;
+}
+.swiper-scrollbar-drag{
+  background-color: #895ae7 !important;
+  cursor: pointer;
+  width: 100%;
 }

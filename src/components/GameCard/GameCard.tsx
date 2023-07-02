@@ -1,9 +1,10 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import type { GameData } from '../../@types/types';
 import '../../GlobalStyles/globalCardStyles.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../../app/redux/features/favoriteSlice';
+import { addItem, removeItem } from '../../app/redux/features/favoriteSlice';
 import { Link } from 'react-router-dom';
+import { RootState } from '../../app/store';
 
 const GameCard: FC<GameData> = ({
    id,
@@ -14,24 +15,28 @@ const GameCard: FC<GameData> = ({
    platforms,
 }) => {
    const dispatch = useDispatch();
-   const cartItems = useSelector((state: any) => state.favorites.items);
-   const [isActive, setIsActive] = useState(true);
+   const cartItems = useSelector((state: RootState) => state.favorites.items);
+   const item = {
+      id,
+      name,
+      released,
+      background_image,
+      metacritic,
+      platforms,
+   };
+
+   const isItemInFavorites = cartItems.some(
+      (favoritesItem: GameData) => favoritesItem.id === item.id,
+   );
 
    const addFavorites = () => {
-      const item = {
-         id,
-         name,
-         released,
-         background_image,
-         metacritic,
-         platforms,
-      };
-      const isItemInFavorites = cartItems.some(
-         (favoritesItem: GameData) => favoritesItem.id === item.id,
-      );
       if (!isItemInFavorites) {
          dispatch(addItem(item));
-         setIsActive(false);
+      }
+   };
+   const removeFavorites = () => {
+      if (isItemInFavorites) {
+         dispatch(removeItem(id));
       }
    };
 
@@ -55,9 +60,19 @@ const GameCard: FC<GameData> = ({
                   </div>
                </div>
             </Link>
-            <button className="add-button bg-white text-violet-950" onClick={addFavorites}>
-               {isActive ? <p>ADD Game</p> : <p>ADDED</p>}
-            </button>
+            {isItemInFavorites ? (
+               <button
+                  className="remove-button cardButton bg-white text-violet-950"
+                  onClick={() => removeFavorites()}>
+                  Remove
+               </button>
+            ) : (
+               <button
+                  className="add-button cardButton bg-white text-violet-950"
+                  onClick={addFavorites}>
+                  Add Game
+               </button>
+            )}
          </div>
       </div>
    );

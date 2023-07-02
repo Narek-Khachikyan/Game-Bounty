@@ -11,6 +11,7 @@ export type GameData = {
    background_image: string;
    metacritic: number;
    platforms: Platforms[];
+
 };
 export type Games = {
    results: GameData[];
