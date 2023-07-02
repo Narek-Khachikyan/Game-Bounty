@@ -39,7 +39,7 @@ const FavoritesCard: FC<GameData> = ({
                      </div>
                   </div>
                </Link>
-               <button className="add-button bg-white text-violet-950" onClick={onClickRemove}>
+               <button className="cardButton bg-white text-violet-950" onClick={onClickRemove}>
                   Remove
                </button>
             </div>
