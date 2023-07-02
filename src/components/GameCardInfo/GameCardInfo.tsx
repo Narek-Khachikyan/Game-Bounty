@@ -15,10 +15,10 @@ const GameCardInfo = () => {
          <div className="content flex flex-col justify-center">
             <div className="imgWrapper">
                <img src={gamesInfoData?.background_image} alt="" />
-               <p className="released bg-white text-violet-800 py-1 px-3 hoverActivity">
+               <p className="released bg-white text-violet-800 py-1 px-3">
                   {gamesInfoData?.released}
                </p>
-               <p className="raiting text-xl bg-white text-violet-800 py-1 px-3 hoverActivity">
+               <p className="raiting text-xl bg-white text-violet-800 py-1 px-3">
                   {gamesInfoData?.metacritic}
                </p>
             </div>
