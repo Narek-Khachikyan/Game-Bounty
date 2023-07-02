@@ -13,10 +13,6 @@ export const SkeletonCard = () => (
    </ContentLoader>
 );
 
-export const FilterSkeleton = () => {
-   return <div className="filterSkeleto text-center"></div>;
-};
-
 export const GamesInfoCardSkelton = () => {
    return (
       <div className="GamesInfoCardSkeleton text-center text-3xl text-white">

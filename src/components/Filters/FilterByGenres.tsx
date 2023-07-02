@@ -12,7 +12,6 @@ type FilterByGenresProps = {
 };
 const FilterByGenres = ({ setFilterByGenres }: FilterByGenresProps) => {
    const { data: genresData, isLoading: genresDataLoading } = useGetGenresDataQuery('');
-   const skeletons = [...new Array(12)].map((_, index) => <GamesInfoCardSkelton key={index} />);
    const [isActive, setIsActive] = useState(0);
 
    const handleClick = (name: string, index: number) => {
@@ -64,7 +63,7 @@ const FilterByGenres = ({ setFilterByGenres }: FilterByGenresProps) => {
                </SwiperSlide>
             ))}
          </Swiper>
-         {genresDataLoading && skeletons}
+         {genresDataLoading && <GamesInfoCardSkelton />}
       </div>
    );
 };
