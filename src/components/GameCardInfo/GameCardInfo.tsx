@@ -9,6 +9,7 @@ const GameCardInfo = () => {
    const { data: gamesInfoData, isLoading: gamesInfoDataLoading } = useGetGamesInfoDataQuery(
       id ?? '',
    );
+
    return (
       <div className="cardInfo py-7">
          <div className="content flex flex-col justify-center">
@@ -34,7 +35,7 @@ const GameCardInfo = () => {
                </div>
                <div className="infoWrapper">
                   <p className="gameInfo__descr text-base text-violet-950">
-                     {gamesInfoData?.description}
+                     {gamesInfoData?.description.replace(/(<([^>]+)>)/gi, '')}
                   </p>
                   <div className="achivments flex items-center gap-1 my-2">
                      <p className="text-base sm:text-xl text-violet-950">Achievements Count:</p>
