@@ -21,7 +21,7 @@ const Favorites: React.FC = () => {
                   className="clear-btn text-white bg-violet-900 text-sm md:text-xl py-3 px-2"
                   onClick={handleClearCart}>
                   CLEAR FAVORITES
-               </button>
+                  </button>
             )}
          </div>
 

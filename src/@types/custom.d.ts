@@ -25,6 +25,10 @@ declare module 'swiper' {
     constructor(swiper: Swiper);
     updateSize(): void;
   }
+  export class Autoplay {
+    constructor(swiper: Swiper);
+    updateSize(): void;
+  }
 
   export default class Swiper {
     constructor(container: string | HTMLElement, options?: SwiperOptions);

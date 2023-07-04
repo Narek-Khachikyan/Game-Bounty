@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  height: 100vh;
   animation: textAnimation 6s infinite ease-in-out;
   p{
     background-color: white;
@@ -21,7 +21,6 @@
 
   }
 }
-
 @keyframes textAnimation {
   0%{
     transform: translateY(-10px);
@@ -37,5 +36,17 @@
   }
   100%{
     transform: translateY(-10px);
+  }
+}
+
+.GameBoundy{
+  p{
+    background-color: white;
+    box-shadow: 0px 0px 300px rgb(214, 16, 197);
+    padding: 15px 20px;
+    border-radius: 15px;
+    color: rgb(82,22,203);
+    color: linear-gradient(90deg, rgba(82,22,203,1) 0%, rgba(109,21,203,1) 48%, rgba(197,15,232,1) 100%);
+
   }
 }

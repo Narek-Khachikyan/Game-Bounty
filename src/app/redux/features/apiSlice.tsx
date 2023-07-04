@@ -1,5 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { Games, Genres, GamesInfo, PlatformsData } from '../../../@types/types';
+import type {
+   Games,
+   Genres,
+   GamesInfo,
+   PlatformsData,
+   ScreenShots,
+   GameDlc,
+} from '../../../@types/types';
 
 const api = '1bc8a2cdaf9b4ba49e0e798f5113a1dc';
 
@@ -25,6 +32,12 @@ export const gameApi = createApi({
       getPlatformsData: builder.query<PlatformsData, string>({
          query: () => `/platforms?key=${api}`,
       }),
+      getScreenShots: builder.query<ScreenShots, string>({
+         query: (id) => `/games/${id}/screenshots?key=${api}`,
+      }),
+      getDlcData: builder.query<GameDlc, string>({
+         query: (id) => `/games/${id}/additions?key=${api}`,
+      }),
    }),
 });
 
@@ -33,4 +46,6 @@ export const {
    useGetGenresDataQuery,
    useGetGamesInfoDataQuery,
    useGetPlatformsDataQuery,
+   useGetScreenShotsQuery,
+   useGetDlcDataQuery,
 } = gameApi;

@@ -20,3 +20,10 @@ export const GamesInfoCardSkelton = () => {
       </div>
    );
 };
+export const GameBountySkeleton = () => {
+   return (
+      <div className="GameBoundy text-3xl text-white">
+         <p>GameBounty</p>
+      </div>
+   );
+};

@@ -1,0 +1,18 @@
+.dlcCard__img{
+  position: relative;
+  img{
+    object-fit: cove;
+  }
+}
+
+.dlcCard__raiting,.dlcCard__released{
+  position: absolute;
+}
+.dlcCard__raiting{
+  left: 0;
+  top: 0;
+}
+.dlcCard__released{
+  right: 0;
+  top: 0;
+}

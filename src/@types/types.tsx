@@ -11,7 +11,6 @@ export type GameData = {
    background_image: string;
    metacritic: number;
    platforms: Platforms[];
-
 };
 export type Games = {
    results: GameData[];
@@ -35,6 +34,7 @@ export type PlatformsData = {
 };
 export type GamesInfo = {
    id: number;
+   slug: string;
    name: string;
    description: string;
    metacritic: number;
@@ -53,6 +53,24 @@ export type GamesInfo = {
             minimum: string;
             recommended: string;
          };
+      },
+   ];
+};
+export type ScreenShots = {
+   results: [
+      {
+         image: string;
+      },
+   ];
+};
+export type GameDlc = {
+   results: [
+      {
+         id: number;
+         name: string;
+         released: string;
+         background_image: string;
+         rating: number;
       },
    ];
 };
