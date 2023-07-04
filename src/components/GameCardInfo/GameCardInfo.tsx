@@ -99,7 +99,11 @@ const GameCardInfo = () => {
                      <img className="achivments__img" src={achivments} alt="achivmentsImg" />
                   </div>
                   <div className="dlc pt-2">
-                     <p className="text-2xl text-violet-950 mb-4 ">All game's dlc</p>
+                     <p className="text-2xl text-violet-950 mb-4 ">
+                        {dlcData && dlcData.results && dlcData.results.length > 0
+                           ? "All game's dlc"
+                           : null}
+                     </p>
                      <div className="dlcWrapper flex flex-wrap gap-4">
                         {dlcData?.results.map((item) => (
                            <DlcCard key={item.id} {...item} />
