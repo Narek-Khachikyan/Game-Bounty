@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useGetGenresDataQuery } from '../../app/redux/features/apiSlice';
-import { GamesInfoCardSkelton } from '../Skeleton/Skeleton';
+import { GameBountySkeleton, GamesInfoCardSkelton } from '../Skeleton/Skeleton';
 import './filter.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper';
@@ -63,7 +63,7 @@ const FilterByGenres = ({ setFilterByGenres }: FilterByGenresProps) => {
                </SwiperSlide>
             ))}
          </Swiper>
-         {genresDataLoading && <GamesInfoCardSkelton />}
+         {genresDataLoading && <GameBountySkeleton />}
       </div>
    );
 };

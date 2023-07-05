@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import {
    useGetDlcDataQuery,
    useGetGamesInfoDataQuery,
+   useGetSameSeriesQuery,
    useGetScreenShotsQuery,
 } from '../../app/redux/features/apiSlice';
 import './gamesInfoCard.scss';
@@ -12,6 +13,7 @@ import { Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import DlcCard from '../DlcCard/DlcCard';
+import SameSeriesCard from '../SameSeriesCard/SameSeriesCard';
 
 const GameCardInfo = () => {
    const { id } = useParams();
@@ -24,9 +26,14 @@ const GameCardInfo = () => {
    const { data: dlcData, isLoading: dlcDataLoading } = useGetDlcDataQuery(
       gamesInfoData?.slug ?? '',
    );
+   const { data: sameSeries, isLoading: sameSeriesLoading } = useGetSameSeriesQuery(
+      gamesInfoData?.slug ?? '',
+   );
    return (
       <div className="cardInfo py-7">
-         {gamesInfoDataLoading && screenShotsLoading && dlcDataLoading && <GamesInfoCardSkelton />}
+         {gamesInfoDataLoading && screenShotsLoading && dlcDataLoading && sameSeriesLoading && (
+            <GamesInfoCardSkelton />
+         )}
          <div className="content flex flex-col justify-center">
             <div className="imgWrapper">
                <img src={gamesInfoData?.background_image} alt="gameInfoImg" />
@@ -98,7 +105,59 @@ const GameCardInfo = () => {
                      </p>
                      <img className="achivments__img" src={achivments} alt="achivmentsImg" />
                   </div>
-                  <div className="dlc pt-2">
+                  <div
+                     className={
+                        sameSeries && sameSeries.results && sameSeries.results.length > 0
+                           ? 'sameSeries py-4'
+                           : 'display-none'
+                     }>
+                     <p className="text-2xl text-violet-950 mb-4 ">
+                        {sameSeries && sameSeries.results && sameSeries.results.length > 0
+                           ? 'Games that are part of the same series'
+                           : null}
+                     </p>
+                     <Swiper
+                        className="genres__list flex gap-3 items-center pb-4"
+                        modules={[Autoplay]}
+                        autoplay={{ delay: 3000 }}
+                        spaceBetween={50}
+                        breakpoints={{
+                           320: {
+                              slidesPerView: 1,
+                              spaceBetween: 20,
+                           },
+                           425: {
+                              slidesPerView: 1,
+                              spaceBetween: 20,
+                           },
+                           640: {
+                              slidesPerView: 1,
+                              spaceBetween: 20,
+                           },
+                           768: {
+                              slidesPerView: 2,
+                              spaceBetween: 30,
+                           },
+                           1024: {
+                              slidesPerView: 3,
+                              spaceBetween: 40,
+                           },
+                        }}
+                        slidesPerView={3}>
+                        {sameSeries?.results.map((item) => (
+                           <SwiperSlide>
+                              <SameSeriesCard key={item.id} {...item} />
+                           </SwiperSlide>
+                        ))}
+                     </Swiper>
+                  </div>
+
+                  <div
+                     className={
+                        dlcData && dlcData.results && dlcData.results.length > 0
+                           ? 'dlc py-4'
+                           : 'display-none'
+                     }>
                      <p className="text-2xl text-violet-950 mb-4 ">
                         {dlcData && dlcData.results && dlcData.results.length > 0
                            ? "All game's dlc"

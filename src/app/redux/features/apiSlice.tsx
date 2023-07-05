@@ -6,6 +6,7 @@ import type {
    PlatformsData,
    ScreenShots,
    GameDlc,
+   SameSeriesGame,
 } from '../../../@types/types';
 
 const api = '1bc8a2cdaf9b4ba49e0e798f5113a1dc';
@@ -38,6 +39,9 @@ export const gameApi = createApi({
       getDlcData: builder.query<GameDlc, string>({
          query: (id) => `/games/${id}/additions?key=${api}`,
       }),
+      getSameSeries: builder.query<SameSeriesGame, string>({
+         query: (id) => `/games/${id}/game-series?key=${api}`,
+      }),
    }),
 });
 
@@ -48,4 +52,5 @@ export const {
    useGetPlatformsDataQuery,
    useGetScreenShotsQuery,
    useGetDlcDataQuery,
+   useGetSameSeriesQuery,
 } = gameApi;

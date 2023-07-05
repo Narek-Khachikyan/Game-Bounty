@@ -1,0 +1,17 @@
+.sameSeries__img{
+  position: relative;
+  img{
+    height: 213px;
+    object-fit: cover;
+  }
+}
+.sameSeries__metacritic,.sameSeries__released{
+  position: absolute;
+  top: 0;
+}
+.sameSeries__metacritic{
+  left: 0;
+}
+.sameSeries__released{
+  right: 0;
+}

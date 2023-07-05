@@ -74,3 +74,14 @@ export type GameDlc = {
       },
    ];
 };
+export type SameSeriesGame = {
+   results: [
+      {
+         id: 0;
+         name: string;
+         released: string;
+         background_image: string;
+         metacritic: number;
+      },
+   ];
+};
