@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useGetGenresDataQuery } from '../../app/redux/features/apiSlice';
-import { GameBountySkeleton, GamesInfoCardSkelton } from '../Skeleton/Skeleton';
+import { GameBountySkeleton } from '../Skeleton/Skeleton';
 import './filter.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper';
