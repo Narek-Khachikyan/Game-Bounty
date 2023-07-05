@@ -117,7 +117,7 @@ const GameCardInfo = () => {
                            : null}
                      </p>
                      <Swiper
-                        className="genres__list flex gap-3 items-center pb-4"
+                        className="genres__list flex gap-3 items-center"
                         modules={[Autoplay]}
                         autoplay={{ delay: 3000 }}
                         spaceBetween={50}
