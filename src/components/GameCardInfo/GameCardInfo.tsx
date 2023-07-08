@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
    useGetDlcDataQuery,
    useGetGamesInfoDataQuery,
@@ -29,6 +29,7 @@ const GameCardInfo = () => {
    const { data: sameSeries, isLoading: sameSeriesLoading } = useGetSameSeriesQuery(
       gamesInfoData?.slug ?? '',
    );
+
    return (
       <div className="cardInfo py-7">
          {gamesInfoDataLoading && screenShotsLoading && dlcDataLoading && sameSeriesLoading && (
@@ -76,7 +77,7 @@ const GameCardInfo = () => {
                   {screenShots?.results.map((item, index) => (
                      <SwiperSlide>
                         <img
-                           className="rounded-2xl"
+                           className="rounded-2xl screenshots__img"
                            key={index}
                            src={item.image}
                            alt="screenshotsSliderImg"
@@ -146,12 +147,13 @@ const GameCardInfo = () => {
                         slidesPerView={3}>
                         {sameSeries?.results.map((item) => (
                            <SwiperSlide>
-                              <SameSeriesCard key={item.id} {...item} />
+                              <Link onClick={() => window.scrollTo(0, 0)} to={`/game/${item.id}`}>
+                                 <SameSeriesCard key={item.id} {...item} />
+                              </Link>
                            </SwiperSlide>
                         ))}
                      </Swiper>
                   </div>
-
                   <div
                      className={
                         dlcData && dlcData.results && dlcData.results.length > 0
