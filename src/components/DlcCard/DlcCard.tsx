@@ -14,7 +14,12 @@ const DlcCard: FC<DlcProps> = ({ name, background_image, rating, released }) => 
          <div className="dlcCard__container w-full h-full">
             <div className="dlcCard__content w-full h-full">
                <div className="dlcCard__img w-full h-full">
-                  <img className="w-full h-full rounded-2xl" src={background_image} alt="dlcImg" />
+                  <img
+                     loading="lazy"
+                     className="w-full h-full rounded-2xl"
+                     src={background_image}
+                     alt="dlcImg"
+                  />
                   <p className="dlcCard__raiting bg-white text-violet-900 px-2 py-1 text-base sm:text-xl rounded-xl">
                      {rating * 2}
                   </p>

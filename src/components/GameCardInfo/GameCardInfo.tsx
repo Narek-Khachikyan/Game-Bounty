@@ -37,7 +37,7 @@ const GameCardInfo = () => {
          )}
          <div className="content flex flex-col justify-center">
             <div className="imgWrapper">
-               <img src={gamesInfoData?.background_image} alt="gameInfoImg" />
+               <img loading="lazy" src={gamesInfoData?.background_image} alt="gameInfoImg" />
                <p className="released bg-white text-violet-800 py-1 px-3">
                   {gamesInfoData?.released}
                </p>
@@ -77,6 +77,7 @@ const GameCardInfo = () => {
                   {screenShots?.results.map((item, index) => (
                      <SwiperSlide>
                         <img
+                           loading="lazy"
                            className="rounded-2xl screenshots__img"
                            key={index}
                            src={item.image}
@@ -104,7 +105,12 @@ const GameCardInfo = () => {
                      <p className="text-base bg-violet-950 text-white py-1 px-3">
                         {gamesInfoData?.achievements_count}
                      </p>
-                     <img className="achivments__img" src={achivments} alt="achivmentsImg" />
+                     <img
+                        loading="lazy"
+                        className="achivments__img"
+                        src={achivments}
+                        alt="achivmentsImg"
+                     />
                   </div>
                   <div
                      className={

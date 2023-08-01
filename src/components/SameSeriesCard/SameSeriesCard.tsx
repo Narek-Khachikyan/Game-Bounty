@@ -14,6 +14,7 @@ const SameSeriesCard: FC<SameSeriesProps> = ({ name, released, background_image,
             <div className="sameSeries__content w-full h-full">
                <div className="sameSeries__img w-full h-full">
                   <img
+                     loading="lazy"
                      className="w-full h-full rounded-2xl"
                      src={background_image}
                      alt="sameSeriesImg"
