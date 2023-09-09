@@ -25,7 +25,7 @@ const FavoritesCard: FC<GameData> = ({
                <Link to={`/game/${id}`}>
                   <div className="card__content">
                      <div className="card__wrapper">
-                        <img loading="lazy" src={background_image} alt="favoriteCardImg" />
+                        <img src={background_image} alt="favoriteCardImg" />
                         <p className="raiting bg-white text-violet-800 py-1 px-3">{metacritic}</p>
                         <p className="released bg-white text-violet-800 py-1 px-3">{released}</p>
                         <div className="card__textWrapper bg-white py-3 px-2">
