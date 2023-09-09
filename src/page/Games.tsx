@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useGetGamesDataQuery } from '../app/redux/features/apiSlice';
 import GameCard from '../components/GameCard/GameCard';
 import { SkeletonCard } from '../components/Skeleton/Skeleton';
@@ -6,6 +6,7 @@ import FilterByGenres from '../components/Filters/FilterByGenres';
 import useDebounce from '../hooks/useDebounce';
 import '../GlobalStyles/globalCardStyles.scss';
 import FilterByPlatforms from '../components/Filters/FilterByPlatforms';
+
 const Games = () => {
    const [query, setQuery] = useState('');
    const debouncedQuery = useDebounce(query, 500);

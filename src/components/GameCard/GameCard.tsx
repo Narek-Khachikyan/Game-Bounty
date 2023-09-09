@@ -1,10 +1,12 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import type { GameData } from '../../@types/types';
 import '../../GlobalStyles/globalCardStyles.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, removeItem } from '../../app/redux/features/favoriteSlice';
 import { Link } from 'react-router-dom';
 import { RootState } from '../../app/store';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const GameCard: FC<GameData> = ({
    id,
@@ -24,11 +26,9 @@ const GameCard: FC<GameData> = ({
       metacritic,
       platforms,
    };
-
    const isItemInFavorites = cartItems.some(
       (favoritesItem: GameData) => favoritesItem.id === item.id,
    );
-
    const addFavorites = () => {
       if (!isItemInFavorites) {
          dispatch(addItem(item));
@@ -40,8 +40,12 @@ const GameCard: FC<GameData> = ({
       }
    };
 
+   useEffect(() => {
+      AOS.init();
+   }, []);
+
    return (
-      <div className="card">
+      <div className="card" data-aos="fade-up">
          <div className="card__container">
             <Link to={`/game/${id}`}>
                <div className="card__content">

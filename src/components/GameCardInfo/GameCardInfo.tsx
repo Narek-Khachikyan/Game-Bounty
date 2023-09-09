@@ -14,6 +14,9 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 import DlcCard from '../DlcCard/DlcCard';
 import SameSeriesCard from '../SameSeriesCard/SameSeriesCard';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 const GameCardInfo = () => {
    const { id } = useParams();
@@ -30,13 +33,17 @@ const GameCardInfo = () => {
       gamesInfoData?.slug ?? '',
    );
 
+   useEffect(() => {
+      AOS.init();
+   }, []);
+
    return (
       <div className="cardInfo py-7">
          {gamesInfoDataLoading && screenShotsLoading && dlcDataLoading && sameSeriesLoading && (
             <GamesInfoCardSkelton />
          )}
          <div className="content flex flex-col justify-center">
-            <div className="imgWrapper">
+            <div className="imgWrapper" data-aos="fade-up">
                <img src={gamesInfoData?.background_image} alt="gameInfoImg" />
                <p className="released bg-white text-violet-800 py-1 px-3">
                   {gamesInfoData?.released}
@@ -48,6 +55,7 @@ const GameCardInfo = () => {
             <div className="gameInfoWrapper bg-white p-4">
                <Swiper
                   className="genres__list flex gap-3 items-center pb-4"
+                  data-aos="fade-up"
                   modules={[Autoplay]}
                   autoplay={{ delay: 3000 }}
                   spaceBetween={50}
@@ -146,7 +154,7 @@ const GameCardInfo = () => {
                         }}
                         slidesPerView={3}>
                         {sameSeries?.results.map((item) => (
-                           <SwiperSlide>
+                           <SwiperSlide data-aos="fade-up">
                               <Link onClick={() => window.scrollTo(0, 0)} to={`/game/${item.id}`}>
                                  <SameSeriesCard key={item.id} {...item} />
                               </Link>
@@ -165,7 +173,7 @@ const GameCardInfo = () => {
                            ? "All game's dlc"
                            : null}
                      </p>
-                     <div className="dlcWrapper flex flex-wrap gap-4">
+                     <div className="dlcWrapper flex flex-wrap gap-4" data-aos="fade-up">
                         {dlcData?.results.map((item) => (
                            <DlcCard key={item.id} {...item} />
                         ))}
