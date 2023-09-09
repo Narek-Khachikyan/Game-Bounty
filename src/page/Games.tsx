@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useGetGamesDataQuery } from '../app/redux/features/apiSlice';
 import GameCard from '../components/GameCard/GameCard';
 import { SkeletonCard } from '../components/Skeleton/Skeleton';
