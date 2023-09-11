@@ -127,6 +127,7 @@ const GameCardInfo = () => {
                      </p>
                      <Swiper
                         className="genres__list flex gap-3 items-center"
+                        data-aos="fade-up"
                         modules={[Autoplay]}
                         autoplay={{ delay: 3000 }}
                         spaceBetween={50}
@@ -154,7 +155,7 @@ const GameCardInfo = () => {
                         }}
                         slidesPerView={3}>
                         {sameSeries?.results.map((item) => (
-                           <SwiperSlide data-aos="fade-up">
+                           <SwiperSlide>
                               <Link onClick={() => window.scrollTo(0, 0)} to={`/game/${item.id}`}>
                                  <SameSeriesCard key={item.id} {...item} />
                               </Link>
