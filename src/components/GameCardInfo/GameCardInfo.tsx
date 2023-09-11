@@ -43,7 +43,7 @@ const GameCardInfo = () => {
             <GamesInfoCardSkelton />
          )}
          <div className="content flex flex-col justify-center">
-            <div className="imgWrapper" data-aos="fade-up">
+            <div className="imgWrapper">
                <img src={gamesInfoData?.background_image} alt="gameInfoImg" />
                <p className="released bg-white text-violet-800 py-1 px-3">
                   {gamesInfoData?.released}
