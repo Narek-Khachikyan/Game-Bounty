@@ -6,7 +6,7 @@ Key Features
 🔎 Browse curated lists and personalized recommendations to discover new games matched to your interests
 ➕ Easily add games to customizable watchlists and wishlists
 ✅ Filter search results by platform, genre, ratings, and other parameters
-🕹️ View game details like descriptions, images, videos, ratings, and reviews
+🕹️ View game details like descriptions, images, videos, ratings, and reviews 
 👤 Sign up for an account to save your games and lists
 Technologies
 React 📦
