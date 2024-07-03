@@ -9,7 +9,7 @@ import type {
    SameSeriesGame,
 } from '../../../@types/types';
 
-const api = '1bc8a2cdaf9b4ba49e0e798f5113a1dc';
+const api = import.meta.env.VITE_API_KEY;
 
 export const gameApi = createApi({
    reducerPath: 'gameApi',
