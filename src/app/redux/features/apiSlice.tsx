@@ -27,10 +27,10 @@ export const gameApi = createApi({
       getGamesInfoData: builder.query<GamesInfo, string>({
          query: (id) => `/games/${id}?key=${api}`,
       }),
-      getGenresData: builder.query<Genres, string>({
+      getGenresData: builder.query<Genres, void>({
          query: () => `/genres?key=${api}`,
       }),
-      getPlatformsData: builder.query<PlatformsData, string>({
+      getPlatformsData: builder.query<PlatformsData, void>({
          query: () => `/platforms?key=${api}`,
       }),
       getScreenShots: builder.query<ScreenShots, string>({

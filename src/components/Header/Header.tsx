@@ -1,10 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
 import './header.scss';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../app/hooks';
 
 const Header = () => {
    const location = useLocation();
-   const count = useSelector((state: any) => state.favorites.count);
+   const count = useAppSelector((state) => state.favorites.count);
    return (
       <div className="header bg-white">
          <div className="header__container">

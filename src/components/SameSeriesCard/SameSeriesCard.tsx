@@ -4,7 +4,7 @@ type SameSeriesProps = {
    name: string;
    released: string;
    background_image: string;
-   metacritic: number;
+   metacritic: number | null;
 };
 
 const SameSeriesCard: FC<SameSeriesProps> = ({ name, released, background_image, metacritic }) => {
@@ -16,10 +16,11 @@ const SameSeriesCard: FC<SameSeriesProps> = ({ name, released, background_image,
                   <img
                      className="w-full h-full rounded-2xl"
                      src={background_image}
-                     alt="sameSeriesImg"
+                     alt={name ? `${name} cover` : 'Game cover'}
+                     loading="lazy"
                   />
                   <p className="sameSeries__metacritic bg-white text-violet-900 px-2 py-1 text-base sm:text-xl rounded-xl">
-                     {metacritic}
+                     {metacritic ?? 'N/A'}
                   </p>
                   <p className="sameSeries__released bg-white text-violet-900 px-2 py-1 text-base sm:text-xl rounded-xl">
                      {released}

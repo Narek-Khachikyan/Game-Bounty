@@ -1,12 +1,9 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import type { GameData } from '../../@types/types';
 import '../../GlobalStyles/globalCardStyles.scss';
-import { useDispatch, useSelector } from 'react-redux';
 import { addItem, removeItem } from '../../app/redux/features/favoriteSlice';
 import { Link } from 'react-router-dom';
-import { RootState } from '../../app/store';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 const GameCard: FC<GameData> = ({
    id,
@@ -16,8 +13,8 @@ const GameCard: FC<GameData> = ({
    metacritic,
    platforms,
 }) => {
-   const dispatch = useDispatch();
-   const cartItems = useSelector((state: RootState) => state.favorites.items);
+   const dispatch = useAppDispatch();
+   const cartItems = useAppSelector((state) => state.favorites.items);
    const item = {
       id,
       name,
@@ -40,24 +37,26 @@ const GameCard: FC<GameData> = ({
       }
    };
 
-   useEffect(() => {
-      AOS.init();
-   }, []);
-
    return (
       <div className="card" data-aos="fade-up">
          <div className="card__container">
             <Link to={`/game/${id}`}>
                <div className="card__content">
                   <div className="card__wrapper">
-                     <img src={background_image} alt="gameCardImg" />
-                     <p className="raiting bg-white text-violet-800 py-1 px-3">{metacritic}</p>
+                     <img
+                        src={background_image}
+                        alt={name ? `${name} cover` : 'Game cover'}
+                        loading="lazy"
+                     />
+                     <p className="raiting bg-white text-violet-800 py-1 px-3">
+                        {metacritic ?? 'N/A'}
+                     </p>
                      <p className="released bg-white text-violet-800 py-1 px-3">{released}</p>
                      <div className="card__textWrapper bg-white py-3 px-2">
                         <p className="card__name text-violet-900">{name}</p>
                         <div className="platform-wrapper grid grid-cols-2 grid-rows-1">
                            {platforms.map((item) => (
-                              <p>{item.platform.name}</p>
+                              <p key={item.platform.id}>{item.platform.name}</p>
                            ))}
                         </div>
                      </div>

@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { GameData } from '../../@types/types';
 import '../../GlobalStyles/globalCardStyles.scss';
 import { removeItem } from '../../app/redux/features/favoriteSlice';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../app/hooks';
 
 const FavoritesCard: FC<GameData> = ({
    id,
@@ -13,7 +13,7 @@ const FavoritesCard: FC<GameData> = ({
    platforms,
    released,
 }) => {
-   const dispatch = useDispatch();
+   const dispatch = useAppDispatch();
    const onClickRemove = () => {
       dispatch(removeItem(id));
    };
@@ -25,14 +25,20 @@ const FavoritesCard: FC<GameData> = ({
                <Link to={`/game/${id}`}>
                   <div className="card__content">
                      <div className="card__wrapper">
-                        <img src={background_image} alt="favoriteCardImg" />
-                        <p className="raiting bg-white text-violet-800 py-1 px-3">{metacritic}</p>
+                        <img
+                           src={background_image}
+                           alt={name ? `${name} cover` : 'Game cover'}
+                           loading="lazy"
+                        />
+                        <p className="raiting bg-white text-violet-800 py-1 px-3">
+                           {metacritic ?? 'N/A'}
+                        </p>
                         <p className="released bg-white text-violet-800 py-1 px-3">{released}</p>
                         <div className="card__textWrapper bg-white py-3 px-2">
                            <p className="card__name text-violet-900">{name}</p>
                            <div className="platform-wrapper grid grid-cols-2 grid-rows-1">
                               {platforms.map((item) => (
-                                 <p>{item.platform.name}</p>
+                                 <p key={item.platform.id}>{item.platform.name}</p>
                               ))}
                            </div>
                         </div>

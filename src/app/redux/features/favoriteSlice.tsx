@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { GameData } from '../../../@types/types';
 
-export interface CartState {
+export interface FavoritesState {
    items: GameData[];
    count: number;
 }
 
-const initialState: CartState = {
+const initialState: FavoritesState = {
    items: [],
    count: 0,
 };
@@ -15,15 +15,18 @@ const favoritesSlice = createSlice({
    name: 'favorites',
    initialState,
    reducers: {
-      addItem: (state: CartState, action: PayloadAction<GameData>) => {
-         state.items.push(action.payload);
-         state.count++;
+      addItem: (state: FavoritesState, action: PayloadAction<GameData>) => {
+         const exists = state.items.some((item) => item.id === action.payload.id);
+         if (!exists) {
+            state.items.push(action.payload);
+         }
+         state.count = state.items.length;
       },
       removeItem: (state, action: PayloadAction<number>) => {
          state.items = state.items.filter((item) => item.id !== action.payload);
-         state.count--;
+         state.count = state.items.length;
       },
-      clearFavorites: (state: CartState) => {
+      clearFavorites: (state: FavoritesState) => {
          state.items = [];
          state.count = 0;
       },

@@ -1,12 +1,12 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { clearFavorites } from '../app/redux/features/favoriteSlice';
 import { GameData } from '../@types/types';
 import FavoritesCard from '../components/FavoritesCard.tsx/FavoritesCard';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 
 const Favorites: React.FC = () => {
-   const cartItems = useSelector((state: any) => state.favorites.items);
-   const dispatch = useDispatch();
+   const cartItems = useAppSelector((state) => state.favorites.items);
+   const dispatch = useAppDispatch();
 
    const handleClearCart = () => {
       dispatch(clearFavorites());

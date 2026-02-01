@@ -12,17 +12,27 @@ const Games = () => {
    const debouncedQuery = useDebounce(query, 500);
    const [filterByGenres, setFilterByGenres] = useState('action');
    const [filterByPlatforms, setFilterByPlatforms] = useState(1);
-   const { data: gamesData } = useGetGamesDataQuery({
+   const {
+      data: gamesData,
+      isLoading: gamesDataLoading,
+      isFetching: gamesDataFetching,
+      isError: gamesDataError,
+   } = useGetGamesDataQuery({
       filterByGenres,
       debouncedQuery,
       filterByPlatforms,
    });
+   const isLoading = (gamesDataLoading || gamesDataFetching) && !gamesData;
+   const hasResults = (gamesData?.results ?? []).length > 0;
    const skeletons = [...new Array(12)].map((_, index) => <SkeletonCard key={index} />);
 
    return (
       <div className="games py-10">
          <FilterByGenres setFilterByGenres={setFilterByGenres} />
-         <FilterByPlatforms setFilterByPlatforms={setFilterByPlatforms} />
+         <FilterByPlatforms
+            selectedPlatformId={filterByPlatforms}
+            setFilterByPlatforms={setFilterByPlatforms}
+         />
          <div className="titleSearch my-8 flex flex-wrap justify-center items-center gap-2 sm:items-center sm:justify-between sm:flex-nowrap">
             <p className="games-title text-white text-2xl sm:text-2xl md:text-3xl">Popular Games</p>
             <input
@@ -33,14 +43,22 @@ const Games = () => {
                onChange={(event) => setQuery(event.target.value)}
             />
          </div>
-         <div
-            className={
-               'games__content grid gap-10 sm:grid-cols-1 sm:grid-rows-1 md:grid-cols-2 md:grid-rows-1 lg:grid-cols-3 lg:grid-rows-2 xl:grid-cols-4 xl:grid-rows-3'
-            }>
-            {gamesData
-               ? gamesData.results.map((item) => <GameCard key={item.id} {...item} />)
-               : skeletons}
-         </div>
+          {gamesDataError && (
+             <p className="text-white text-center text-lg">
+                Failed to load games. Please try again later.
+             </p>
+          )}
+          {!gamesDataError && !isLoading && !hasResults && (
+             <p className="text-white text-center text-lg">No games found.</p>
+          )}
+          <div
+             className={
+                'games__content grid gap-10 sm:grid-cols-1 sm:grid-rows-1 md:grid-cols-2 md:grid-rows-1 lg:grid-cols-3 lg:grid-rows-2 xl:grid-cols-4 xl:grid-rows-3'
+             }>
+             {isLoading
+                ? skeletons
+                : gamesData?.results.map((item) => <GameCard key={item.id} {...item} />)}
+          </div>
       </div>
    );
 };

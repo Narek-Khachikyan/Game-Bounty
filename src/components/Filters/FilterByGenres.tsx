@@ -11,7 +11,7 @@ type FilterByGenresProps = {
    setFilterByGenres: (value: string) => void;
 };
 const FilterByGenres = ({ setFilterByGenres }: FilterByGenresProps) => {
-   const { data: genresData, isLoading: genresDataLoading } = useGetGenresDataQuery('');
+   const { data: genresData, isLoading: genresDataLoading } = useGetGenresDataQuery();
    const [isActive, setIsActive] = useState(0);
 
    const handleClick = (name: string, index: number) => {
