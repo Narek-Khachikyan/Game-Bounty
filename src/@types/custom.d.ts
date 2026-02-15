@@ -7,11 +7,11 @@ declare module '*.css' {
   export default content;
 }
 declare module "*.svg"{
-  const content:any;
+  const content: string;
   export default content;
 }
 declare module "*.png"{
-  const content:any;
+  const content: string;
   export default content;
 }
 
@@ -35,7 +35,6 @@ declare module 'swiper' {
     static use(modules: SwiperModule[]): void;
   }
 }
-
 
 
 

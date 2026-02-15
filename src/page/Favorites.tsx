@@ -1,11 +1,12 @@
 import React from 'react';
 import { clearFavorites } from '../app/redux/features/favoriteSlice';
-import { GameData } from '../@types/types';
-import FavoritesCard from '../components/FavoritesCard.tsx/FavoritesCard';
+import type { GameData } from '../@types/types';
+import FavoritesCard from '../components/FavoritesCard/FavoritesCard';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { selectFavoritesList } from '../app/redux/selectors/favorites';
 
 const Favorites: React.FC = () => {
-   const cartItems = useAppSelector((state) => state.favorites.items);
+   const cartItems = useAppSelector(selectFavoritesList);
    const dispatch = useAppDispatch();
 
    const handleClearCart = () => {
@@ -21,7 +22,7 @@ const Favorites: React.FC = () => {
                   className="clear-btn text-white bg-violet-900 text-sm md:text-xl py-3 px-2"
                   onClick={handleClearCart}>
                   CLEAR FAVORITES
-                  </button>
+               </button>
             )}
          </div>
 

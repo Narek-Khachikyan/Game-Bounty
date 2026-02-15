@@ -50,6 +50,16 @@
   z-index: 3;
 }
 
+.video-toggle{
+  border-radius: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.video-toggle__status{
+  white-space: nowrap;
+}
+
 @media (max-width:330px) {
   .header__logo{
     font-size: 14px;

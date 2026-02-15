@@ -2,6 +2,7 @@ import { FC } from 'react';
 import type { GameData } from '../../@types/types';
 import '../../GlobalStyles/globalCardStyles.scss';
 import { addItem, removeItem } from '../../app/redux/features/favoriteSlice';
+import { selectIsFavorite } from '../../app/redux/selectors/favorites';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
@@ -14,7 +15,7 @@ const GameCard: FC<GameData> = ({
    platforms,
 }) => {
    const dispatch = useAppDispatch();
-   const cartItems = useAppSelector((state) => state.favorites.items);
+   const isItemInFavorites = useAppSelector(selectIsFavorite(id));
    const item = {
       id,
       name,
@@ -23,9 +24,7 @@ const GameCard: FC<GameData> = ({
       metacritic,
       platforms,
    };
-   const isItemInFavorites = cartItems.some(
-      (favoritesItem: GameData) => favoritesItem.id === item.id,
-   );
+
    const addFavorites = () => {
       if (!isItemInFavorites) {
          dispatch(addItem(item));

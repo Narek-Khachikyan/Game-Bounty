@@ -1,10 +1,24 @@
 import { Link, useLocation } from 'react-router-dom';
 import './header.scss';
 import { useAppSelector } from '../../app/hooks';
+import { selectFavoritesCount } from '../../app/redux/selectors/favorites';
 
-const Header = () => {
+interface HeaderProps {
+   isAnimatedBackgroundEnabled: boolean;
+   animatedBackgroundBlockedReason: string | null;
+   onAnimatedBackgroundToggle: (enabled: boolean) => void;
+}
+
+const Header = ({
+   isAnimatedBackgroundEnabled,
+   animatedBackgroundBlockedReason,
+   onAnimatedBackgroundToggle,
+}: HeaderProps) => {
    const location = useLocation();
-   const count = useAppSelector((state) => state.favorites.count);
+   const count = useAppSelector(selectFavoritesCount);
+   const animatedBackgroundStatusId = animatedBackgroundBlockedReason
+      ? 'animated-background-status'
+      : undefined;
    return (
       <div className="header bg-white">
          <div className="header__container">
@@ -27,6 +41,29 @@ const Header = () => {
                               {count}
                            </p>
                         </Link>
+                     </li>
+                     <li className="header__nav-item">
+                        <label className="video-toggle flex items-center gap-2">
+                           <input
+                              type="checkbox"
+                              checked={isAnimatedBackgroundEnabled}
+                              onChange={(event) =>
+                                 onAnimatedBackgroundToggle(event.target.checked)
+                              }
+                              aria-label="Animated background"
+                              aria-describedby={animatedBackgroundStatusId}
+                           />
+                           <span className="header__nav-link sm:text-sm md:text-base">
+                              Animated background
+                           </span>
+                           {animatedBackgroundBlockedReason ? (
+                              <span
+                                 id={animatedBackgroundStatusId}
+                                 className="video-toggle__status text-xs text-slate-600">
+                                 {animatedBackgroundBlockedReason}
+                              </span>
+                           ) : null}
+                        </label>
                      </li>
                   </ul>
                </nav>
