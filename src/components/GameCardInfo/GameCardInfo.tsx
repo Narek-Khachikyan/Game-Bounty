@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import {
+   isMissingApiKeyError,
    useGetDlcDataQuery,
    useGetGamesInfoDataQuery,
    useGetSameSeriesQuery,
@@ -23,6 +24,7 @@ const GameCardInfo = () => {
       data: gamesInfoData,
       isLoading: gamesInfoDataLoading,
       isError: gamesInfoDataError,
+      error: gamesInfoDataErrorDetails,
    } = useGetGamesInfoDataQuery(gameId, { skip: shouldSkip });
    const { data: screenShots, isLoading: screenShotsLoading } = useGetScreenShotsQuery(gameId, {
       skip: shouldSkip,
@@ -40,13 +42,16 @@ const GameCardInfo = () => {
    const hasScreenshots = (screenShots?.results ?? []).length > 0;
    const showScreenshotsFallback = !screenShotsLoading && !hasScreenshots;
    const showEmptyState = !isLoading && !gamesInfoData && !gamesInfoDataError;
+   const isConfigurationError = isMissingApiKeyError(gamesInfoDataErrorDetails);
 
    return (
       <div className="cardInfo py-7">
          {isLoading && !gamesInfoData && !gamesInfoDataError && <GamesInfoCardSkelton />}
          {gamesInfoDataError && (
             <p className="text-white text-center text-lg">
-               Failed to load game details. Please try again later.
+               {isConfigurationError
+                  ? 'Configuration error: missing VITE_API_KEY. Add it to your environment file and restart the app.'
+                  : 'Failed to load game details. Please try again later.'}
             </p>
          )}
          {showEmptyState && (
@@ -127,7 +132,7 @@ const GameCardInfo = () => {
                   </div>
                   <div className="infoWrapper">
                      <p className="gameInfo__descr text-base text-violet-950">
-                        {gamesInfoData.description.replace(/(<([^>]+)>)/gi, '')}
+                        {gamesInfoData.description}
                      </p>
                      <div className="achivments flex items-center gap-1 my-2">
                         <p className="text-base sm:text-xl text-violet-950">Achievements Count:</p>

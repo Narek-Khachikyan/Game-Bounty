@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useGetGamesDataQuery } from '../app/redux/features/apiSlice';
+import { isMissingApiKeyError, useGetGamesDataQuery } from '../app/redux/features/apiSlice';
 import GameCard from '../components/GameCard/GameCard';
 import { SkeletonCard } from '../components/Skeleton/Skeleton';
 import FilterByGenres from '../components/Filters/FilterByGenres';
@@ -17,11 +17,13 @@ const Games = () => {
       isLoading: gamesDataLoading,
       isFetching: gamesDataFetching,
       isError: gamesDataError,
+      error: gamesDataErrorDetails,
    } = useGetGamesDataQuery({
       filterByGenres,
       debouncedQuery,
       filterByPlatforms,
    });
+   const isConfigurationError = isMissingApiKeyError(gamesDataErrorDetails);
    const isLoading = (gamesDataLoading || gamesDataFetching) && !gamesData;
    const hasResults = (gamesData?.results ?? []).length > 0;
    const skeletons = [...new Array(12)].map((_, index) => <SkeletonCard key={index} />);
@@ -45,7 +47,9 @@ const Games = () => {
          </div>
           {gamesDataError && (
              <p className="text-white text-center text-lg">
-                Failed to load games. Please try again later.
+                {isConfigurationError
+                   ? 'Configuration error: missing VITE_API_KEY. Add it to your environment file and restart the app.'
+                   : 'Failed to load games. Please try again later.'}
              </p>
           )}
           {!gamesDataError && !isLoading && !hasResults && (
