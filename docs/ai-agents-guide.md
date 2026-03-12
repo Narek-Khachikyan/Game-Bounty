@@ -15,7 +15,8 @@
 - Shared UI: `src/components/`.
 - Global layout: `src/layouts/MainLayout.tsx:9`.
 - API calls: `src/app/redux/features/apiSlice.ts:14`.
-- Local state: `src/app/redux/features/favoriteSlice.ts:14`.
+- Favorites UI state: `src/app/redux/features/favoriteSlice.ts:14`.
+- Favorites Firestore transport: `src/lib/userFavorites.ts:1`.
 - Types: `src/@types/types.ts:1`.
 
 ## Guardrails

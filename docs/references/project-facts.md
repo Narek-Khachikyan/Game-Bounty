@@ -9,23 +9,27 @@ This file records current-state facts. Put durable rules in `docs/architecture-i
 - Bootstrap entrypoint: `src/main.tsx`
 - Route tree owner: `src/App.tsx`
 - Shared layout: `src/layouts/MainLayout.tsx`
-- External system of record: RAWG REST API
+- External systems of record: RAWG REST API, Firebase Authentication, Cloud Firestore
 
 ## Data And State
 - Server data layer: RTK Query in `src/app/redux/features/apiSlice.ts`
-- Local durable state: favorites slice in `src/app/redux/features/favoriteSlice.ts`
-- Favorites persistence owner: `src/app/store.ts`
+- Auth state owner: `src/context/AuthProvider.tsx`
+- Favorites UI state owner: `src/app/redux/features/favoriteSlice.ts`
+- Favorites sync owner: `src/components/FavoritesSync/FavoritesSync.tsx`
+- Favorites persistence transport: `src/lib/userFavorites.ts`
 - Background-video preference persistence owner: `src/hooks/useBackgroundVideoGate.ts`
 - Environment variable used by runtime: `VITE_API_KEY`
 
 ## User-Facing Routes
 - `/` renders the game discovery page
 - `/game/:id` renders the game detail view
-- `/favorites` renders the saved favorites view
+- `/favorites` renders the signed-in user's saved favorites view
+- `/auth` renders the Firebase sign-in page
 - `*` renders the not-found page
 
 ## Tooling
-- Package manager files present: `package-lock.json`, `yarn.lock`
+- Package manager files present: `package-lock.json`
+- Repo Node.js runtime declaration: `.nvmrc` with Node `20`
 - Build tool: Vite
 - Language: TypeScript
 - Lint tool: ESLint

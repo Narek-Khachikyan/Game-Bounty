@@ -1,17 +1,41 @@
 import React from 'react';
-import { clearFavorites } from '../app/redux/features/favoriteSlice';
 import type { GameData } from '../@types/types';
 import FavoritesCard from '../components/FavoritesCard/FavoritesCard';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { selectFavoritesList } from '../app/redux/selectors/favorites';
+import { useAppSelector } from '../app/hooks';
+import { selectFavoritesList, selectFavoritesStatus } from '../app/redux/selectors/favorites';
+import { useAuth } from '../hooks/useAuth';
+import { clearUserFavorites } from '../lib/userFavorites';
 
 const Favorites: React.FC = () => {
+   const { currentUser } = useAuth();
    const cartItems = useAppSelector(selectFavoritesList);
-   const dispatch = useAppDispatch();
+   const favoritesStatus = useAppSelector(selectFavoritesStatus);
+   const [isClearing, setIsClearing] = React.useState(false);
+   const [actionError, setActionError] = React.useState<string | null>(null);
 
-   const handleClearCart = () => {
-      dispatch(clearFavorites());
+   const handleClearCart = async () => {
+      if (!currentUser || cartItems.length === 0 || isClearing) {
+         return;
+      }
+
+      setActionError(null);
+      setIsClearing(true);
+
+      try {
+         await clearUserFavorites(
+            currentUser.uid,
+            cartItems.map((item) => item.id),
+         );
+      } catch {
+         setActionError('Unable to clear favorites right now.');
+      } finally {
+         setIsClearing(false);
+      }
    };
+
+   if (!currentUser) {
+      return null;
+   }
 
    return (
       <div className="favorites py-10">
@@ -20,13 +44,30 @@ const Favorites: React.FC = () => {
             {cartItems.length === 0 ? null : (
                <button
                   className="clear-btn text-white bg-violet-900 text-sm md:text-xl py-3 px-2"
-                  onClick={handleClearCart}>
-                  CLEAR FAVORITES
+                  onClick={() => {
+                     void handleClearCart();
+                  }}
+                  disabled={isClearing || favoritesStatus !== 'ready'}>
+                  {isClearing ? 'CLEARING...' : 'CLEAR FAVORITES'}
                </button>
             )}
          </div>
 
-         {cartItems.length === 0 ? (
+         {actionError ? (
+            <p className="mb-6 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700">
+               {actionError}
+            </p>
+         ) : null}
+
+         {favoritesStatus === 'loading' ? (
+            <p className="text-violet-950 text-3xl my-8 text-center bg-white py-2 rounded-2xl">
+               Loading your favorites...
+            </p>
+         ) : favoritesStatus === 'error' ? (
+            <p className="text-red-700 text-xl my-8 text-center bg-white py-4 rounded-2xl">
+               We could not load your favorites right now. Try refreshing the page.
+            </p>
+         ) : cartItems.length === 0 ? (
             <p className="text-violet-950 text-3xl my-8 text-center bg-white py-2 rounded-2xl">
                Favorites is empty
             </p>

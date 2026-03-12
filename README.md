@@ -5,7 +5,7 @@ Key Features
 - Search games by title
 - Filter by genre and platform
 - View game details (screenshots, ratings, release dates, DLC, same series)
-- Manage a local favorites list
+- Manage favorites tied to a signed-in Firebase account
 
 Tech Stack
 - Vite + React + TypeScript
@@ -14,6 +14,7 @@ Tech Stack
 - Swiper, AOS
 
 Developer Workflow
+- Use Node.js 20 or newer with `npm`
 - `npm run dev` starts the Vite dev server
 - `npm run lint` runs ESLint
 - `npm run build` runs type-check + production build

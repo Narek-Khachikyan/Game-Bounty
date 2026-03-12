@@ -18,6 +18,7 @@ const requiredFiles = [
 	'docs/exec-plans/TEMPLATE.md',
 	'docs/exec-plans/active/README.md',
 	'docs/exec-plans/completed/README.md',
+	'firestore.rules',
 ];
 
 const markdownEntryPoints = [
@@ -31,10 +32,7 @@ const markdownEntryPoints = [
 ];
 
 const allowedEnvFiles = new Set(['src/app/redux/features/apiSlice.ts']);
-const allowedStorageFiles = new Set([
-	'src/app/store.ts',
-	'src/hooks/useBackgroundVideoGate.ts',
-]);
+const allowedStorageFiles = new Set(['src/hooks/useBackgroundVideoGate.ts']);
 const allowedRouteFiles = new Set(['src/App.tsx']);
 const allowedDirectFetchFiles = new Set(['src/app/redux/features/apiSlice.ts']);
 
@@ -137,8 +135,8 @@ if (
 	);
 }
 
-const sourceFiles = getTrackedSourceFiles().filter((relativePath) =>
-	/\.(ts|tsx|js|jsx)$/.test(relativePath),
+const sourceFiles = getTrackedSourceFiles().filter(
+	(relativePath) => /\.(ts|tsx|js|jsx)$/.test(relativePath) && fileExists(relativePath),
 );
 
 for (const sourceFile of sourceFiles) {

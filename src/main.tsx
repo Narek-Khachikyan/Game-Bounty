@@ -5,13 +5,18 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './app/store';
+import FavoritesSync from './components/FavoritesSync/FavoritesSync';
+import { AuthProvider } from './context/AuthProvider';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
    <React.StrictMode>
       <BrowserRouter>
-         <Provider store={store}>
-            <App />
-         </Provider>
+         <AuthProvider>
+            <Provider store={store}>
+               <FavoritesSync />
+               <App />
+            </Provider>
+         </AuthProvider>
       </BrowserRouter>
    </React.StrictMode>,
 );

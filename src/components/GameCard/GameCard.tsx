@@ -1,10 +1,12 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import type { GameData } from '../../@types/types';
 import '../../GlobalStyles/globalCardStyles.scss';
-import { addItem, removeItem } from '../../app/redux/features/favoriteSlice';
 import { selectIsFavorite } from '../../app/redux/selectors/favorites';
-import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
+import { useAuth } from '../../hooks/useAuth';
+import { buildAuthRedirectPath } from '../../lib/authRedirect';
+import { removeUserFavorite, upsertUserFavorite } from '../../lib/userFavorites';
 
 const GameCard: FC<GameData> = ({
    id,
@@ -14,8 +16,12 @@ const GameCard: FC<GameData> = ({
    metacritic,
    platforms,
 }) => {
-   const dispatch = useAppDispatch();
+   const navigate = useNavigate();
+   const location = useLocation();
    const isItemInFavorites = useAppSelector(selectIsFavorite(id));
+   const { currentUser, isAuthReady } = useAuth();
+   const [isSubmitting, setIsSubmitting] = useState(false);
+   const [actionError, setActionError] = useState<string | null>(null);
    const item = {
       id,
       name,
@@ -25,16 +31,72 @@ const GameCard: FC<GameData> = ({
       platforms,
    };
 
-   const addFavorites = () => {
-      if (!isItemInFavorites) {
-         dispatch(addItem(item));
+   const handleAuthRedirect = () => {
+      const nextPath = `${location.pathname}${location.search}${location.hash}`;
+      navigate(buildAuthRedirectPath(nextPath));
+   };
+
+   const addFavorites = async () => {
+      if (!isAuthReady) {
+         return;
+      }
+
+      if (!currentUser) {
+         handleAuthRedirect();
+         return;
+      }
+
+      if (isItemInFavorites || isSubmitting) {
+         return;
+      }
+
+      setActionError(null);
+      setIsSubmitting(true);
+
+      try {
+         await upsertUserFavorite(currentUser.uid, item);
+      } catch {
+         setActionError('Unable to save this game right now.');
+      } finally {
+         setIsSubmitting(false);
       }
    };
-   const removeFavorites = () => {
-      if (isItemInFavorites) {
-         dispatch(removeItem(id));
+
+   const removeFavorites = async () => {
+      if (!isAuthReady) {
+         return;
+      }
+
+      if (!currentUser) {
+         handleAuthRedirect();
+         return;
+      }
+
+      if (!isItemInFavorites || isSubmitting) {
+         return;
+      }
+
+      setActionError(null);
+      setIsSubmitting(true);
+
+      try {
+         await removeUserFavorite(currentUser.uid, id);
+      } catch {
+         setActionError('Unable to remove this game right now.');
+      } finally {
+         setIsSubmitting(false);
       }
    };
+
+   const buttonLabel = !isAuthReady
+      ? 'Checking session...'
+      : isItemInFavorites
+         ? isSubmitting
+            ? 'Removing...'
+            : 'Remove'
+         : isSubmitting
+            ? 'Saving...'
+            : 'Add Game';
 
    return (
       <div className="card" data-aos="fade-up">
@@ -65,16 +127,27 @@ const GameCard: FC<GameData> = ({
             {isItemInFavorites ? (
                <button
                   className="remove-button cardButton bg-white text-violet-950"
-                  onClick={() => removeFavorites()}>
-                  Remove
+                  onClick={() => {
+                     void removeFavorites();
+                  }}
+                  disabled={!isAuthReady || isSubmitting}>
+                  {buttonLabel}
                </button>
             ) : (
                <button
                   className="add-button cardButton bg-white text-violet-950"
-                  onClick={addFavorites}>
-                  Add Game
+                  onClick={() => {
+                     void addFavorites();
+                  }}
+                  disabled={!isAuthReady || isSubmitting}>
+                  {buttonLabel}
                </button>
             )}
+            {actionError ? (
+               <p className="mt-3 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700">
+                  {actionError}
+               </p>
+            ) : null}
          </div>
       </div>
    );

@@ -1,6 +1,6 @@
 # Game-Bounty Knowledge Base
 
-Executive summary: Game-Bounty is a Vite + React + TypeScript SPA for browsing RAWG data, viewing detailed game pages, and storing favorites locally in the browser.
+Executive summary: Game-Bounty is a Vite + React + TypeScript SPA for browsing RAWG data, viewing detailed game pages, and syncing account-scoped favorites through Firebase.
 
 This directory is the project system of record for humans and coding agents. Root files stay short and point here; durable project knowledge lives here.
 
