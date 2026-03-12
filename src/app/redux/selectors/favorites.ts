@@ -10,6 +10,11 @@ const selectFavoriteEntities = createSelector(
    (favorites) => favorites.entities,
 );
 
+export const selectFavoritesStatus = createSelector(
+   [selectFavoritesState],
+   (favorites) => favorites.status,
+);
+
 export const selectFavoritesList = createSelector(
    [selectFavoriteIds, selectFavoriteEntities],
    (ids, entities) =>

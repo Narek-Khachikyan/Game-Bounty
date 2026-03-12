@@ -5,7 +5,7 @@ This file is intentionally short. It is the root architectural entrypoint into t
 ## System Summary
 - Runtime: client-side Vite + React + TypeScript SPA
 - Data source: RAWG REST API via RTK Query
-- Durable local state: favorites persisted from the Redux store into browser storage
+- Account favorites: Firebase Authentication + Cloud Firestore synced into Redux UI state
 - Deployment shape: static build with SPA redirects
 
 ## Primary Entry Points
@@ -13,7 +13,8 @@ This file is intentionally short. It is the root architectural entrypoint into t
 - Route tree: `src/App.tsx`
 - Layout shell: `src/layouts/MainLayout.tsx`
 - RAWG transport: `src/app/redux/features/apiSlice.ts`
-- Favorites persistence: `src/app/store.ts`
+- Favorites sync: `src/components/FavoritesSync/FavoritesSync.tsx`
+- Favorites persistence transport: `src/lib/userFavorites.ts`
 
 ## Read Next
 - [docs/README.md](./docs/README.md)

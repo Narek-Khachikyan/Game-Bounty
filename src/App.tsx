@@ -5,20 +5,26 @@ import GameCardInfo from './components/GameCardInfo/GameCardInfo';
 import Favorites from './page/Favorites';
 import NotFound from './page/NotFound';
 import Auth from './page/Auth';
+import RequireAuth from './components/RequireAuth/RequireAuth';
 
 function App() {
    return (
-      <>
-         <Routes>
-            <Route path="/" element={<MainLayout />}>
+      <Routes>
+         <Route path="/" element={<MainLayout />}>
             <Route index element={<Games />} />
             <Route path="/game/:id" element={<GameCardInfo />} />
-            <Route path="/favorites" element={<Favorites />} />
+            <Route
+               path="/favorites"
+               element={
+                  <RequireAuth>
+                     <Favorites />
+                  </RequireAuth>
+               }
+            />
             <Route path="/auth" element={<Auth />} />
             <Route path="*" element={<NotFound />} />
          </Route>
       </Routes>
-      </>
    );
 }
 

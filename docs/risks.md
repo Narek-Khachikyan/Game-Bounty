@@ -8,6 +8,7 @@
 - No automated tests; regressions are likely to be caught late.
 - RAWG API rate limits/outages directly impact the UI.
 - Firebase Authentication provider misconfiguration or missing authorized domains will block sign-in flows.
+- Cloud Firestore misconfiguration or undeployed rules will block account favorites from loading or saving.
 
 ## Maintainability
 - Strict TS + ESLint settings may block builds/lints on unused code (`tsconfig.json:1`, `package.json:1`).

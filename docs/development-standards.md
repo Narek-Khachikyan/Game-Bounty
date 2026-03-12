@@ -20,7 +20,7 @@
   - Routing: `src/App.tsx:11`
   - Layout: `src/layouts/MainLayout.tsx:9`
   - Data fetching: `src/app/redux/features/apiSlice.ts:14`
-  - Local state: `src/app/redux/features/favoriteSlice.ts:14`
+  - Favorites sync state: `src/app/redux/features/favoriteSlice.ts:14`
 - Stack and versions: source of truth is `package.json`.
 
 ## Project principles
@@ -39,7 +39,7 @@
   - Owns RAWG endpoints, query params, and caching behavior.
   - Prohibited: direct `fetch` calls scattered across UI when an RTK Query endpoint exists.
 - State (Redux slices)
-  - Owns durable client-side state (favorites list).
+  - Owns UI-facing state and derived selectors for signed-in favorites.
 
 ## Data contracts
 - RAWG response shapes are represented as TypeScript types in `src/@types/types.ts:1`.
@@ -68,6 +68,7 @@
 
 ## Security & compliance
 - Assume the RAWG key is public when shipped to the browser (client-side env embedding).
+- Firebase favorites rules must stay scoped to `request.auth.uid` for `users/{uid}/favorites`.
 - Keep dependencies updated and avoid introducing new ones unless needed.
 
 ## Directory layout

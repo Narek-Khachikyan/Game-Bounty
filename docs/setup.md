@@ -10,11 +10,13 @@
 - `VITE_API_KEY` — RAWG API key (see `.env.example:1`).
 - Do not commit real API keys; prefer `.env.local` for local dev.
 
-## Firebase Authentication
+## Firebase
 - The client uses the Firebase project configured in `src/lib/firebase.ts:1`.
 - In the Firebase console for project `gamebounty-35933`, enable:
   - Authentication → Sign-in method → `Email/Password`
   - Authentication → Sign-in method → `Google`
+- Create a Cloud Firestore database for the same project if it does not exist yet.
+- Deploy the rules from `firestore.rules:1` so users can read and write only `users/{uid}/favorites/{favoriteId}`.
 - For local development, ensure `localhost` is present in Firebase Authentication authorized domains.
 
 ## Run (development)

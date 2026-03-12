@@ -9,20 +9,21 @@ This file records current-state facts. Put durable rules in `docs/architecture-i
 - Bootstrap entrypoint: `src/main.tsx`
 - Route tree owner: `src/App.tsx`
 - Shared layout: `src/layouts/MainLayout.tsx`
-- External systems of record: RAWG REST API, Firebase Authentication
+- External systems of record: RAWG REST API, Firebase Authentication, Cloud Firestore
 
 ## Data And State
 - Server data layer: RTK Query in `src/app/redux/features/apiSlice.ts`
 - Auth state owner: `src/context/AuthProvider.tsx`
-- Local durable state: favorites slice in `src/app/redux/features/favoriteSlice.ts`
-- Favorites persistence owner: `src/app/store.ts`
+- Favorites UI state owner: `src/app/redux/features/favoriteSlice.ts`
+- Favorites sync owner: `src/components/FavoritesSync/FavoritesSync.tsx`
+- Favorites persistence transport: `src/lib/userFavorites.ts`
 - Background-video preference persistence owner: `src/hooks/useBackgroundVideoGate.ts`
 - Environment variable used by runtime: `VITE_API_KEY`
 
 ## User-Facing Routes
 - `/` renders the game discovery page
 - `/game/:id` renders the game detail view
-- `/favorites` renders the saved favorites view
+- `/favorites` renders the signed-in user's saved favorites view
 - `/auth` renders the Firebase sign-in page
 - `*` renders the not-found page
 

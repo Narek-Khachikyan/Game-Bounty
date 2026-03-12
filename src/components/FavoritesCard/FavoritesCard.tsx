@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { GameData } from '../../@types/types';
+import { FC, useState } from 'react';
+import type { GameData } from '../../@types/types';
 import '../../GlobalStyles/globalCardStyles.scss';
-import { removeItem } from '../../app/redux/features/favoriteSlice';
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../app/hooks';
+import { useAuth } from '../../hooks/useAuth';
+import { removeUserFavorite } from '../../lib/userFavorites';
 
 const FavoritesCard: FC<GameData> = ({
    id,
@@ -13,9 +13,25 @@ const FavoritesCard: FC<GameData> = ({
    platforms,
    released,
 }) => {
-   const dispatch = useAppDispatch();
-   const onClickRemove = () => {
-      dispatch(removeItem(id));
+   const { currentUser } = useAuth();
+   const [isRemoving, setIsRemoving] = useState(false);
+   const [actionError, setActionError] = useState<string | null>(null);
+
+   const onClickRemove = async () => {
+      if (!currentUser || isRemoving) {
+         return;
+      }
+
+      setActionError(null);
+      setIsRemoving(true);
+
+      try {
+         await removeUserFavorite(currentUser.uid, id);
+      } catch {
+         setActionError('Unable to remove this game right now.');
+      } finally {
+         setIsRemoving(false);
+      }
    };
 
    return (
@@ -45,11 +61,21 @@ const FavoritesCard: FC<GameData> = ({
                      </div>
                   </div>
                </Link>
-               <button className="cardButton bg-white text-violet-950" onClick={onClickRemove}>
-                  Remove
+               <button
+                  className="cardButton bg-white text-violet-950"
+                  onClick={() => {
+                     void onClickRemove();
+                  }}
+                  disabled={isRemoving}>
+                  {isRemoving ? 'Removing...' : 'Remove'}
                </button>
             </div>
          </div>
+         {actionError ? (
+            <p className="mt-3 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700">
+               {actionError}
+            </p>
+         ) : null}
       </div>
    );
 };

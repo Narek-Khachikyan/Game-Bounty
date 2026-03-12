@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { getSafeNextPath } from '../lib/authRedirect';
 
 type AuthMode = 'sign-in' | 'create-account';
 
@@ -17,6 +18,7 @@ const getProviderLabel = (providerId: string) => {
 
 const Auth = () => {
    const navigate = useNavigate();
+   const [searchParams] = useSearchParams();
    const { currentUser, isAuthReady, isWorking, signInWithEmail, signUpWithEmail, signInWithGoogle, signOutCurrentUser } =
       useAuth();
    const [mode, setMode] = useState<AuthMode>('sign-in');
@@ -24,6 +26,7 @@ const Auth = () => {
    const [password, setPassword] = useState('');
    const [confirmPassword, setConfirmPassword] = useState('');
    const [authError, setAuthError] = useState<string | null>(null);
+   const nextPath = getSafeNextPath(searchParams.get('next'));
 
    const isCreateAccountMode = mode === 'create-account';
 
@@ -64,7 +67,7 @@ const Auth = () => {
             await signInWithEmail(normalizedEmail, password);
          }
 
-         navigate('/', { replace: true });
+         navigate(nextPath, { replace: true });
       } catch (error) {
          setAuthError(error instanceof Error ? error.message : 'Unable to update your session.');
       }
@@ -75,7 +78,7 @@ const Auth = () => {
 
       try {
          await signInWithGoogle();
-         navigate('/', { replace: true });
+         navigate(nextPath, { replace: true });
       } catch (error) {
          setAuthError(error instanceof Error ? error.message : 'Unable to continue with Google.');
       }
@@ -138,9 +141,9 @@ const Auth = () => {
                ) : null}
                <div className="mt-8 flex flex-wrap gap-3">
                   <Link
-                     to="/"
+                     to={nextPath}
                      className="rounded-full bg-violet-900 px-5 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-violet-800">
-                     Back to games
+                     Continue
                   </Link>
                   <button
                      type="button"
@@ -161,11 +164,11 @@ const Auth = () => {
             <div className="rounded-[32px] border border-white/10 bg-slate-950/70 p-8 text-white shadow-2xl shadow-slate-950/40 backdrop-blur">
                <p className="text-sm uppercase tracking-[0.35em] text-violet-300">Firebase Auth</p>
                <h1 className="mt-4 max-w-lg text-4xl font-semibold leading-tight">
-                  Sign in with email or Google and keep your Game-Bounty session ready.
+                  Sign in with email or Google and keep your favorites tied to your account.
                </h1>
                <p className="mt-6 max-w-xl text-base leading-7 text-slate-200">
-                  The app now uses Firebase Authentication for secure sign-in. Browse games as
-                  usual, then jump back into your session any time without re-entering credentials.
+                  Favorites now belong to your Firebase account instead of this browser, so
+                  signing in keeps the same saved games available across devices.
                </p>
                <div className="mt-8 grid gap-4 sm:grid-cols-2">
                   <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
