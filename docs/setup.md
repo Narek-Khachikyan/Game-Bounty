@@ -20,3 +20,6 @@
 ## Lint
 - `npm run lint`
 
+## Harness validation
+- `npm run harness:check`
+- `npm run verify`

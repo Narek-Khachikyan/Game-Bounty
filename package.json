@@ -7,8 +7,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "analyze": "tsc && vite build --mode analyze",
+    "harness:check": "node scripts/harness-check.mjs",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "verify": "npm run harness:check && npm run lint && npm run build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",

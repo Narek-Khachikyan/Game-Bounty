@@ -1,8 +1,13 @@
 # AI agents guide
 
+## Read order
+- Start with `../ARCHITECTURE.md`.
+- Then read `./README.md` and `./architecture-invariants.md`.
+- For non-trivial work, read or create a plan in `./exec-plans/`.
+
 ## Coding conventions
 - TypeScript + React function components; keep changes small and consistent with existing patterns.
-- Follow ESLint + TypeScript strictness; validate with `npm run build` and `npm run lint`.
+- Follow ESLint + TypeScript strictness; validate with `npm run harness:check`, `npm run build`, and `npm run lint`.
 - Styling is primarily Tailwind utilities, with some Sass/CSS files when needed.
 
 ## Where to make changes safely
@@ -17,4 +22,4 @@
 - Do not read or commit secret `.env` values; use `.env.example` for variable names only.
 - Prefer updating/adding RTK Query endpoints over ad-hoc fetch calls, to keep caching consistent.
 - Avoid touching build output (`dist/`) or vendor dirs (`node_modules/`).
-
+- If a task exposes a missing process, document it in the harness instead of relying on memory.

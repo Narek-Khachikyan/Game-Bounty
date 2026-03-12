@@ -1,36 +1,18 @@
-# Repository Guidelines
+# AGENTS.md
 
-## Project Structure & Module Organization
-This is a Vite + React + TypeScript frontend. Core paths:
-- `src/` application code. Entry points live in `src/main.tsx` and `src/App.tsx`.
-- `src/app/` Redux Toolkit setup (store, RTK Query slices).
-- `src/components/`, `src/layouts/`, `src/page/` for UI composition.
-- `src/hooks/`, `src/utils/`, `src/@types/` for shared logic and types.
-- `src/assets/` for images; `src/GlobalStyles/` and `src/index.css` for global styling.
-- `public/` static assets, `dist/` build output.
+This repository uses a harness-style setup: the root files route agents into the real knowledge base, while detailed project knowledge lives under `docs/`.
 
-## Build, Test, and Development Commands
-- `npm run dev` starts the local Vite dev server with HMR.
-- `npm run build` runs TypeScript compile then builds production assets.
-- `npm run preview` serves the production build locally.
-- `npm run lint` runs ESLint on `src/` with strict warnings (max 0).
-There is no test script configured yet.
+## Read This First
+1. [ARCHITECTURE.md](./ARCHITECTURE.md)
+2. [docs/README.md](./docs/README.md)
+3. [docs/architecture-invariants.md](./docs/architecture-invariants.md)
+4. For multi-step work, open or create a plan in [docs/exec-plans/README.md](./docs/exec-plans/README.md)
 
-## Coding Style & Naming Conventions
-- Follow existing formatting: files primarily use tabs for indentation with spaces for alignment.
-- React components use `PascalCase` filenames (e.g., `GameCardInfo.tsx`).
-- Hooks use `useX` naming (e.g., `useGetGamesDataQuery`).
-- Keep styles consistent: Tailwind utility classes plus Sass (`.scss`) where present.
-- Run `npm run lint` before submitting changes.
+## Working Rules
+- Treat `docs/` as the project system of record. Keep code and docs in sync in the same change.
+- Preserve the invariants in [docs/architecture-invariants.md](./docs/architecture-invariants.md).
+- Run `npm run harness:check` when changing docs, structure, or guardrails.
+- Run `npm run verify` before handoff when practical.
+- If a bug or review comment exposes a missing guardrail, update the harness as well as the code fix.
 
-## Testing Guidelines
-- No automated tests are set up. If you add tests, prefer `*.test.tsx` or `__tests__/` adjacent to the feature.
-- When introducing a test runner, add a script in `package.json` and document it here.
-
-## Commit & Pull Request Guidelines
-- Commit history uses short, descriptive messages (e.g., “Update README.md”). Keep messages concise and imperative.
-- PRs should include: a short summary, how you tested (`npm run lint`, manual checks), and screenshots for UI changes.
-
-## Security & Configuration Tips
-- API requests use the RAWG API key via `VITE_API_KEY` (see `src/app/redux/features/apiSlice.tsx`).
-- Don’t commit real API keys; prefer local `.env` files and sanitize before sharing.
+Project-specific details intentionally live in the linked docs instead of being duplicated here.

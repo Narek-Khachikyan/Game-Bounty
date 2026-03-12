@@ -27,6 +27,9 @@
 - Keep changes localized (prefer component/module-level edits over cross-cutting rewrites).
 - Prefer RTK Query for server data; prefer Redux slice actions for local state.
 - No secret leakage: never commit real API keys; do not paste `.env.local` contents into issues/PRs.
+- Treat `docs/` as the system of record; update docs and code together.
+- For multi-step or risky changes, create or update an execution plan in `docs/exec-plans/`.
+- If a review finding reveals a repeated failure mode, strengthen the harness with a doc or check.
 
 ## Layer responsibilities
 - UI (components/pages/layouts)
@@ -59,6 +62,7 @@
 ## Testing standards
 - Not applicable (no test runner configured).
 - Quality gates before review:
+  - `npm run harness:check`
   - `npm run build`
   - `npm run lint`
 
@@ -83,3 +87,7 @@
 - Prefer graceful UI fallbacks for network failures (loading, retry, empty states).
 - Avoid blocking the entire app on a single failed request when partial content can still render.
 
+## Harness maintenance
+- The current project harness is documented in `docs/harness.md`.
+- Architecture rules enforced mechanically are listed in `docs/architecture-invariants.md`.
+- Keep plans as versioned repo artifacts under `docs/exec-plans/` instead of relying on chat-only context.

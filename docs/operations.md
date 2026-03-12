@@ -6,13 +6,17 @@
 - Analyze bundle output (generates `dist/bundle-stats.html`): `npm run analyze`
 - Preview build locally: `npm run preview`
 - Lint: `npm run lint`
+- Harness check: `npm run harness:check`
+- Full local verification: `npm run verify`
 
 ## Performance budget
 - Initial route chunk budget is configured in `vite.config.ts` using `build.chunkSizeWarningLimit = 350` (kB).
 - `npm run build` and `npm run analyze` will surface warnings if emitted chunks exceed the budget.
 
 ## Maintenance routines
-- Not applicable (no database or migrations in this repo).
+- Keep `docs/` aligned with code changes, especially architecture, setup, and quality docs.
+- Move long-running work through `docs/exec-plans/active/` and archive finished plans under `docs/exec-plans/completed/`.
+- When a repeat defect appears, strengthen the harness instead of relying on memory.
 
 ## Troubleshooting
 - RAWG calls failing: verify `VITE_API_KEY` is set (see `.env.example:1`).

@@ -2,6 +2,7 @@
 
 ## System shape
 - Client-only SPA that calls the RAWG REST API directly from the browser.
+- Stable architecture rules and mechanical boundaries live in [./architecture-invariants.md](./architecture-invariants.md).
 
 ## Main modules and responsibilities
 - Routing
@@ -27,4 +28,3 @@
 ## Deployment topology
 - Static Vite build output served by a static host.
 - Netlify-style SPA routing via `public/_redirects:1`.
-
