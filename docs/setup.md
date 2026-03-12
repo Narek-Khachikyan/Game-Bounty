@@ -1,10 +1,13 @@
 # Setup
 
 ## Prerequisites
-- Node.js + npm (or yarn; `yarn.lock` exists).
+- Node.js 20 or newer.
+- npm.
 
 ## Install
 - `npm install`
+
+The repository standardizes on `npm` and the checked-in `package-lock.json`. The root `.nvmrc` pins the deploy/runtime expectation to Node 20 for local shells and Netlify.
 
 ## Environment variables and secrets
 - `VITE_API_KEY` — RAWG API key (see `.env.example:1`).

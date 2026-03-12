@@ -28,7 +28,8 @@ This file records current-state facts. Put durable rules in `docs/architecture-i
 - `*` renders the not-found page
 
 ## Tooling
-- Package manager files present: `package-lock.json`, `yarn.lock`
+- Package manager files present: `package-lock.json`
+- Repo Node.js runtime declaration: `.nvmrc` with Node `20`
 - Build tool: Vite
 - Language: TypeScript
 - Lint tool: ESLint

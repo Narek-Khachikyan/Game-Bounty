@@ -14,6 +14,7 @@ Tech Stack
 - Swiper, AOS
 
 Developer Workflow
+- Use Node.js 20 or newer with `npm`
 - `npm run dev` starts the Vite dev server
 - `npm run lint` runs ESLint
 - `npm run build` runs type-check + production build

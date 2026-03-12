@@ -9,6 +9,10 @@
 - Harness check: `npm run harness:check`
 - Full local verification: `npm run verify`
 
+## Deployment runtime
+- Netlify should use Node 20 from the repo root `.nvmrc`.
+- The repository standardizes on `npm` with `package-lock.json`; avoid reintroducing `yarn.lock` unless the project intentionally switches package managers.
+
 ## Performance budget
 - Initial route chunk budget is configured in `vite.config.ts` using `build.chunkSizeWarningLimit = 350` (kB).
 - `npm run build` and `npm run analyze` will surface warnings if emitted chunks exceed the budget.
@@ -25,4 +29,5 @@
 - Google popup fails immediately: allow browser popups for the local app origin and retry.
 - `npm run dev` opens on `http://localhost:5173/` by default; if that port is busy, use the alternative local URL that Vite prints or stop the stale process that already owns the port.
 - Routes 404 on deploy: ensure SPA redirects exist (see `public/_redirects:1` for Netlify).
+- Netlify dependency install fails with a Firebase Node engine error: verify the deploy is using Node 20+ and that the repo still uses `npm` rather than an accidental `yarn.lock`.
 - Styling not applying: verify Tailwind content globs in `tailwind.config.js:1` include the file location.
