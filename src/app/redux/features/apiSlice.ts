@@ -10,12 +10,18 @@ import type {
    SameSeriesGame,
 } from '../../../@types/types';
 
-const api = import.meta.env.VITE_API_KEY;
-export const MISSING_API_KEY_ERROR = 'Missing VITE_API_KEY. Add it to your environment file.';
+type RawgProxyErrorData = {
+   code?: string;
+   message?: string;
+};
+
+export const RAWG_PROXY_CONFIGURATION_ERROR_CODE = 'MISSING_RAWG_API_KEY';
+export const RAWG_PROXY_CONFIGURATION_ERROR_MESSAGE =
+   'Missing RAWG_API_KEY. Add it to the server environment and restart the app.';
 const htmlTagPattern = /(<([^>]+)>)/gi;
 
 const rawgBaseQuery = fetchBaseQuery({
-   baseUrl: 'https://api.rawg.io/api',
+   baseUrl: '/api/rawg',
 });
 
 const guardedBaseQuery: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
@@ -23,25 +29,19 @@ const guardedBaseQuery: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryE
    apiContext,
    extraOptions,
 ) => {
-   if (!api) {
-      return {
-         error: {
-            status: 'CUSTOM_ERROR',
-            error: MISSING_API_KEY_ERROR,
-         },
-      };
-   }
-
    return rawgBaseQuery(args, apiContext, extraOptions);
 };
 
-export const isMissingApiKeyError = (error: unknown): boolean => {
+export const isRawgProxyConfigurationError = (error: unknown): boolean => {
    if (!error || typeof error !== 'object') {
       return false;
    }
 
-   const customError = error as { status?: unknown; error?: unknown };
-   return customError.status === 'CUSTOM_ERROR' && customError.error === MISSING_API_KEY_ERROR;
+   const proxyError = error as { status?: unknown; data?: RawgProxyErrorData };
+   return (
+      proxyError.status === 500 &&
+      proxyError.data?.code === RAWG_PROXY_CONFIGURATION_ERROR_CODE
+   );
 };
 
 const normalizeGameDescription = (description: string): string =>
@@ -57,7 +57,6 @@ export const gameApi = createApi({
       >({
          query: ({ filterByGenres, debouncedQuery, filterByPlatforms }) => {
             const params = new URLSearchParams({
-               key: `${api}`,
                page_size: '12',
             });
 
@@ -75,26 +74,26 @@ export const gameApi = createApi({
          },
       }),
       getGamesInfoData: builder.query<GamesInfo, string>({
-         query: (id) => `/games/${id}?key=${api}`,
+         query: (id) => `/games/${id}`,
          transformResponse: (response: GamesInfo) => ({
             ...response,
             description: normalizeGameDescription(response.description),
          }),
       }),
       getGenresData: builder.query<Genres, void>({
-         query: () => `/genres?key=${api}`,
+         query: () => `/genres`,
       }),
       getPlatformsData: builder.query<PlatformsData, void>({
-         query: () => `/platforms?key=${api}`,
+         query: () => `/platforms`,
       }),
       getScreenShots: builder.query<ScreenShots, string>({
-         query: (id) => `/games/${id}/screenshots?key=${api}`,
+         query: (id) => `/games/${id}/screenshots`,
       }),
       getDlcData: builder.query<GameDlc, string>({
-         query: (id) => `/games/${id}/additions?key=${api}`,
+         query: (id) => `/games/${id}/additions`,
       }),
       getSameSeries: builder.query<SameSeriesGame, string>({
-         query: (id) => `/games/${id}/game-series?key=${api}`,
+         query: (id) => `/games/${id}/game-series`,
       }),
    }),
 });

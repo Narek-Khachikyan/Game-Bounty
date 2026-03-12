@@ -10,7 +10,7 @@
 The repository standardizes on `npm` and the checked-in `package-lock.json`. The root `.nvmrc` pins the deploy/runtime expectation to Node 20 for local shells and Netlify.
 
 ## Environment variables and secrets
-- `VITE_API_KEY` — RAWG API key (see `.env.example:1`).
+- `RAWG_API_KEY` — RAWG API key used only by the server-side proxy (see `.env.example:1`).
 - Do not commit real API keys; prefer `.env.local` for local dev.
 
 ## Firebase
@@ -25,11 +25,13 @@ The repository standardizes on `npm` and the checked-in `package-lock.json`. The
 ## Run (development)
 - `npm run dev`
 - Default local URL: `http://localhost:5173/`
+- The Vite dev server reads `RAWG_API_KEY` from your local environment and proxies browser requests through `/api/rawg/*`.
 - If port `5173` is already occupied, Vite will print the next available local URL in the terminal.
 
 ## Build / preview
 - `npm run build`
 - `npm run preview`
+- The local preview server keeps the same `/api/rawg/*` proxy contract, so RAWG-backed pages can be checked without Netlify CLI.
 
 ## Lint
 - `npm run lint`

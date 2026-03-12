@@ -4,7 +4,7 @@ This file is intentionally short. It is the root architectural entrypoint into t
 
 ## System Summary
 - Runtime: client-side Vite + React + TypeScript SPA
-- Data source: RAWG REST API via RTK Query
+- Data source: RAWG REST API via RTK Query over a same-origin server proxy
 - Account favorites: Firebase Authentication + Cloud Firestore synced into Redux UI state
 - Deployment shape: static build with SPA redirects
 
@@ -13,6 +13,7 @@ This file is intentionally short. It is the root architectural entrypoint into t
 - Route tree: `src/App.tsx`
 - Layout shell: `src/layouts/MainLayout.tsx`
 - RAWG transport: `src/app/redux/features/apiSlice.ts`
+- RAWG proxy owners: `server/rawgProxy.js`, `vite.config.ts`, `netlify/functions/rawg.js`
 - Favorites sync: `src/components/FavoritesSync/FavoritesSync.tsx`
 - Favorites persistence transport: `src/lib/userFavorites.ts`
 

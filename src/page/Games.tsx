@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { isMissingApiKeyError, useGetGamesDataQuery } from '../app/redux/features/apiSlice';
+import {
+   isRawgProxyConfigurationError,
+   useGetGamesDataQuery,
+} from '../app/redux/features/apiSlice';
 import GameCard from '../components/GameCard/GameCard';
 import { SkeletonCard } from '../components/Skeleton/Skeleton';
 import FilterByGenres from '../components/Filters/FilterByGenres';
@@ -23,7 +26,7 @@ const Games = () => {
       debouncedQuery,
       filterByPlatforms,
    });
-   const isConfigurationError = isMissingApiKeyError(gamesDataErrorDetails);
+   const isConfigurationError = isRawgProxyConfigurationError(gamesDataErrorDetails);
    const isLoading = (gamesDataLoading || gamesDataFetching) && !gamesData;
    const hasResults = (gamesData?.results ?? []).length > 0;
    const skeletons = [...new Array(12)].map((_, index) => <SkeletonCard key={index} />);
@@ -48,7 +51,7 @@ const Games = () => {
           {gamesDataError && (
              <p className="text-white text-center text-lg">
                 {isConfigurationError
-                   ? 'Configuration error: missing VITE_API_KEY. Add it to your environment file and restart the app.'
+                   ? 'Configuration error: missing RAWG_API_KEY on the server. Add it to the server environment and restart the app.'
                    : 'Failed to load games. Please try again later.'}
              </p>
           )}

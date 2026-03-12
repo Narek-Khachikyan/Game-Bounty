@@ -13,12 +13,13 @@ This file records current-state facts. Put durable rules in `docs/architecture-i
 
 ## Data And State
 - Server data layer: RTK Query in `src/app/redux/features/apiSlice.ts`
+- RAWG proxy owner: `server/rawgProxy.js`
 - Auth state owner: `src/context/AuthProvider.tsx`
 - Favorites UI state owner: `src/app/redux/features/favoriteSlice.ts`
 - Favorites sync owner: `src/components/FavoritesSync/FavoritesSync.tsx`
 - Favorites persistence transport: `src/lib/userFavorites.ts`
 - Background-video preference persistence owner: `src/hooks/useBackgroundVideoGate.ts`
-- Environment variable used by runtime: `VITE_API_KEY`
+- Server environment variable used by RAWG proxy: `RAWG_API_KEY`
 
 ## User-Facing Routes
 - `/` renders the game discovery page

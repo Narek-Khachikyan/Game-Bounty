@@ -22,9 +22,8 @@
 - react-content-loader (skeleton loaders) (source: `package.json:1`)
 
 ## External services
-- RAWG API (`https://api.rawg.io/api`) (source: `src/app/redux/features/apiSlice.ts:17`)
+- RAWG API (`https://api.rawg.io/api`) via same-origin proxy (`server/rawgProxy.js:1`)
 
 ## Build tooling
 - Vite (source: `package.json:1`, `vite.config.ts:1`)
 - ESLint (source: `package.json:1`, `.eslintrc.cjs:1`)
-

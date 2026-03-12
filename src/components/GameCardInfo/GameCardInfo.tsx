@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import {
-   isMissingApiKeyError,
+   isRawgProxyConfigurationError,
    useGetDlcDataQuery,
    useGetGamesInfoDataQuery,
    useGetSameSeriesQuery,
@@ -42,7 +42,7 @@ const GameCardInfo = () => {
    const hasScreenshots = (screenShots?.results ?? []).length > 0;
    const showScreenshotsFallback = !screenShotsLoading && !hasScreenshots;
    const showEmptyState = !isLoading && !gamesInfoData && !gamesInfoDataError;
-   const isConfigurationError = isMissingApiKeyError(gamesInfoDataErrorDetails);
+   const isConfigurationError = isRawgProxyConfigurationError(gamesInfoDataErrorDetails);
 
    return (
       <div className="cardInfo py-7">
@@ -50,7 +50,7 @@ const GameCardInfo = () => {
          {gamesInfoDataError && (
             <p className="text-white text-center text-lg">
                {isConfigurationError
-                  ? 'Configuration error: missing VITE_API_KEY. Add it to your environment file and restart the app.'
+                  ? 'Configuration error: missing RAWG_API_KEY on the server. Add it to the server environment and restart the app.'
                   : 'Failed to load game details. Please try again later.'}
             </p>
          )}

@@ -27,7 +27,7 @@ Knowledge Base
 - Long-running work plans: [docs/exec-plans/README.md](./docs/exec-plans/README.md)
 
 Configuration
-- Create `.env.local` with `VITE_API_KEY` (see `.env.example`)
+- Create `.env.local` with `RAWG_API_KEY` (see `.env.example`)
 
 Demo
 - https://game-bounty.netlify.app/

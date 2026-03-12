@@ -31,7 +31,6 @@ const markdownEntryPoints = [
 	'docs/exec-plans/README.md',
 ];
 
-const allowedEnvFiles = new Set(['src/app/redux/features/apiSlice.ts']);
 const allowedStorageFiles = new Set(['src/hooks/useBackgroundVideoGate.ts']);
 const allowedRouteFiles = new Set(['src/App.tsx']);
 const allowedDirectFetchFiles = new Set(['src/app/redux/features/apiSlice.ts']);
@@ -142,9 +141,9 @@ const sourceFiles = getTrackedSourceFiles().filter(
 for (const sourceFile of sourceFiles) {
 	const contents = readFile(sourceFile);
 
-	if (contents.includes('import.meta.env') && !allowedEnvFiles.has(sourceFile)) {
+	if (contents.includes('import.meta.env')) {
 		reportFailure(
-			`Environment access is only allowed in ${[...allowedEnvFiles].join(', ')}. Found in ${sourceFile}.`,
+			`Client environment access is not allowed in tracked src files. Found in ${sourceFile}.`,
 		);
 	}
 

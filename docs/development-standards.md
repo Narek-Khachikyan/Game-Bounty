@@ -54,9 +54,10 @@
 - Avoid logging API keys or user-specific data to the console.
 
 ## Configuration management
-- Source: Vite env variables (`import.meta.env.*`), documented via `.env.example:1`.
+- Source: server environment variables documented via `.env.example:1` and consumed by `server/rawgProxy.js:1`.
 - Required:
-  - `VITE_API_KEY`
+  - `RAWG_API_KEY` for the server-side RAWG proxy
+- Client code under `src/` must not read environment variables directly.
 - Do not store secrets in code; do not commit `.env.local` with real values.
 
 ## Testing standards
@@ -67,7 +68,7 @@
   - `npm run lint`
 
 ## Security & compliance
-- Assume the RAWG key is public when shipped to the browser (client-side env embedding).
+- Keep the RAWG key server-only via the same-origin proxy; do not reintroduce client-side key embedding.
 - Firebase favorites rules must stay scoped to `request.auth.uid` for `users/{uid}/favorites`.
 - Keep dependencies updated and avoid introducing new ones unless needed.
 

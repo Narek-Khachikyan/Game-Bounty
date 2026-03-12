@@ -1,7 +1,7 @@
 # Risks
 
 ## Security / secrets
-- `VITE_API_KEY` is a client-exposed key (Vite embeds `import.meta.env.*` into the browser bundle). Treat it as a public token and apply RAWG key restrictions/rotation as needed.
+- `RAWG_API_KEY` is now expected to stay server-only via the Vite/Netlify proxy. Reintroducing client-side env embedding would leak the key into the build output again.
 - `.env.local` exists in the repo root; ensure it is ignored and not committed to shared remotes if it contains real secrets.
 
 ## Reliability

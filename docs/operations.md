@@ -23,11 +23,12 @@
 - When a repeat defect appears, strengthen the harness instead of relying on memory.
 
 ## Troubleshooting
-- RAWG calls failing: verify `VITE_API_KEY` is set (see `.env.example:1`).
+- RAWG calls failing locally: verify `RAWG_API_KEY` is set in the server environment that launched `npm run dev` (see `.env.example:1`).
+- Netlify RAWG deploy failures: verify `RAWG_API_KEY` is set in Netlify environment variables for the relevant deploy contexts.
 - Firebase sign-in failing: verify `Email/Password` and `Google` providers are enabled in the Firebase console and that `localhost` is listed in authorized domains.
 - Favorites not loading or saving: verify Cloud Firestore is enabled for the Firebase project and that the rules in `firestore.rules:1` are deployed.
 - Google popup fails immediately: allow browser popups for the local app origin and retry.
 - `npm run dev` opens on `http://localhost:5173/` by default; if that port is busy, use the alternative local URL that Vite prints or stop the stale process that already owns the port.
-- Routes 404 on deploy: ensure SPA redirects exist (see `public/_redirects:1` for Netlify).
+- Routes or RAWG proxying fail on deploy: ensure `public/_redirects:1` still routes `/api/rawg/*` before the SPA fallback.
 - Netlify dependency install fails with a Firebase Node engine error: verify the deploy is using Node 20+ and that the repo still uses `npm` rather than an accidental `yarn.lock`.
 - Styling not applying: verify Tailwind content globs in `tailwind.config.js:1` include the file location.

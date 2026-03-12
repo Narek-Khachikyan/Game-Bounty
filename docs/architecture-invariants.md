@@ -4,8 +4,10 @@ This document captures the stable boundaries that should not drift casually. If 
 
 ## Invariants
 1. RAWG transport stays centralized in `src/app/redux/features/apiSlice.ts`.
-Reason: browser network behavior, cache semantics, and API key handling should stay in one place.
-Enforcement: `npm run harness:check` blocks direct `fetch(...)` usage and `import.meta.env` access elsewhere in `src/`.
+Reason: browser network behavior and cache semantics should stay in one place, while RAWG secret injection stays server-side.
+Current server-side RAWG key owner:
+- `server/rawgProxy.js` for upstream URL construction and env lookup
+Enforcement: `npm run harness:check` blocks direct `fetch(...)` usage and `import.meta.env` access anywhere in tracked `src/` files.
 
 2. Browser persistence stays limited to the explicit persistence owners.
 Reason: persisted browser state should have very few owners to avoid divergent storage formats.

@@ -13,7 +13,9 @@
 - `src/layouts/` — layout wrappers (`src/layouts/MainLayout.tsx:9`).
 - `src/components/` — reusable components (cards, filters, header, skeletons).
 - `src/@types/types.ts` — RAWG response types.
-- `public/_redirects` — SPA routing configuration (`public/_redirects:1`).
+- `server/rawgProxy.js` — shared RAWG proxy logic for local dev and Netlify (`server/rawgProxy.js:1`).
+- `netlify/functions/rawg.js` — production RAWG proxy entrypoint for Netlify (`netlify/functions/rawg.js:1`).
+- `public/_redirects` — Netlify routing configuration for RAWG proxy + SPA fallback (`public/_redirects:1`).
 
 ## Important config files
 - `package.json` — scripts + dependency versions.
