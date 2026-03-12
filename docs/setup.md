@@ -10,8 +10,17 @@
 - `VITE_API_KEY` — RAWG API key (see `.env.example:1`).
 - Do not commit real API keys; prefer `.env.local` for local dev.
 
+## Firebase Authentication
+- The client uses the Firebase project configured in `src/lib/firebase.ts:1`.
+- In the Firebase console for project `gamebounty-35933`, enable:
+  - Authentication → Sign-in method → `Email/Password`
+  - Authentication → Sign-in method → `Google`
+- For local development, ensure `localhost` is present in Firebase Authentication authorized domains.
+
 ## Run (development)
 - `npm run dev`
+- Default local URL: `http://localhost:5173/`
+- If port `5173` is already occupied, Vite will print the next available local URL in the terminal.
 
 ## Build / preview
 - `npm run build`

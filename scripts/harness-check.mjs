@@ -137,8 +137,8 @@ if (
 	);
 }
 
-const sourceFiles = getTrackedSourceFiles().filter((relativePath) =>
-	/\.(ts|tsx|js|jsx)$/.test(relativePath),
+const sourceFiles = getTrackedSourceFiles().filter(
+	(relativePath) => /\.(ts|tsx|js|jsx)$/.test(relativePath) && fileExists(relativePath),
 );
 
 for (const sourceFile of sourceFiles) {

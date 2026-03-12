@@ -20,5 +20,8 @@
 
 ## Troubleshooting
 - RAWG calls failing: verify `VITE_API_KEY` is set (see `.env.example:1`).
+- Firebase sign-in failing: verify `Email/Password` and `Google` providers are enabled in the Firebase console and that `localhost` is listed in authorized domains.
+- Google popup fails immediately: allow browser popups for the local app origin and retry.
+- `npm run dev` opens on `http://localhost:5173/` by default; if that port is busy, use the alternative local URL that Vite prints or stop the stale process that already owns the port.
 - Routes 404 on deploy: ensure SPA redirects exist (see `public/_redirects:1` for Netlify).
 - Styling not applying: verify Tailwind content globs in `tailwind.config.js:1` include the file location.
