@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import {
    isRawgProxyConfigurationError,
    useGetDlcDataQuery,
@@ -13,13 +13,19 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/autoplay';
-import DlcCard from '../DlcCard/DlcCard';
-import SameSeriesCard from '../SameSeriesCard/SameSeriesCard';
+import GameContentPlan from '../GameContentPlan/GameContentPlan';
 
 const GameCardInfo = () => {
    const { id } = useParams();
+   const [searchParams] = useSearchParams();
    const gameId = id ?? '';
    const shouldSkip = !gameId;
+   const selectedPlatformParam = searchParams.get('platform');
+   const parsedSelectedPlatformId = Number(selectedPlatformParam);
+   const selectedPlatformId =
+      Number.isInteger(parsedSelectedPlatformId) && parsedSelectedPlatformId > 0
+         ? parsedSelectedPlatformId
+         : null;
    const {
       data: gamesInfoData,
       isLoading: gamesInfoDataLoading,
@@ -37,8 +43,6 @@ const GameCardInfo = () => {
    });
    const isLoading =
       gamesInfoDataLoading || screenShotsLoading || dlcDataLoading || sameSeriesLoading;
-   const hasSameSeries = (sameSeries?.results ?? []).length > 0;
-   const hasDlc = (dlcData?.results ?? []).length > 0;
    const hasScreenshots = (screenShots?.results ?? []).length > 0;
    const showScreenshotsFallback = !screenShotsLoading && !hasScreenshots;
    const showEmptyState = !isLoading && !gamesInfoData && !gamesInfoDataError;
@@ -124,9 +128,17 @@ const GameCardInfo = () => {
                      <p className="gameInfo__name text-xl sm:text-xl md:text-2xl mb-1 text-violet-950">
                         {gamesInfoData.name}
                      </p>
-                     <ul className="my-2 text-violet-950 text-base grid grid-cols-2 grid-rows-1 items-center sm:flex sm:justify-between sm:flex-wrap">
+                     <ul className="my-3 flex flex-wrap gap-2 text-sm text-violet-950">
                         {gamesInfoData.platforms.map((item) => (
-                           <li key={item.platform.id}>{item.platform.name}</li>
+                           <li
+                              key={item.platform.id}
+                              className={`rounded-full border px-3 py-1 ${
+                                 item.platform.id === selectedPlatformId
+                                    ? 'border-violet-900 bg-violet-900 text-white'
+                                    : 'border-violet-200 bg-violet-50'
+                              }`}>
+                              {item.platform.name}
+                           </li>
                         ))}
                      </ul>
                   </div>
@@ -146,58 +158,12 @@ const GameCardInfo = () => {
                            loading="lazy"
                         />
                      </div>
-                     <div className={hasSameSeries ? 'sameSeries py-4' : 'display-none'}>
-                        <p className="text-2xl text-violet-950 mb-4 ">
-                           {hasSameSeries ? 'Games that are part of the same series' : null}
-                        </p>
-                        <Swiper
-                           className="genres__list flex gap-3 items-center"
-                           data-aos="fade-up"
-                           modules={[Autoplay]}
-                           autoplay={{ delay: 3000 }}
-                           spaceBetween={50}
-                           breakpoints={{
-                              320: {
-                                 slidesPerView: 1,
-                                 spaceBetween: 20,
-                              },
-                              425: {
-                                 slidesPerView: 1,
-                                 spaceBetween: 20,
-                              },
-                              640: {
-                                 slidesPerView: 1,
-                                 spaceBetween: 20,
-                              },
-                              768: {
-                                 slidesPerView: 2,
-                                 spaceBetween: 30,
-                              },
-                              1024: {
-                                 slidesPerView: 3,
-                                 spaceBetween: 40,
-                              },
-                           }}
-                           slidesPerView={3}>
-                           {sameSeries?.results.map((item) => (
-                              <SwiperSlide key={item.id}>
-                                 <Link onClick={() => window.scrollTo(0, 0)} to={`/game/${item.id}`}>
-                                    <SameSeriesCard {...item} />
-                                 </Link>
-                              </SwiperSlide>
-                           ))}
-                        </Swiper>
-                     </div>
-                     <div className={hasDlc ? 'dlc py-4' : 'display-none'}>
-                        <p className="text-2xl text-violet-950 mb-4 ">
-                           {hasDlc ? "All game's dlc" : null}
-                        </p>
-                        <div className="dlcWrapper flex flex-wrap gap-4" data-aos="fade-up">
-                           {dlcData?.results.map((item) => (
-                              <DlcCard key={item.id} {...item} />
-                           ))}
-                        </div>
-                     </div>
+                     <GameContentPlan
+                        dlcItems={dlcData?.results ?? []}
+                        platforms={gamesInfoData.platforms}
+                        sameSeriesItems={sameSeries?.results ?? []}
+                        selectedPlatformId={selectedPlatformId}
+                     />
                   </div>
                </div>
             </div>

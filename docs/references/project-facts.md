@@ -1,6 +1,6 @@
 # Project Facts
 
-Last verified against the repository on 2026-03-12.
+Last verified against the repository on 2026-03-13.
 
 This file records current-state facts. Put durable rules in `docs/architecture-invariants.md`, not here.
 
@@ -23,7 +23,7 @@ This file records current-state facts. Put durable rules in `docs/architecture-i
 
 ## User-Facing Routes
 - `/` renders the game discovery page
-- `/game/:id` renders the game detail view
+- `/game/:id` renders the game detail view and accepts an optional `platform` query param to preserve catalog platform focus
 - `/favorites` renders the signed-in user's saved favorites view
 - `/auth` renders the Firebase sign-in page
 - `*` renders the not-found page

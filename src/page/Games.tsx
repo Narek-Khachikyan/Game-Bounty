@@ -64,7 +64,13 @@ const Games = () => {
              }>
              {isLoading
                 ? skeletons
-                : gamesData?.results.map((item) => <GameCard key={item.id} {...item} />)}
+                : gamesData?.results.map((item) => (
+                     <GameCard
+                        key={item.id}
+                        {...item}
+                        selectedPlatformId={filterByPlatforms}
+                     />
+                  ))}
           </div>
       </div>
    );

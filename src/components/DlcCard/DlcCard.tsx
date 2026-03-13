@@ -12,8 +12,8 @@ const DlcCard: FC<DlcProps> = ({ name, background_image, rating, released }) => 
    return (
       <div className="dlcCard w-full h-full">
          <div className="dlcCard__container w-full h-full">
-            <div className="dlcCard__content w-full h-full">
-               <div className="dlcCard__img w-full h-full">
+            <div className="dlcCard__content w-full h-full flex flex-col gap-2">
+               <div className="dlcCard__img w-full shrink-0">
                   <img
                      className="w-full h-full rounded-2xl"
                      src={background_image}
@@ -27,7 +27,7 @@ const DlcCard: FC<DlcProps> = ({ name, background_image, rating, released }) => 
                      {released}
                   </p>
                </div>
-               <div className="dlcCard__infoWrapper">
+               <div className="dlcCard__infoWrapper flex-1">
                   <p className="dlcCard__name text-base text-violet-950 sm:text-xl">{name}</p>
                </div>
             </div>
