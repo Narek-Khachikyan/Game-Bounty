@@ -8,13 +8,18 @@ import { useAuth } from '../../hooks/useAuth';
 import { buildAuthRedirectPath } from '../../lib/authRedirect';
 import { removeUserFavorite, upsertUserFavorite } from '../../lib/userFavorites';
 
-const GameCard: FC<GameData> = ({
+type GameCardProps = GameData & {
+   selectedPlatformId?: number;
+};
+
+const GameCard: FC<GameCardProps> = ({
    id,
    name,
    released,
    background_image,
    metacritic,
    platforms,
+   selectedPlatformId,
 }) => {
    const navigate = useNavigate();
    const location = useLocation();
@@ -30,6 +35,9 @@ const GameCard: FC<GameData> = ({
       metacritic,
       platforms,
    };
+   const gameDetailsPath = selectedPlatformId
+      ? `/game/${id}?platform=${selectedPlatformId}`
+      : `/game/${id}`;
 
    const handleAuthRedirect = () => {
       const nextPath = `${location.pathname}${location.search}${location.hash}`;
@@ -101,7 +109,7 @@ const GameCard: FC<GameData> = ({
    return (
       <div className="card" data-aos="fade-up">
          <div className="card__container">
-            <Link to={`/game/${id}`}>
+            <Link to={gameDetailsPath}>
                <div className="card__content">
                   <div className="card__wrapper">
                      <img

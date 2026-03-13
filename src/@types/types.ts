@@ -43,7 +43,15 @@ export type GamesInfoPlatform = {
       name: string;
    };
    released_at: string;
-   requirements: {
+   requirements_en?: {
+      minimum?: string;
+      recommended?: string;
+   };
+   requirements_ru?: {
+      minimum?: string;
+      recommended?: string;
+   };
+   requirements?: {
       minimum?: string;
       recommended?: string;
    };

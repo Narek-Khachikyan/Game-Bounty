@@ -1,0 +1,23 @@
+.gameContentPlan__platform {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.gameContentPlan__platform:hover {
+  transform: translateY(-2px);
+}
+
+.gameContentPlan__platform--selected {
+  position: relative;
+}
+
+.gameContentPlan__platform--selected::after {
+  content: '';
+  position: absolute;
+  inset: 12px auto 12px 0;
+  width: 4px;
+  border-radius: 999px;
+  background: #2e1065;
+}

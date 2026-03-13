@@ -11,8 +11,8 @@ const SameSeriesCard: FC<SameSeriesProps> = ({ name, released, background_image,
    return (
       <div className="sameSeries w-full h-full">
          <div className="sameSeries__container w-full h-full">
-            <div className="sameSeries__content w-full h-full">
-               <div className="sameSeries__img w-full h-full">
+            <div className="sameSeries__content w-full h-full flex flex-col gap-2">
+               <div className="sameSeries__img w-full shrink-0">
                   <img
                      className="w-full h-full rounded-2xl"
                      src={background_image}
@@ -26,7 +26,9 @@ const SameSeriesCard: FC<SameSeriesProps> = ({ name, released, background_image,
                      {released}
                   </p>
                </div>
-               <p className="sameSeries__name text-base text-violet-950 sm:text-xl">{name}</p>
+               <div className="flex-1">
+                  <p className="sameSeries__name text-base text-violet-950 sm:text-xl">{name}</p>
+               </div>
             </div>
          </div>
       </div>
