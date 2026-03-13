@@ -7,7 +7,7 @@
 - `src/app/redux/features/apiSlice.ts` — RAWG RTK Query endpoints (`src/app/redux/features/apiSlice.ts:14`).
 - `src/app/redux/features/favoriteSlice.ts` — favorites state (`src/app/redux/features/favoriteSlice.ts:14`).
 - `src/components/FavoritesSync/FavoritesSync.tsx` — mirrors Firestore favorites into Redux (`src/components/FavoritesSync/FavoritesSync.tsx:1`).
-- `src/components/GameContentPlan/GameContentPlan.tsx` — renders platform compatibility plus DLC and same-series recommendations on the game detail page (`src/components/GameContentPlan/GameContentPlan.tsx:1`).
+- `src/components/GameContentPlan/GameContentPlan.tsx` — renders filtered platform compatibility cards plus DLC and same-series recommendations on the game detail page (`src/components/GameContentPlan/GameContentPlan.tsx:1`).
 - `src/components/RequireAuth/RequireAuth.tsx` — auth gate for protected route content (`src/components/RequireAuth/RequireAuth.tsx:1`).
 - `src/lib/userFavorites.ts` — Firestore favorites CRUD + subscription transport (`src/lib/userFavorites.ts:1`).
 - `src/page/` — route-level pages.

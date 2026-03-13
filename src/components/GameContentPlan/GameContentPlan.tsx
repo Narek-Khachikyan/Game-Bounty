@@ -14,6 +14,7 @@ type GameContentPlanProps = {
 
 const REQUIREMENTS_FALLBACK = 'Data not specified';
 const RELEASE_FALLBACK = 'Release date not specified';
+type PlatformRequirements = NonNullable<GamesInfoPlatform['requirements_en']>;
 
 const getDisplayValue = (value?: string) => {
    if (!value?.trim()) {
@@ -23,8 +24,27 @@ const getDisplayValue = (value?: string) => {
    return value;
 };
 
-const getPlatformRequirements = (platform: GamesInfoPlatform) =>
-   platform.requirements_en ?? platform.requirements_ru ?? platform.requirements;
+const hasRequirementPair = (requirements?: PlatformRequirements) =>
+   Boolean(requirements?.minimum?.trim() && requirements.recommended?.trim());
+
+const getPlatformRequirements = (platform: GamesInfoPlatform) => {
+   const requirementBlocks = [
+      platform.requirements_en,
+      platform.requirements_ru,
+      platform.requirements,
+   ];
+
+   return (
+      requirementBlocks.find((requirements) => hasRequirementPair(requirements)) ??
+      requirementBlocks.find((requirements) => Boolean(requirements))
+   );
+};
+
+const hasCompleteRequirements = (platform: GamesInfoPlatform) => {
+   const requirements = getPlatformRequirements(platform);
+
+   return hasRequirementPair(requirements);
+};
 
 const GameContentPlan: FC<GameContentPlanProps> = ({
    dlcItems,
@@ -36,7 +56,8 @@ const GameContentPlan: FC<GameContentPlanProps> = ({
    const hasDlc = dlcItems.length > 0;
    const hasRelatedContent = hasSameSeries || hasDlc;
    const relatedGameUrlSuffix = selectedPlatformId ? `?platform=${selectedPlatformId}` : '';
-   const sortedPlatforms = [...platforms].sort((leftPlatform, rightPlatform) => {
+   const filteredPlatforms = platforms.filter(hasCompleteRequirements);
+   const sortedPlatforms = [...filteredPlatforms].sort((leftPlatform, rightPlatform) => {
       const leftSelected = leftPlatform.platform.id === selectedPlatformId;
       const rightSelected = rightPlatform.platform.id === selectedPlatformId;
 
@@ -122,7 +143,8 @@ const GameContentPlan: FC<GameContentPlanProps> = ({
                   </div>
                ) : (
                   <p className="rounded-2xl bg-white px-4 py-5 text-violet-950">
-                     Platform details were not specified for this game.
+                     No platforms with complete minimum and recommended requirements were
+                     specified for this game.
                   </p>
                )}
             </div>

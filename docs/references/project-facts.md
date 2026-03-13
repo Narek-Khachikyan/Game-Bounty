@@ -23,7 +23,7 @@ This file records current-state facts. Put durable rules in `docs/architecture-i
 
 ## User-Facing Routes
 - `/` renders the game discovery page
-- `/game/:id` renders the game detail view and accepts an optional `platform` query param to preserve catalog platform focus
+- `/game/:id` renders the game detail view, accepts an optional `platform` query param to preserve catalog platform focus, and limits the compatibility cards to platforms that include both minimum and recommended requirements in the first complete RAWG requirements block (`requirements_en`, then `requirements_ru`, then `requirements`)
 - `/favorites` renders the signed-in user's saved favorites view
 - `/auth` renders the Firebase sign-in page
 - `*` renders the not-found page
