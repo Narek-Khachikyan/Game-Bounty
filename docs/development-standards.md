@@ -63,13 +63,12 @@
 ## Testing standards
 - Not applicable (no test runner configured).
 - Quality gates before review:
-  - `npm run harness:check`
-  - `npm run build`
-  - `npm run lint`
+  - `npm run verify` (includes `harness:check`, `firestore:rules:test`, `lint`, and `build`)
 
 ## Security & compliance
 - Keep the RAWG key server-only via the same-origin proxy; do not reintroduce client-side key embedding.
 - Firebase favorites rules must stay scoped to `request.auth.uid` for `users/{uid}/favorites`.
+- Firestore favorites rules must validate the top-level favorite shape and require server-authored `savedAt`; nested platform entries are sanitized in `src/lib/userFavorites.ts:1` because Firestore rules cannot generically validate every list member.
 - Keep dependencies updated and avoid introducing new ones unless needed.
 
 ## Directory layout

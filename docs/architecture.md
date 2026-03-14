@@ -24,6 +24,7 @@
   - Server-side RAWG key injection is centralized in `server/rawgProxy.js:1`, reused by the Vite dev server (`vite.config.ts:1`) and the Netlify Function (`netlify/functions/rawg.js:1`).
 - Favorites data
   - Firestore CRUD and snapshot subscription live in `src/lib/userFavorites.ts:1`.
+  - Favorites documents are validated in `firestore.rules:1` for owner scope, exact top-level keys, field types, and server-authored `savedAt`; `src/lib/userFavorites.ts:1` also sanitizes nested platform entries because Firestore rules cannot generically validate every list member.
   - `FavoritesSync` mirrors the signed-in user's Firestore favorites into the Redux slice (`src/components/FavoritesSync/FavoritesSync.tsx:1`).
   - `/favorites` is auth-protected and favorites actions redirect guests to `/auth` with a `next` return path.
 - Store wiring
@@ -32,7 +33,7 @@
 ## Data flow (typical)
 - App bootstraps → `AuthProvider` subscribes to Firebase auth state → header/auth page render session-aware UI.
 - Page/component renders → calls RTK Query hook (e.g. `useGetGamesDataQuery`) → RTK Query performs a same-origin fetch to `/api/rawg/*` → the server proxy appends the RAWG key and calls RAWG → component renders results.
-- Signed-in user changes a favorite → UI calls Firestore CRUD → Firestore snapshot updates → `FavoritesSync` replaces Redux favorites state.
+- Signed-in user changes a favorite → UI writes a validated Firestore favorite with `serverTimestamp()` → Firestore snapshot updates → `FavoritesSync` replaces Redux favorites state.
 - Guest opens `/favorites` or clicks a favorites action → app redirects to `/auth?next=...` until sign-in succeeds.
 
 ## Deployment topology

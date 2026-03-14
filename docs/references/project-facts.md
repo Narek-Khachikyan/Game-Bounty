@@ -38,6 +38,7 @@ This file records current-state facts. Put durable rules in `docs/architecture-i
 
 ## Verification Commands
 - `npm run harness:check`
+- `npm run firestore:rules:test`
 - `npm run lint`
 - `npm run build`
-- `npm run verify`
+- `npm run verify` (runs `harness:check`, `firestore:rules:test`, `lint`, and `build`)

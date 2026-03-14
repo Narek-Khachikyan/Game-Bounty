@@ -19,7 +19,7 @@ The repository standardizes on `npm` and the checked-in `package-lock.json`. The
   - Authentication → Sign-in method → `Email/Password`
   - Authentication → Sign-in method → `Google`
 - Create a Cloud Firestore database for the same project if it does not exist yet.
-- Deploy the rules from `firestore.rules:1` so users can read and write only `users/{uid}/favorites/{favoriteId}`.
+- Deploy the rules from `firestore.rules:1` so users can only access their own `users/{uid}/favorites/{favoriteId}` documents and only write the validated favorite shape with a server-authored `savedAt`.
 - For local development, ensure `localhost` is present in Firebase Authentication authorized domains.
 
 ## Run (development)
@@ -37,5 +37,8 @@ The repository standardizes on `npm` and the checked-in `package-lock.json`. The
 - `npm run lint`
 
 ## Harness validation
+- `npm run firestore:rules:test`
 - `npm run harness:check`
-- `npm run verify`
+- `npm run verify` (includes `firestore:rules:test`, so it also requires Java 21+)
+
+The Firestore rules check requires a local Java 21+ runtime because the current Firestore Emulator jar no longer starts on Java 17. The repo runs that check through the bundled public `firebase emulators:exec` CLI flow rather than private `firebase-tools` module imports.

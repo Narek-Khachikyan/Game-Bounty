@@ -2,8 +2,54 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    function hasFavoriteKeys() {
+      return request.resource.data.keys().hasAll([
+               'background_image',
+               'id',
+               'metacritic',
+               'name',
+               'platforms',
+               'released',
+               'savedAt',
+             ]) &&
+             request.resource.data.keys().hasOnly([
+               'background_image',
+               'id',
+               'metacritic',
+               'name',
+               'platforms',
+               'released',
+               'savedAt',
+             ]);
+    }
+
+    function hasValidPlatforms(platforms) {
+      // Firestore rules cannot generically validate every nested list member,
+      // so the client sanitizes individual platform entries before write/read.
+      return platforms is list;
+    }
+
+    function hasValidFavoriteShape(favoriteId) {
+      return hasFavoriteKeys() &&
+             request.resource.data.id is int &&
+             string(request.resource.data.id) == favoriteId &&
+             request.resource.data.name is string &&
+             request.resource.data.released is string &&
+             request.resource.data.background_image is string &&
+             (request.resource.data.metacritic is int || request.resource.data.metacritic == null) &&
+             hasValidPlatforms(request.resource.data.platforms) &&
+             request.resource.data.savedAt == request.time;
+    }
+
     match /users/{userId}/favorites/{favoriteId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && hasValidFavoriteShape(favoriteId);
+      allow update: if isOwner(userId) && hasValidFavoriteShape(favoriteId);
+      allow delete: if isOwner(userId);
     }
   }
 }

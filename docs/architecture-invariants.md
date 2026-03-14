@@ -20,9 +20,9 @@ Enforcement: `npm run harness:check` blocks `localStorage` usage elsewhere in tr
 Reason: route registration is a core navigation concern and should stay easy to audit.
 Enforcement: `npm run harness:check` blocks JSX `<Route ...>` declarations outside `src/App.tsx`.
 
-4. The project harness must keep working entrypoints.
-Reason: agents need a predictable way to find the system of record.
-Enforcement: `npm run harness:check` validates required docs and internal Markdown links across root entrypoints and the knowledge base.
+4. The project harness must keep working entrypoints and stable verification integrations.
+Reason: agents need a predictable way to find the system of record, and repo-owned verification flows should depend on public tool surfaces instead of private dependency internals.
+Enforcement: `npm run harness:check` validates required docs and internal Markdown links across root entrypoints and the knowledge base, and blocks `firebase-tools/lib/*` imports in repo-owned scripts.
 
 ## Human-Enforced Rules
 - Non-trivial changes should have an execution plan in `docs/exec-plans/`.
