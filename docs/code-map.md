@@ -28,6 +28,8 @@
 ## Notable scripts
 - `npm run dev` — run Vite dev server.
 - `npm run build` — typecheck + build (`tsc && vite build`).
+- `npm run firestore:rules:test` — run the Firestore Emulator rules regression script.
+- `scripts/run-firestore-rules-test.mjs` — checks the local Java runtime, writes a temporary emulator config, and runs the rules assertions through the public `firebase emulators:exec` CLI entrypoint.
 - `npm run preview` — preview production build.
 - `npm run lint` — lint `src/` with max warnings 0.
 

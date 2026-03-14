@@ -7,16 +7,17 @@ This is the standing quality document for the repo. It records where the project
 The repo now has compact root entrypoints, source-of-truth docs, and plan templates. The remaining gap is keeping them fresh as features evolve.
 
 - Architecture boundary enforcement: B
-The highest-value boundaries now have automated checks: transport, env access, storage, route registration, and harness link integrity.
+The highest-value boundaries now have automated checks: transport, env access, storage, route registration, harness link integrity, and the Firestore verification path's use of public Firebase tool surfaces.
 
 - Runtime resilience: C
 The app guards against a missing API key, auth-gates personal favorites, and syncs favorites through Firestore, but it still depends directly on third-party services and has no automated UI fallback checks.
 
 - Testing and regression prevention: D
-There is still no automated test runner. Current protection is limited to harness validation, linting, type-checking, and manual checks.
+There is still no general-purpose app test runner, but Firestore favorites rules now have dedicated emulator-based regression coverage alongside harness validation, linting, and type-checking.
 
 ## Garbage-Collection Queue
 - Add a lightweight test runner with at least route-shell and account-favorites sync smoke coverage.
+- Expand automated coverage beyond Firestore rules into route-shell and account-favorites UI behavior.
 - Decide whether the game detail route should move from `src/components/` into `src/page/` for clearer route ownership.
 - Expand documented performance checks around the background video asset and bundle size changes.
 

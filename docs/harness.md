@@ -22,3 +22,4 @@ This repository follows the harness-engineering pattern: we do not rely on promp
 - Task-specific sequencing belongs in `docs/exec-plans/`.
 - Active quality gaps and cleanup targets belong in `docs/quality-scorecard.md`.
 - Mechanical rules belong in `scripts/harness-check.mjs` and should be documented in `docs/architecture-invariants.md`.
+- Verification scripts should prefer public tool entrypoints; the harness currently blocks private `firebase-tools/lib/*` imports in repo-owned scripts.

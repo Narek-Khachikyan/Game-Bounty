@@ -65,9 +65,9 @@ const walk = (relativeDir) => {
 	return files;
 };
 
-const getTrackedSourceFiles = () => {
+const getTrackedFiles = (relativeDir) => {
 	try {
-		const output = execFileSync('git', ['ls-files', '--', 'src'], {
+		const output = execFileSync('git', ['ls-files', '--', relativeDir], {
 			cwd: repoRoot,
 			encoding: 'utf8',
 		});
@@ -77,7 +77,7 @@ const getTrackedSourceFiles = () => {
 			.map((line) => line.trim())
 			.filter(Boolean);
 	} catch {
-		return walk('src');
+		return walk(relativeDir);
 	}
 };
 
@@ -127,15 +127,18 @@ if (packageJson.scripts?.['harness:check'] !== 'node scripts/harness-check.mjs')
 
 if (
 	packageJson.scripts?.verify !==
-	'npm run harness:check && npm run lint && npm run build'
+	'npm run harness:check && npm run firestore:rules:test && npm run lint && npm run build'
 ) {
 	reportFailure(
-		'package.json must expose "verify" as "npm run harness:check && npm run lint && npm run build".',
+		'package.json must expose "verify" as "npm run harness:check && npm run firestore:rules:test && npm run lint && npm run build".',
 	);
 }
 
-const sourceFiles = getTrackedSourceFiles().filter(
+const sourceFiles = getTrackedFiles('src').filter(
 	(relativePath) => /\.(ts|tsx|js|jsx)$/.test(relativePath) && fileExists(relativePath),
+);
+const scriptFiles = getTrackedFiles('scripts').filter(
+	(relativePath) => /\.(mjs|cjs|js)$/.test(relativePath) && fileExists(relativePath),
 );
 
 for (const sourceFile of sourceFiles) {
@@ -167,6 +170,20 @@ for (const sourceFile of sourceFiles) {
 
 	if (/from\s+['"]axios['"]|import\s+axios/.test(contents)) {
 		reportFailure(`Unexpected axios usage found in ${sourceFile}. Keep transport centralized in RTK Query.`);
+	}
+}
+
+for (const scriptFile of scriptFiles) {
+	const contents = readFile(scriptFile);
+
+	if (
+		/from\s+['"][^'"]*firebase-tools\/lib\/|require\(['"][^'"]*firebase-tools\/lib\//.test(
+			contents,
+		)
+	) {
+		reportFailure(
+			`Repo-owned scripts must use public Firebase CLI entrypoints instead of private firebase-tools internals. Found in ${scriptFile}.`,
+		);
 	}
 }
 

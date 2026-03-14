@@ -41,9 +41,18 @@ const GameCardInfo = () => {
    const { data: sameSeries, isLoading: sameSeriesLoading } = useGetSameSeriesQuery(gameId, {
       skip: shouldSkip,
    });
+   const seenScreenshotImages = new Set<string>();
+   const uniqueScreenshots = (screenShots?.results ?? []).filter(({ image }) => {
+      if (!image || seenScreenshotImages.has(image)) {
+         return false;
+      }
+
+      seenScreenshotImages.add(image);
+      return true;
+   });
    const isLoading =
       gamesInfoDataLoading || screenShotsLoading || dlcDataLoading || sameSeriesLoading;
-   const hasScreenshots = (screenShots?.results ?? []).length > 0;
+   const hasScreenshots = uniqueScreenshots.length > 0;
    const showScreenshotsFallback = !screenShotsLoading && !hasScreenshots;
    const showEmptyState = !isLoading && !gamesInfoData && !gamesInfoDataError;
    const isConfigurationError = isRawgProxyConfigurationError(gamesInfoDataErrorDetails);
@@ -106,8 +115,8 @@ const GameCardInfo = () => {
                            },
                         }}
                         slidesPerView={3}>
-                        {screenShots?.results.map((item, index) => (
-                           <SwiperSlide key={`${item.image}-${index}`}>
+                        {uniqueScreenshots.map((item, index) => (
+                           <SwiperSlide key={item.image}>
                               <img
                                  className="rounded-2xl screenshots__img"
                                  src={item.image}
