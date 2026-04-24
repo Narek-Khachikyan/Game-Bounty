@@ -17,6 +17,7 @@ There is still no general-purpose app test runner, but Firestore favorites rules
 
 ## Garbage-Collection Queue
 - Add a lightweight test runner with at least route-shell and account-favorites sync smoke coverage.
+- Add responsive UI smoke checks for the header, filter controls, auth page, and card content on mobile-width viewports.
 - Expand automated coverage beyond Firestore rules into route-shell and account-favorites UI behavior.
 - Decide whether the game detail route should move from `src/components/` into `src/page/` for clearer route ownership.
 - Expand documented performance checks around the background video asset and bundle size changes.

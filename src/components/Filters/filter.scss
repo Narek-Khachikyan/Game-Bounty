@@ -1,12 +1,22 @@
 .genres__list{
   margin: 0 auto;
   .genreItem{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    width: 100%;
     cursor: pointer;
     border-radius: 15px;
     transition: all 0.3s ease-in-out;
+    white-space: nowrap;
     &:hover{
       background-color: #895ae7;
       color: white;
+    }
+    &:focus-visible{
+      outline: 2px solid #FFFFFF;
+      outline-offset: 2px;
     }
   }
 }
@@ -16,30 +26,70 @@
   color: #FFFFFF !important;
 }
 
+.dropdown{
+  position: relative;
+  z-index: 4;
+}
+
+.dropdown-menu{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 8px);
+  max-height: min(320px, 52vh);
+  overflow-y: auto;
+  box-shadow: 0px 24px 60px rgba(15, 23, 42, 0.3);
+}
+
 .dropdown-menu__item{
   padding: 0px 5px;
   transition: all 0.3s ease-in-out;
   border-radius: 15px;
   cursor: pointer;
+  button{
+    display: block;
+    width: 100%;
+    padding: 6px 8px;
+    text-align: left;
+  }
   &:hover{
+    background-color: #6c22d9;
+    color: white;
+  }
+  &:focus-within{
     background-color: #6c22d9;
     color: white;
   }
 }
 .dropdown-toggle{
+  min-height: 40px;
   transition: all 0.3s ease-in-out;
   &:hover{
     background-color: #6c22d9;
     color: white;
   }
+  &:focus-visible{
+    outline: 2px solid #FFFFFF;
+    outline-offset: 2px;
+  }
 }
 
 .swiper-scrollbar{
   background-color: white !important;
-  height: 10px !important;
+  height: 6px !important;
 }
 .swiper-scrollbar-drag{
   background-color: #895ae7 !important;
   cursor: pointer;
   width: 100%;
+}
+
+@media (max-width:640px) {
+  .filter-heading{
+    text-align: center;
+  }
+
+  .genres__list{
+    padding-bottom: 18px !important;
+  }
 }

@@ -32,13 +32,16 @@ const FilterByPlatforms = ({ setFilterByPlatforms, selectedPlatformId }: FilterB
             {selectedPlatform?.name || 'Select an option'}
          </button>
          {isOpen && (
-            <ul className="dropdown-menu bg-white rounded-2xl p-2">
+            <ul className="dropdown-menu bg-white rounded-2xl p-2" role="listbox">
                {platformsData?.results.map((item) => (
                   <li
                      className="dropdown-menu__item"
-                     onClick={() => selectOption(item.id)}
-                     key={item.id}>
-                     {item.name}
+                     key={item.id}
+                     role="option"
+                     aria-selected={item.id === selectedPlatformId}>
+                     <button type="button" onClick={() => selectOption(item.id)}>
+                        {item.name}
+                     </button>
                   </li>
                ))}
             </ul>

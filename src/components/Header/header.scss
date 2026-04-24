@@ -218,20 +218,43 @@ button.header__signout{
 
 @media (max-width:640px) {
   .header__content{
-    grid-template-columns: 1fr;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .header__brand{
+    flex: 1 1 auto;
   }
 
   .header__nav{
-    order: 2;
+    order: 3;
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  .header__nav-link{
+    min-height: 38px;
+    padding: 7px 14px;
+  }
+
+  .header__nav-list{
+    justify-content: flex-start;
   }
 
   .header__actions{
-    order: 3;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    display: contents;
+  }
+
+  .header__actions > .header__nav-link{
+    order: 2;
   }
 
   .header__account{
+    order: 2;
     width: 100%;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -247,7 +270,10 @@ button.header__signout{
   }
 
   .video-toggle{
-    width: 100%;
+    order: 4;
+    margin-left: auto;
+    min-height: 38px;
+    padding: 6px 10px;
     justify-content: flex-start;
   }
 }

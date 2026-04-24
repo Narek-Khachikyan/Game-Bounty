@@ -91,3 +91,14 @@
   align-items: center;
 }
 }
+
+@media (hover: none), (max-width:768px) {
+  .card__textWrapper{
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .card:hover{
+    transform: none;
+  }
+}

@@ -21,7 +21,9 @@ const FilterByGenres = ({ setFilterByGenres }: FilterByGenresProps) => {
 
    return (
       <div className="genres mb-2">
-         <p className="text-white mb-8 text-2xl sm:text-2xl md:text-3xl">Sort By: Genres</p>
+         <p className="filter-heading text-white mb-4 text-2xl sm:text-2xl md:text-3xl">
+            Sort By: Genres
+         </p>
          <Swiper
             className="genres__list flex gap-3 items-center pb-8"
             modules={[Scrollbar]}
@@ -29,12 +31,12 @@ const FilterByGenres = ({ setFilterByGenres }: FilterByGenresProps) => {
             spaceBetween={50}
             breakpoints={{
                320: {
-                  slidesPerView: 1,
-                  spaceBetween: 20,
+                  slidesPerView: 2,
+                  spaceBetween: 10,
                },
                425: {
                   slidesPerView: 2,
-                  spaceBetween: 20,
+                  spaceBetween: 12,
                },
                640: {
                   slidesPerView: 2,
@@ -51,15 +53,17 @@ const FilterByGenres = ({ setFilterByGenres }: FilterByGenresProps) => {
             }}
             slidesPerView={3}>
             {genresData?.results.map((item, index) => (
-               <SwiperSlide
-                  onClick={() => handleClick(item.name.toLowerCase(), index)}
-                  className={
-                     isActive === index
-                        ? 'bg-white text-violet-950 py-1 px-2 text-center activeGenre cursor-pointer rounded-2xl genreItem'
-                        : 'bg-white text-violet-950 py-1 px-2 text-center cursor-pointer rounded-2xl genreItem'
-                  }
-                  key={item.id}>
-                  {item.name}
+               <SwiperSlide key={item.id}>
+                  <button
+                     type="button"
+                     onClick={() => handleClick(item.name.toLowerCase(), index)}
+                     className={
+                        isActive === index
+                           ? 'genreItem bg-white text-violet-950 py-1 px-2 text-center activeGenre rounded-2xl'
+                           : 'genreItem bg-white text-violet-950 py-1 px-2 text-center rounded-2xl'
+                     }>
+                     {item.name}
+                  </button>
                </SwiperSlide>
             ))}
          </Swiper>

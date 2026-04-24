@@ -96,8 +96,8 @@ const Auth = () => {
 
    if (!isAuthReady) {
       return (
-         <section className="py-16 min-h-[70vh] flex items-center justify-center">
-            <div className="w-full max-w-xl rounded-3xl bg-white px-8 py-10 text-center shadow-2xl shadow-slate-950/30">
+         <section className="py-8 sm:py-16 min-h-[70vh] flex items-center justify-center">
+            <div className="w-full max-w-xl rounded-3xl bg-white px-5 py-7 text-center shadow-2xl shadow-slate-950/30 sm:px-8 sm:py-10">
                <p className="text-violet-950 text-2xl font-semibold">Checking your session...</p>
                <p className="mt-3 text-slate-600">
                   Firebase is restoring any saved login before we show the form.
@@ -114,10 +114,10 @@ const Auth = () => {
          .map((providerId) => getProviderLabel(providerId));
 
       return (
-         <section className="py-16 min-h-[70vh] flex items-center justify-center">
-            <div className="w-full max-w-2xl rounded-[32px] bg-white px-8 py-10 shadow-2xl shadow-slate-950/30">
+         <section className="py-8 sm:py-16 min-h-[70vh] flex items-center justify-center">
+            <div className="w-full max-w-2xl rounded-[28px] bg-white px-5 py-7 shadow-2xl shadow-slate-950/30 sm:rounded-[32px] sm:px-8 sm:py-10">
                <p className="text-sm uppercase tracking-[0.35em] text-violet-700">Session ready</p>
-               <h1 className="mt-4 text-4xl font-semibold text-violet-950">
+               <h1 className="mt-4 text-2xl font-semibold text-violet-950 sm:text-4xl">
                   You are signed in to Game-Bounty
                </h1>
                <div className="mt-8 rounded-3xl bg-slate-100 p-6 text-slate-700">
@@ -159,40 +159,40 @@ const Auth = () => {
    }
 
    return (
-      <section className="py-12 min-h-[70vh] flex items-center">
-         <div className="grid w-full gap-8 lg:grid-cols-[1.1fr,0.9fr]">
-            <div className="rounded-[32px] border border-white/10 bg-slate-950/70 p-8 text-white shadow-2xl shadow-slate-950/40 backdrop-blur">
-               <p className="text-sm uppercase tracking-[0.35em] text-violet-300">Firebase Auth</p>
-               <h1 className="mt-4 max-w-lg text-4xl font-semibold leading-tight">
+      <section className="py-6 sm:py-12 min-h-[70vh] flex items-center">
+         <div className="grid w-full gap-6 lg:grid-cols-[1.1fr,0.9fr] lg:gap-8">
+            <div className="rounded-[28px] border border-white/10 bg-slate-950/70 p-5 text-white shadow-2xl shadow-slate-950/40 backdrop-blur sm:rounded-[32px] sm:p-8">
+               <p className="text-xs uppercase tracking-[0.24em] text-violet-300 sm:text-sm sm:tracking-[0.35em]">Firebase Auth</p>
+               <h1 className="mt-3 max-w-lg text-2xl font-semibold leading-tight sm:mt-4 sm:text-4xl">
                   Sign in with email or Google and keep your favorites tied to your account.
                </h1>
-               <p className="mt-6 max-w-xl text-base leading-7 text-slate-200">
+               <p className="mt-4 max-w-xl text-sm leading-6 text-slate-200 sm:mt-6 sm:text-base sm:leading-7">
                   Favorites now belong to your Firebase account instead of this browser, so
                   signing in keeps the same saved games available across devices.
                </p>
-               <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-                     <p className="text-sm uppercase tracking-[0.3em] text-violet-300">
+               <div className="mt-5 grid gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-4">
+                  <div className="rounded-3xl border border-white/10 bg-white/5 p-4 sm:p-5">
+                     <p className="text-xs uppercase tracking-[0.22em] text-violet-300 sm:text-sm sm:tracking-[0.3em]">
                         Email / Password
                      </p>
-                     <p className="mt-3 text-slate-200">
+                     <p className="mt-2 text-sm text-slate-200 sm:mt-3 sm:text-base">
                         Create an account or sign back in with the same credentials.
                      </p>
                   </div>
-                  <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-                     <p className="text-sm uppercase tracking-[0.3em] text-violet-300">Google</p>
-                     <p className="mt-3 text-slate-200">
+                  <div className="rounded-3xl border border-white/10 bg-white/5 p-4 sm:p-5">
+                     <p className="text-xs uppercase tracking-[0.22em] text-violet-300 sm:text-sm sm:tracking-[0.3em]">Google</p>
+                     <p className="mt-2 text-sm text-slate-200 sm:mt-3 sm:text-base">
                         Use the Google popup flow for a faster one-click sign-in.
                      </p>
                   </div>
                </div>
             </div>
 
-            <div className="rounded-[32px] bg-white p-8 shadow-2xl shadow-slate-950/30">
+            <div className="rounded-[28px] bg-white p-5 shadow-2xl shadow-slate-950/30 sm:rounded-[32px] sm:p-8">
                <div className="flex rounded-full bg-slate-100 p-1">
                   <button
                      type="button"
-                     className={`w-1/2 rounded-full px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] transition ${
+                     className={`w-1/2 rounded-full px-3 py-3 text-xs font-semibold uppercase tracking-[0.12em] transition sm:px-4 sm:text-sm sm:tracking-[0.2em] ${
                         mode === 'sign-in'
                            ? 'bg-violet-900 text-white'
                            : 'text-slate-600 hover:text-violet-900'
@@ -202,7 +202,7 @@ const Auth = () => {
                   </button>
                   <button
                      type="button"
-                     className={`w-1/2 rounded-full px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] transition ${
+                     className={`w-1/2 rounded-full px-3 py-3 text-xs font-semibold uppercase tracking-[0.12em] transition sm:px-4 sm:text-sm sm:tracking-[0.2em] ${
                         mode === 'create-account'
                            ? 'bg-violet-900 text-white'
                            : 'text-slate-600 hover:text-violet-900'
@@ -263,7 +263,7 @@ const Auth = () => {
                   <button
                      type="submit"
                      disabled={isWorking}
-                     className="mt-2 rounded-full bg-violet-900 px-5 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-violet-800 disabled:cursor-wait disabled:opacity-70">
+                     className="mt-2 rounded-full bg-violet-900 px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-violet-800 disabled:cursor-wait disabled:opacity-70 sm:tracking-[0.2em]">
                      {isWorking
                         ? isCreateAccountMode
                            ? 'Creating account...'
@@ -284,7 +284,7 @@ const Auth = () => {
                   type="button"
                   onClick={handleGoogleSignIn}
                   disabled={isWorking}
-                  className="w-full rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-slate-700 transition hover:border-violet-700 hover:text-violet-900 disabled:cursor-wait disabled:opacity-70">
+                  className="w-full rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-700 transition hover:border-violet-700 hover:text-violet-900 disabled:cursor-wait disabled:opacity-70 sm:tracking-[0.2em]">
                   {isWorking ? 'Opening Google...' : 'Continue with Google'}
                </button>
 
