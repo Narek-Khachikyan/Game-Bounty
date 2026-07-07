@@ -127,10 +127,10 @@ if (packageJson.scripts?.['harness:check'] !== 'node scripts/harness-check.mjs')
 
 if (
 	packageJson.scripts?.verify !==
-	'npm run harness:check && npm run firestore:rules:test && npm run lint && npm run build'
+	'npm run harness:check && npm run test:typecheck && npm run test && npm run firestore:rules:test && npm run lint && npm run build'
 ) {
 	reportFailure(
-		'package.json must expose "verify" as "npm run harness:check && npm run firestore:rules:test && npm run lint && npm run build".',
+		'package.json must expose "verify" as "npm run harness:check && npm run test:typecheck && npm run test && npm run firestore:rules:test && npm run lint && npm run build".',
 	);
 }
 

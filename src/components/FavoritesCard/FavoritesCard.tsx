@@ -64,6 +64,7 @@ const FavoritesCard: FC<GameData> = ({
                </Link>
                <button
                   className="cardButton"
+                  aria-label={`Remove ${name} from favorites`}
                   onClick={() => {
                      void onClickRemove();
                   }}
@@ -73,7 +74,9 @@ const FavoritesCard: FC<GameData> = ({
             </div>
          </div>
          {actionError ? (
-            <p className="mt-3 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-100">
+            <p
+               role="alert"
+               className="mt-3 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-100">
                {actionError}
             </p>
          ) : null}

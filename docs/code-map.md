@@ -6,6 +6,7 @@
 - `src/app/` — Redux store + typed hooks.
 - `src/app/redux/features/apiSlice.ts` — RAWG RTK Query endpoints (`src/app/redux/features/apiSlice.ts:14`).
 - `src/app/redux/features/favoriteSlice.ts` — favorites state (`src/app/redux/features/favoriteSlice.ts:14`).
+- `src/page/GameDetails.tsx` — route-level game detail data orchestration, retry, and partial secondary-content fallback handling (`src/page/GameDetails.tsx:1`).
 - `src/components/FavoritesSync/FavoritesSync.tsx` — mirrors Firestore favorites into Redux (`src/components/FavoritesSync/FavoritesSync.tsx:1`).
 - `src/components/GameContentPlan/GameContentPlan.tsx` — renders filtered platform compatibility cards plus DLC and same-series recommendations on the game detail page (`src/components/GameContentPlan/GameContentPlan.tsx:1`).
 - `src/components/RequireAuth/RequireAuth.tsx` — auth gate for protected route content (`src/components/RequireAuth/RequireAuth.tsx:1`).
@@ -14,6 +15,7 @@
 - `src/layouts/` — layout wrappers (`src/layouts/MainLayout.tsx:9`).
 - `src/components/` — reusable components (cards, filters, header, skeletons).
 - `src/@types/types.ts` — RAWG response types.
+- `src/test/` — shared Vitest/React Testing Library setup and test fixtures.
 - `server/rawgProxy.js` — shared RAWG proxy logic for local dev and Netlify (`server/rawgProxy.js:1`).
 - `netlify/functions/rawg.js` — production RAWG proxy entrypoint for Netlify (`netlify/functions/rawg.js:1`).
 - `public/_redirects` — Netlify routing configuration for RAWG proxy + SPA fallback (`public/_redirects:1`).
@@ -28,6 +30,8 @@
 ## Notable scripts
 - `npm run dev` — run Vite dev server.
 - `npm run build` — typecheck + build (`tsc && vite build`).
+- `npm run test` — run Vitest unit/integration tests.
+- `npm run test:typecheck` — type-check app and test files through `tsconfig.test.json`.
 - `npm run firestore:rules:test` — run the Firestore Emulator rules regression script.
 - `scripts/run-firestore-rules-test.mjs` — checks the local Java runtime, writes a temporary emulator config, and runs the rules assertions through the public `firebase emulators:exec` CLI entrypoint.
 - `npm run preview` — preview production build.
