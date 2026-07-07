@@ -136,6 +136,7 @@ const GameCard: FC<GameCardProps> = ({
             {isItemInFavorites ? (
                <button
                   className="remove-button cardButton"
+                  aria-label={`Remove ${name} from favorites`}
                   onClick={() => {
                      void removeFavorites();
                   }}
@@ -145,6 +146,7 @@ const GameCard: FC<GameCardProps> = ({
             ) : (
                <button
                   className="add-button cardButton"
+                  aria-label={`Add ${name} to favorites`}
                   onClick={() => {
                      void addFavorites();
                   }}
@@ -153,7 +155,9 @@ const GameCard: FC<GameCardProps> = ({
                </button>
             )}
             {actionError ? (
-               <p className="mt-3 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-100">
+               <p
+                  role="alert"
+                  className="mt-3 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-100">
                   {actionError}
                </p>
             ) : null}

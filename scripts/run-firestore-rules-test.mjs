@@ -3,9 +3,34 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 
-const firestoreHost = '127.0.0.1';
-const firestorePort = 8080;
+const defaultFirestoreEmulatorHost = '127.0.0.1:8081';
 const projectId = 'demo-game-bounty';
+
+const getFirestoreEmulatorConnection = () => {
+   const emulatorHost = process.env.FIRESTORE_EMULATOR_HOST ?? defaultFirestoreEmulatorHost;
+
+   try {
+      const emulatorUrl = new URL(`http://${emulatorHost}`);
+      const port = Number(emulatorUrl.port);
+
+      if (!Number.isInteger(port) || port <= 0) {
+         throw new Error('missing port');
+      }
+
+      return {
+         host: emulatorUrl.hostname,
+         port,
+         value: `${emulatorUrl.hostname}:${port}`,
+      };
+   } catch {
+      throw new Error(
+         `FIRESTORE_EMULATOR_HOST must be set as "<host>:<port>". Received "${emulatorHost}".`,
+      );
+   }
+};
+
+const { host: firestoreHost, port: firestorePort, value: firestoreEmulatorHost } =
+   getFirestoreEmulatorConnection();
 
 const getJavaVersion = () => {
    const result = spawnSync('java', ['-version'], { encoding: 'utf8' });
@@ -107,10 +132,13 @@ try {
          'QUIET',
          'node scripts/firestore-rules-check.mjs',
       ],
-      {
-         env: process.env,
-         stdio: 'inherit',
-      },
+		{
+			env: {
+				...process.env,
+				FIRESTORE_EMULATOR_HOST: firestoreEmulatorHost,
+			},
+			stdio: 'inherit',
+		},
    );
 
    const { code, signal } = await waitForChildExit(firebaseProcess);
