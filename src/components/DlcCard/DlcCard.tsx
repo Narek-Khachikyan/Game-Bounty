@@ -10,7 +10,7 @@ type DlcProps = {
 
 const DlcCard: FC<DlcProps> = ({ name, background_image, rating, released }) => {
    return (
-      <div className="dlcCard w-full h-full">
+      <article className="dlcCard w-full h-full">
          <div className="dlcCard__container w-full h-full">
             <div className="dlcCard__content w-full h-full flex flex-col gap-2">
                <div className="dlcCard__img w-full shrink-0">
@@ -20,19 +20,15 @@ const DlcCard: FC<DlcProps> = ({ name, background_image, rating, released }) => 
                      alt={name ? `${name} cover` : 'DLC cover'}
                      loading="lazy"
                   />
-                  <p className="dlcCard__raiting bg-white text-violet-900 px-2 py-1 text-base sm:text-xl rounded-xl">
-                     {rating * 2}
-                  </p>
-                  <p className="dlcCard__released bg-white text-violet-900 px-2 py-1 text-base sm:text-xl rounded-xl">
-                     {released}
-                  </p>
+                  <span className="dlcCard__raiting">Score {rating * 2}</span>
+                  <span className="dlcCard__released">{released || 'TBA'}</span>
                </div>
                <div className="dlcCard__infoWrapper flex-1">
-                  <p className="dlcCard__name text-base text-violet-950 sm:text-xl">{name}</p>
+                  <p className="dlcCard__name text-base font-black text-bounty-ink sm:text-xl">{name}</p>
                </div>
             </div>
          </div>
-      </div>
+      </article>
    );
 };
 

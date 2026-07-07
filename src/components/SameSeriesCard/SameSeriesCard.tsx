@@ -9,7 +9,7 @@ type SameSeriesProps = {
 
 const SameSeriesCard: FC<SameSeriesProps> = ({ name, released, background_image, metacritic }) => {
    return (
-      <div className="sameSeries w-full h-full">
+      <article className="sameSeries w-full h-full">
          <div className="sameSeries__container w-full h-full">
             <div className="sameSeries__content w-full h-full flex flex-col gap-2">
                <div className="sameSeries__img w-full shrink-0">
@@ -19,19 +19,15 @@ const SameSeriesCard: FC<SameSeriesProps> = ({ name, released, background_image,
                      alt={name ? `${name} cover` : 'Game cover'}
                      loading="lazy"
                   />
-                  <p className="sameSeries__metacritic bg-white text-violet-900 px-2 py-1 text-base sm:text-xl rounded-xl">
-                     {metacritic ?? 'N/A'}
-                  </p>
-                  <p className="sameSeries__released bg-white text-violet-900 px-2 py-1 text-base sm:text-xl rounded-xl">
-                     {released}
-                  </p>
+                  <span className="sameSeries__metacritic">Score {metacritic ?? 'N/A'}</span>
+                  <span className="sameSeries__released">{released || 'TBA'}</span>
                </div>
                <div className="flex-1">
-                  <p className="sameSeries__name text-base text-violet-950 sm:text-xl">{name}</p>
+                  <p className="sameSeries__name text-base font-black text-bounty-ink sm:text-xl">{name}</p>
                </div>
             </div>
          </div>
-      </div>
+      </article>
    );
 };
 

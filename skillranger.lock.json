@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "1.0",
+  "installed": [
+    {
+      "skillId": "frontend.tailwind-ui-polish",
+      "version": "0.1.0",
+      "checksum": "sha256:190a50bde94b7f3256ba1f6f235e1cb22a100683d5d06a16bc32f32ffc98dff4",
+      "targetAgent": "codex",
+      "scope": "repo",
+      "installedPath": ".agents/skills/tailwind-ui-polish",
+      "source": {
+        "type": "curated",
+        "registry": "local",
+        "path": "./registry/skills/frontend.tailwind-ui-polish"
+      },
+      "audit": {
+        "riskLevel": "low",
+        "securityScore": 0.96,
+        "findings": []
+      }
+    },
+    {
+      "skillId": "frontend.visual-design-polish",
+      "version": "0.1.0",
+      "checksum": "sha256:ab291819c820027f0af8a5efbef58499d79c3a5926faf7b088dc864adaaaca76",
+      "targetAgent": "codex",
+      "scope": "repo",
+      "installedPath": ".agents/skills/visual-design-polish",
+      "source": {
+        "type": "curated",
+        "registry": "local",
+        "path": "./registry/skills/frontend.visual-design-polish"
+      },
+      "audit": {
+        "riskLevel": "low",
+        "securityScore": 0.95,
+        "findings": []
+      }
+    },
+    {
+      "skillId": "frontend.design-system",
+      "version": "0.1.0",
+      "checksum": "sha256:5f329f1e90ac834183700372d1d7bbacbb6fd49b5026d6802432471edabd46b3",
+      "targetAgent": "codex",
+      "scope": "repo",
+      "installedPath": ".agents/skills/design-system",
+      "source": {
+        "type": "curated",
+        "registry": "local",
+        "path": "./registry/skills/frontend.design-system"
+      },
+      "audit": {
+        "riskLevel": "low",
+        "securityScore": 0.95,
+        "findings": []
+      }
+    },
+    {
+      "skillId": "frontend.design-to-code",
+      "version": "0.1.0",
+      "checksum": "sha256:f630dbce63131100d19f5ece8dbce35bbfa215ec9f3dbb18a7de3415ff381e7b",
+      "targetAgent": "codex",
+      "scope": "repo",
+      "installedPath": ".agents/skills/design-to-code",
+      "source": {
+        "type": "curated",
+        "registry": "local",
+        "path": "./registry/skills/frontend.design-to-code"
+      },
+      "audit": {
+        "riskLevel": "low",
+        "securityScore": 0.95,
+        "findings": []
+      }
+    },
+    {
+      "skillId": "frontend.interaction-polish",
+      "version": "0.1.0",
+      "checksum": "sha256:58bb96ac0274241e96d9b5ca3944b7e392f15fbdfb438e4927102655c352c2f3",
+      "targetAgent": "codex",
+      "scope": "repo",
+      "installedPath": ".agents/skills/interaction-polish",
+      "source": {
+        "type": "curated",
+        "registry": "local",
+        "path": "./registry/skills/frontend.interaction-polish"
+      },
+      "audit": {
+        "riskLevel": "low",
+        "securityScore": 0.95,
+        "findings": []
+      }
+    },
+    {
+      "skillId": "frontend.react-app-review",
+      "version": "0.1.0",
+      "checksum": "sha256:f380d49b2694b025c9b9e486ab39659e7606c0b9947fd59aaff28913d34177f6",
+      "targetAgent": "codex",
+      "scope": "repo",
+      "installedPath": ".agents/skills/react-app-review",
+      "source": {
+        "type": "curated",
+        "registry": "local",
+        "path": "./registry/skills/frontend.react-app-review"
+      },
+      "audit": {
+        "riskLevel": "low",
+        "securityScore": 0.96,
+        "findings": []
+      }
+    },
+    {
+      "skillId": "frontend.accessibility-review",
+      "version": "0.1.0",
+      "checksum": "sha256:84994e40201570b56856d5bcef2aabacf436e96dccb89e939aa8b2f0dd1d7170",
+      "targetAgent": "codex",
+      "scope": "repo",
+      "installedPath": ".agents/skills/accessibility-review",
+      "source": {
+        "type": "curated",
+        "registry": "local",
+        "path": "./registry/skills/frontend.accessibility-review"
+      },
+      "audit": {
+        "riskLevel": "low",
+        "securityScore": 0.96,
+        "findings": []
+      }
+    },
+    {
+      "skillId": "frontend.react-component-design",
+      "version": "0.1.0",
+      "checksum": "sha256:80d3b51cd7e497836c3a3209d5d2e4e0416d485bf31ce987652731859ff21fb6",
+      "targetAgent": "codex",
+      "scope": "repo",
+      "installedPath": ".agents/skills/react-component-design",
+      "source": {
+        "type": "curated",
+        "registry": "local",
+        "path": "./registry/skills/frontend.react-component-design"
+      },
+      "audit": {
+        "riskLevel": "low",
+        "securityScore": 0.96,
+        "findings": []
+      }
+    },
+    {
+      "skillId": "frontend.ux-critique",
+      "version": "0.1.0",
+      "checksum": "sha256:6652693c48e27679424c4484145b429cc97ee5ff1ec0f2e6717969751958f3ea",
+      "targetAgent": "codex",
+      "scope": "repo",
+      "installedPath": ".agents/skills/ux-critique",
+      "source": {
+        "type": "curated",
+        "registry": "local",
+        "path": "./registry/skills/frontend.ux-critique"
+      },
+      "audit": {
+        "riskLevel": "low",
+        "securityScore": 0.95,
+        "findings": []
+      }
+    },
+    {
+      "skillId": "frontend.performance-review",
+      "version": "0.1.0",
+      "checksum": "sha256:d67b431bcb7349c274fdaa1df2754d97c43c29e721e407a95d3af8becdf587ad",
+      "targetAgent": "codex",
+      "scope": "repo",
+      "installedPath": ".agents/skills/performance-review",
+      "source": {
+        "type": "curated",
+        "registry": "local",
+        "path": "./registry/skills/frontend.performance-review"
+      },
+      "audit": {
+        "riskLevel": "low",
+        "securityScore": 0.96,
+        "findings": []
+      }
+    },
+    {
+      "skillId": "frontend.testing-strategy",
+      "version": "0.1.0",
+      "checksum": "sha256:df0e28a6e3602763e2fd4d59d8fa134e00cdc4c91b096cd8767323fff93568b4",
+      "targetAgent": "codex",
+      "scope": "repo",
+      "installedPath": ".agents/skills/testing-strategy",
+      "source": {
+        "type": "curated",
+        "registry": "local",
+        "path": "./registry/skills/frontend.testing-strategy"
+      },
+      "audit": {
+        "riskLevel": "low",
+        "securityScore": 0.95,
+        "findings": []
+      }
+    }
+  ]
+}

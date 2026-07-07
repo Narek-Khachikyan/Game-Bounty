@@ -2,17 +2,22 @@ import { Link } from 'react-router-dom';
 
 const NotFound = () => {
    return (
-      <div className="notFound py-16 text-center">
-         <p className="text-white text-3xl sm:text-4xl mb-4">Page not found</p>
-         <p className="text-white text-base sm:text-lg mb-6">
-            The page you are looking for does not exist.
+      <main className="notFound flex min-h-[70vh] items-center justify-center py-16 text-center">
+         <section className="bounty-panel max-w-2xl rounded-dossier px-6 py-10 sm:px-10">
+         <p className="bounty-kicker">Missing contract</p>
+         <h1 className="mt-3 text-3xl font-black tracking-[-0.05em] text-bounty-ink sm:text-5xl">
+            Page not found
+         </h1>
+         <p className="bounty-copy mx-auto mb-8 mt-4 max-w-xl text-base sm:text-lg">
+            This bounty does not exist or has moved out of range.
          </p>
          <Link
             to="/"
-            className="inline-block bg-white text-violet-950 px-4 py-2 rounded-2xl">
-            Back to home
+            className="bounty-button px-5 py-3 text-sm">
+            Back to catalog
          </Link>
-      </div>
+         </section>
+      </main>
    );
 };
 

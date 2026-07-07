@@ -40,22 +40,23 @@ const Header = ({
    };
 
    return (
-      <div className="header bg-white">
+      <header className="header">
          <div className="header__container">
             <div className="header__content py-4">
                <div className="header__brand">
-                  <Link to={'/'}>
-                     <p className="header__logo sm:text-xl md:text-2xl text">Game-Bounty</p>
+                  <Link to={'/'} className="header__logo" aria-label="Game-Bounty home">
+                     <span className="header__logo-mark" aria-hidden="true">GB</span>
+                     <span className="header__logo-text sm:text-xl md:text-2xl">Game-Bounty</span>
                   </Link>
                </div>
                <nav className="header__nav" aria-label="Primary navigation">
                   <ul className="header__nav-list">
                      <li className="header__nav-item relative">
                         <Link to={'/favorites'} className={favoritesLinkClassName}>
-                           <span>Favorites</span>
-                           <p className="count absolute text-white bg-violet-950 text-sm">
+                           <span>Saved Bounties</span>
+                           <span className="count absolute text-sm" aria-label={`${count} saved bounties`}>
                               {count}
-                           </p>
+                           </span>
                         </Link>
                      </li>
                   </ul>
@@ -98,12 +99,12 @@ const Header = ({
                      />
                      <span className="video-toggle__content">
                         <span className="sm:text-sm md:text-base font-medium">
-                           Animated background
+                           Cinematic board
                         </span>
                         {animatedBackgroundBlockedReason ? (
                            <span
                               id={animatedBackgroundStatusId}
-                              className="video-toggle__status text-xs text-slate-600">
+                              className="video-toggle__status text-xs text-bounty-muted">
                               {animatedBackgroundBlockedReason}
                            </span>
                         ) : null}
@@ -112,7 +113,7 @@ const Header = ({
                </div>
             </div>
          </div>
-      </div>
+      </header>
    );
 };
 
