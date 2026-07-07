@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import Games from './page/Games';
-import GameCardInfo from './components/GameCardInfo/GameCardInfo';
+import GameDetails from './page/GameDetails';
 import Favorites from './page/Favorites';
 import NotFound from './page/NotFound';
 import Auth from './page/Auth';
@@ -12,7 +12,7 @@ function App() {
       <Routes>
          <Route path="/" element={<MainLayout />}>
             <Route index element={<Games />} />
-            <Route path="/game/:id" element={<GameCardInfo />} />
+            <Route path="/game/:id" element={<GameDetails />} />
             <Route
                path="/favorites"
                element={

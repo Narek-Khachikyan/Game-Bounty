@@ -1,6 +1,6 @@
 # Project Facts
 
-Last verified against the repository on 2026-03-13.
+Last verified against the repository on 2026-07-07.
 
 This file records current-state facts. Put durable rules in `docs/architecture-invariants.md`, not here.
 
@@ -23,7 +23,7 @@ This file records current-state facts. Put durable rules in `docs/architecture-i
 
 ## User-Facing Routes
 - `/` renders the game discovery page
-- `/game/:id` renders the game detail view, accepts an optional `platform` query param to preserve catalog platform focus, and limits the compatibility cards to platforms that include both minimum and recommended requirements in the first complete RAWG requirements block (`requirements_en`, then `requirements_ru`, then `requirements`)
+- `/game/:id` renders the `src/page/GameDetails.tsx` route-level game detail view, accepts an optional `platform` query param to preserve catalog platform focus, keeps secondary screenshots/DLC/same-series content independent from the primary detail load, and limits the compatibility cards to platforms that include both minimum and recommended requirements in the first complete RAWG requirements block (`requirements_en`, then `requirements_ru`, then `requirements`)
 - `/favorites` renders the signed-in user's saved favorites view
 - `/auth` renders the Firebase sign-in page
 - `*` renders the not-found page
@@ -34,11 +34,14 @@ This file records current-state facts. Put durable rules in `docs/architecture-i
 - Build tool: Vite
 - Language: TypeScript
 - Lint tool: ESLint
+- Unit/integration test runner: Vitest + React Testing Library
 - Styling: Tailwind CSS plus Sass/CSS
 
 ## Verification Commands
 - `npm run harness:check`
+- `npm run test:typecheck`
+- `npm run test`
 - `npm run firestore:rules:test`
 - `npm run lint`
 - `npm run build`
-- `npm run verify` (runs `harness:check`, `firestore:rules:test`, `lint`, and `build`)
+- `npm run verify` (runs `harness:check`, `test:typecheck`, `test`, `firestore:rules:test`, `lint`, and `build`)

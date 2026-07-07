@@ -14,7 +14,7 @@ This repository follows the harness-engineering pattern: we do not rely on promp
 1. Use the docs to understand the current system.
 2. For non-trivial work, create or update a plan in `docs/exec-plans/`.
 3. Change code and docs together.
-4. Run `npm run harness:check` plus normal build/lint validation.
+4. Run `npm run harness:check` plus normal test/build/lint validation.
 5. If a bug, review comment, or confusing handoff exposes a missing guardrail, improve the harness.
 
 ## What Goes Where
@@ -23,3 +23,4 @@ This repository follows the harness-engineering pattern: we do not rely on promp
 - Active quality gaps and cleanup targets belong in `docs/quality-scorecard.md`.
 - Mechanical rules belong in `scripts/harness-check.mjs` and should be documented in `docs/architecture-invariants.md`.
 - Verification scripts should prefer public tool entrypoints; the harness currently blocks private `firebase-tools/lib/*` imports in repo-owned scripts.
+- `npm run verify` must include harness validation, Vitest test type-checking, Vitest tests, Firestore rules tests, linting, and the production build.

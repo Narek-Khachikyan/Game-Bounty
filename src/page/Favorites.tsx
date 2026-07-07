@@ -50,31 +50,38 @@ const Favorites: React.FC = () => {
                      Your Firebase-backed shortlist of games to inspect, compare, and return to later.
                   </p>
                </div>
-            {cartItems.length === 0 ? null : (
-               <button
-                  className="clear-btn bounty-button bounty-button--danger px-5 py-3 text-sm"
-                  onClick={() => {
+               {cartItems.length === 0 ? null : (
+                  <button
+                     className="clear-btn bounty-button bounty-button--danger px-5 py-3 text-sm"
+                     aria-label={`Clear ${cartItems.length} saved ${cartItems.length === 1 ? 'game' : 'games'}`}
+                     onClick={() => {
                      void handleClearCart();
                   }}
                   disabled={isClearing || favoritesStatus !== 'ready'}>
                   {isClearing ? 'Clearing...' : 'Clear saved'}
                </button>
-            )}
+               )}
             </div>
          </section>
 
          {actionError ? (
-            <p className="mb-6 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-100">
+            <p
+               role="alert"
+               className="mb-6 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-100">
                {actionError}
             </p>
          ) : null}
 
          {favoritesStatus === 'loading' ? (
-            <p className="bounty-panel my-8 rounded-3xl px-5 py-8 text-center text-2xl font-black text-bounty-ink">
+            <p
+               aria-live="polite"
+               className="bounty-panel my-8 rounded-3xl px-5 py-8 text-center text-2xl font-black text-bounty-ink">
                Loading your favorites...
             </p>
          ) : favoritesStatus === 'error' ? (
-            <p className="bounty-panel my-8 rounded-3xl px-5 py-8 text-center text-xl text-red-100">
+            <p
+               role="alert"
+               className="bounty-panel my-8 rounded-3xl px-5 py-8 text-center text-xl text-red-100">
                We could not load your favorites right now. Try refreshing the page.
             </p>
          ) : cartItems.length === 0 ? (

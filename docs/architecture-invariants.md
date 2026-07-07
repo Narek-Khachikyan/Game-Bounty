@@ -22,7 +22,7 @@ Enforcement: `npm run harness:check` blocks JSX `<Route ...>` declarations outsi
 
 4. The project harness must keep working entrypoints and stable verification integrations.
 Reason: agents need a predictable way to find the system of record, and repo-owned verification flows should depend on public tool surfaces instead of private dependency internals.
-Enforcement: `npm run harness:check` validates required docs and internal Markdown links across root entrypoints and the knowledge base, and blocks `firebase-tools/lib/*` imports in repo-owned scripts.
+Enforcement: `npm run harness:check` validates required docs and internal Markdown links across root entrypoints and the knowledge base, requires `npm run verify` to include test type-checking, Vitest tests, Firestore rules tests, linting, and build, and blocks `firebase-tools/lib/*` imports in repo-owned scripts.
 
 ## Human-Enforced Rules
 - Non-trivial changes should have an execution plan in `docs/exec-plans/`.

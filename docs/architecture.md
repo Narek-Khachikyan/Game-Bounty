@@ -7,9 +7,9 @@
 ## Main modules and responsibilities
 - Routing
   - Defines the route tree under `MainLayout` (`src/App.tsx:11`).
-  - Routes:
+    - Routes:
     - `/` → `src/page/Games.tsx`
-    - `/game/:id` → `src/components/GameCardInfo/GameCardInfo.tsx`
+    - `/game/:id` → `src/page/GameDetails.tsx`
     - `/favorites` → `src/page/Favorites.tsx`
     - `/auth` → `src/page/Auth.tsx`
 - Layout
@@ -19,7 +19,8 @@
   - `AuthProvider` restores session state and exposes sign-in/sign-out actions to the app shell (`src/context/AuthProvider.tsx:1`).
   - `src/page/Auth.tsx:1` owns the Email/Password and Google sign-in UI.
 - Data layer (RAWG)
-  - RTK Query API slice defines endpoints for games/genres/platforms/details/screenshots/DLC/series (`src/app/redux/features/apiSlice.ts:14`).
+   - RTK Query API slice defines endpoints for games/genres/platforms/details/screenshots/DLC/series (`src/app/redux/features/apiSlice.ts:14`).
+   - Game detail route ownership lives in `src/page/GameDetails.tsx:1`; it treats the main game details request as the primary load and keeps screenshots/DLC/same-series as secondary content that can load or fail independently.
   - Browser requests stay same-origin at `/api/rawg/*` and never embed the RAWG key in the client bundle.
   - Server-side RAWG key injection is centralized in `server/rawgProxy.js:1`, reused by the Vite dev server (`vite.config.ts:1`) and the Netlify Function (`netlify/functions/rawg.js:1`).
 - Favorites data
