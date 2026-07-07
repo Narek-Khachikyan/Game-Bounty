@@ -108,9 +108,9 @@ const Auth = () => {
             className="py-8 sm:py-16 min-h-[70vh] flex items-center justify-center"
             aria-busy="true"
             aria-live="polite">
-            <div className="bounty-panel w-full max-w-xl rounded-dossier px-5 py-7 text-center sm:px-8 sm:py-10">
-               <p className="bounty-kicker">Access checkpoint</p>
-               <h1 className="mt-3 text-2xl font-black text-bounty-ink">Checking your session...</h1>
+            <div className="bounty-panel w-full max-w-xl rounded-arcade px-5 py-7 text-center sm:px-8 sm:py-10">
+               <p className="bounty-kicker">Player pass</p>
+               <h1 className="arcade-title mt-4 text-3xl text-arcade-ink">Checking your pass...</h1>
                <p className="bounty-copy mt-3">
                   Firebase is restoring any saved login before we show the form.
                </p>
@@ -127,21 +127,21 @@ const Auth = () => {
 
       return (
          <section className="py-8 sm:py-16 min-h-[70vh] flex items-center justify-center">
-            <div className="bounty-panel w-full max-w-2xl rounded-dossier px-5 py-7 sm:px-8 sm:py-10">
-               <p className="bounty-kicker">Session ready</p>
-               <h1 className="mt-4 text-2xl font-black tracking-[-0.04em] text-bounty-ink sm:text-4xl">
-                  You are signed in to Game-Bounty
+            <div className="bounty-panel w-full max-w-2xl rounded-arcade px-5 py-7 sm:px-8 sm:py-10">
+               <p className="bounty-kicker">Pass active</p>
+               <h1 className="arcade-title mt-4 text-3xl leading-[0.9] text-arcade-ink sm:text-5xl">
+                  Your player shelf is synced.
                </h1>
-               <div className="mt-8 rounded-3xl border border-bounty-line bg-white/5 p-6 text-bounty-muted">
+               <div className="mt-8 rounded-arcade border-[3px] border-arcade-ink bg-arcade-paper p-6 text-arcade-muted shadow-arcade">
                   <p className="bounty-kicker">Account</p>
-                  <p className="mt-3 text-2xl font-black text-bounty-ink">
+                  <p className="mt-3 text-2xl font-black text-arcade-ink">
                      {currentUser.displayName || currentUser.email || 'Firebase user'}
                   </p>
                   {currentUser.email ? (
-                     <p className="mt-2 text-base text-bounty-muted">{currentUser.email}</p>
+                     <p className="mt-2 text-base font-semibold text-arcade-muted">{currentUser.email}</p>
                   ) : null}
                   {providerLabels.length > 0 ? (
-                     <p className="mt-4 text-sm text-bounty-muted">
+                     <p className="mt-4 text-sm font-semibold text-arcade-muted">
                         Connected via {providerLabels.join(', ')}.
                      </p>
                   ) : null}
@@ -149,7 +149,7 @@ const Auth = () => {
                {authError ? (
                   <p
                      role="alert"
-                     className="mt-6 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-100">
+                     className="mt-6 rounded-arcade border-[3px] border-arcade-ink bg-arcade-red px-4 py-3 text-sm font-black text-white">
                      {authError}
                   </p>
                ) : null}
@@ -173,40 +173,39 @@ const Auth = () => {
    return (
       <section className="py-6 sm:py-12 min-h-[70vh] flex items-center">
          <div className="grid w-full gap-6 lg:grid-cols-[1.1fr,0.9fr] lg:gap-8">
-            <div className="bounty-panel rounded-dossier p-5 sm:p-8">
-               <p className="bounty-kicker">Firebase Auth</p>
-               <h1 className="mt-3 max-w-lg text-2xl font-black leading-tight tracking-[-0.04em] text-bounty-ink sm:mt-4 sm:text-4xl">
-                  Sync your bounty board across devices.
+            <div className="bounty-panel rounded-arcade p-5 sm:p-8">
+               <p className="bounty-kicker">Player pass</p>
+               <h1 className="arcade-title mt-4 max-w-xl text-4xl leading-[0.88] text-arcade-ink sm:text-6xl">
+                  Keep your arcade shelf synced.
                </h1>
                <p className="bounty-copy mt-4 max-w-xl text-sm sm:mt-6 sm:text-base">
-                  Favorites now belong to your Firebase account instead of this browser, so
-                  signing in keeps the same saved games available across devices.
+                  Favorites belong to your Firebase account instead of this browser, so the same saved covers follow you across devices.
                </p>
                <div className="mt-5 grid gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-4">
-                  <div className="rounded-3xl border border-bounty-line bg-white/5 p-4 sm:p-5">
-                     <p className="bounty-kicker">Email / Password</p>
-                     <p className="mt-2 text-sm text-bounty-muted sm:mt-3 sm:text-base">
+                  <div className="rounded-arcade border-[3px] border-arcade-ink bg-arcade-yellow p-4 sm:p-5">
+                     <p className="text-xs font-black uppercase tracking-[0.18em] text-arcade-ink">Email / Password</p>
+                     <p className="mt-2 text-sm font-bold text-arcade-muted sm:mt-3 sm:text-base">
                         Create an account or sign back in with the same credentials.
                      </p>
                   </div>
-                  <div className="rounded-3xl border border-bounty-line bg-white/5 p-4 sm:p-5">
-                     <p className="bounty-kicker">Google</p>
-                     <p className="mt-2 text-sm text-bounty-muted sm:mt-3 sm:text-base">
+                  <div className="rounded-arcade border-[3px] border-arcade-ink bg-arcade-panel p-4 sm:p-5">
+                     <p className="text-xs font-black uppercase tracking-[0.18em] text-arcade-blue">Google</p>
+                     <p className="mt-2 text-sm font-bold text-arcade-muted sm:mt-3 sm:text-base">
                         Use the Google popup flow for a faster one-click sign-in.
                      </p>
                   </div>
                </div>
             </div>
 
-            <div className="rounded-dossier border border-bounty-line bg-contract-paper p-5 text-contract-ink shadow-contract sm:p-8">
-               <div className="flex rounded-full bg-contract-ink/10 p-1">
+            <div className="rounded-arcade border-[3px] border-arcade-ink bg-arcade-panel p-5 text-arcade-ink shadow-arcade sm:p-8">
+               <div className="flex rounded-full border-[3px] border-arcade-ink bg-arcade-paper p-1">
                   <button
                      type="button"
                      aria-pressed={mode === 'sign-in'}
                      className={`w-1/2 rounded-full px-3 py-3 text-xs font-semibold uppercase tracking-[0.12em] transition sm:px-4 sm:text-sm sm:tracking-[0.2em] ${
                         mode === 'sign-in'
-                           ? 'bg-contract-ink text-contract-paper'
-                           : 'text-contract-muted hover:text-contract-ink'
+                           ? 'bg-arcade-ink text-arcade-paper'
+                           : 'text-arcade-muted hover:text-arcade-ink'
                      }`}
                      onClick={() => handleModeChange('sign-in')}>
                      Sign In
@@ -216,8 +215,8 @@ const Auth = () => {
                      aria-pressed={mode === 'create-account'}
                      className={`w-1/2 rounded-full px-3 py-3 text-xs font-semibold uppercase tracking-[0.12em] transition sm:px-4 sm:text-sm sm:tracking-[0.2em] ${
                         mode === 'create-account'
-                           ? 'bg-contract-ink text-contract-paper'
-                           : 'text-contract-muted hover:text-contract-ink'
+                           ? 'bg-arcade-ink text-arcade-paper'
+                           : 'text-arcade-muted hover:text-arcade-ink'
                      }`}
                      onClick={() => handleModeChange('create-account')}>
                      Create Account
@@ -225,7 +224,7 @@ const Auth = () => {
                </div>
 
                <form className="mt-6 flex flex-col gap-4" onSubmit={handleSubmit}>
-                  <label className="flex flex-col gap-2 text-sm font-bold text-contract-ink">
+                  <label className="flex flex-col gap-2 text-sm font-black text-arcade-ink">
                      Email
                      <input
                         type="email"
@@ -233,14 +232,14 @@ const Auth = () => {
                         aria-describedby={authError ? authErrorId : undefined}
                         aria-invalid={authError ? true : undefined}
                         autoComplete="email"
-                        className="rounded-2xl border border-contract-muted/30 bg-white/70 px-4 py-3 text-base text-contract-ink outline-none transition-colors focus:border-contract-stamp"
+                        className="rounded-arcade border-[3px] border-arcade-ink bg-white px-4 py-3 text-base font-bold text-arcade-ink outline-none transition-colors focus:bg-arcade-yellow"
                         placeholder="you@example.com"
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                      />
                   </label>
 
-                  <label className="flex flex-col gap-2 text-sm font-bold text-contract-ink">
+                  <label className="flex flex-col gap-2 text-sm font-black text-arcade-ink">
                      Password
                      <input
                         type="password"
@@ -248,7 +247,7 @@ const Auth = () => {
                         aria-describedby={authError ? authErrorId : undefined}
                         aria-invalid={authError ? true : undefined}
                         autoComplete={isCreateAccountMode ? 'new-password' : 'current-password'}
-                        className="rounded-2xl border border-contract-muted/30 bg-white/70 px-4 py-3 text-base text-contract-ink outline-none transition-colors focus:border-contract-stamp"
+                        className="rounded-arcade border-[3px] border-arcade-ink bg-white px-4 py-3 text-base font-bold text-arcade-ink outline-none transition-colors focus:bg-arcade-yellow"
                         placeholder="Enter your password"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
@@ -256,7 +255,7 @@ const Auth = () => {
                   </label>
 
                   {isCreateAccountMode ? (
-                     <label className="flex flex-col gap-2 text-sm font-bold text-contract-ink">
+                     <label className="flex flex-col gap-2 text-sm font-black text-arcade-ink">
                         Confirm password
                         <input
                            type="password"
@@ -264,7 +263,7 @@ const Auth = () => {
                            aria-describedby={authError ? authErrorId : undefined}
                            aria-invalid={authError ? true : undefined}
                            autoComplete="new-password"
-                           className="rounded-2xl border border-contract-muted/30 bg-white/70 px-4 py-3 text-base text-contract-ink outline-none transition-colors focus:border-contract-stamp"
+                           className="rounded-arcade border-[3px] border-arcade-ink bg-white px-4 py-3 text-base font-bold text-arcade-ink outline-none transition-colors focus:bg-arcade-yellow"
                            placeholder="Repeat your password"
                            value={confirmPassword}
                            onChange={(event) => setConfirmPassword(event.target.value)}
@@ -276,7 +275,7 @@ const Auth = () => {
                      <p
                         id={authErrorId}
                         role="alert"
-                        className="rounded-2xl border border-red-500/20 bg-red-50 px-4 py-3 text-sm font-semibold text-red-800">
+                        className="rounded-arcade border-[3px] border-arcade-ink bg-arcade-red px-4 py-3 text-sm font-black text-white">
                         {authError}
                      </p>
                   ) : null}
@@ -284,7 +283,7 @@ const Auth = () => {
                   <button
                      type="submit"
                      disabled={isWorking}
-                     className="mt-2 rounded-full bg-contract-ink px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-contract-paper transition-colors hover:bg-contract-stamp disabled:cursor-wait disabled:opacity-70 sm:tracking-[0.2em]">
+                     className="bounty-button mt-2 px-5 py-3 text-sm disabled:cursor-wait disabled:opacity-70 sm:tracking-[0.2em]">
                      {isWorking
                         ? isCreateAccountMode
                            ? 'Creating account...'
@@ -295,23 +294,23 @@ const Auth = () => {
                   </button>
                </form>
 
-               <div className="my-6 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-contract-muted">
-                  <span className="h-px flex-1 bg-contract-muted/25" />
+               <div className="my-6 flex items-center gap-3 text-xs font-black uppercase tracking-[0.3em] text-arcade-muted">
+                  <span className="h-[3px] flex-1 bg-arcade-ink" />
                   <span>or</span>
-                  <span className="h-px flex-1 bg-contract-muted/25" />
+                  <span className="h-[3px] flex-1 bg-arcade-ink" />
                </div>
 
                <button
                   type="button"
                   onClick={handleGoogleSignIn}
                   disabled={isWorking}
-                  className="w-full rounded-full border border-contract-muted/30 px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-contract-ink transition-colors hover:border-contract-stamp hover:text-contract-stamp disabled:cursor-wait disabled:opacity-70 sm:tracking-[0.2em]">
+                  className="w-full rounded-full border-[3px] border-arcade-ink bg-arcade-yellow px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-arcade-ink shadow-[4px_4px_0_#15110f] transition-colors hover:bg-arcade-blue hover:text-white disabled:cursor-wait disabled:opacity-70 sm:tracking-[0.2em]">
                   {isWorking ? 'Opening Google...' : 'Continue with Google'}
                </button>
 
-               <p className="mt-6 text-sm text-contract-muted">
+               <p className="mt-6 text-sm font-semibold text-arcade-muted">
                   Need a different view first?{' '}
-                  <Link to="/" className="font-black text-contract-stamp underline underline-offset-4">
+                  <Link to="/" className="font-black text-arcade-red underline underline-offset-4">
                      Return to the game catalog
                   </Link>
                   .

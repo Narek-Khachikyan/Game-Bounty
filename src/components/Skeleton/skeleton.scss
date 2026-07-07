@@ -14,11 +14,11 @@
 
 .GamesInfoCardSkeleton p,
 .GameBoundy p {
-   border: 1px solid rgba(248, 184, 78, 0.24);
+   border: 3px solid #15110f;
    border-radius: 999px;
-   background: rgba(17, 26, 47, 0.9);
-   box-shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
-   color: #f8b84e;
+   background: #ffd23f;
+   box-shadow: 5px 5px 0 #15110f;
+   color: #15110f;
    padding: 14px 22px;
    font-size: clamp(1.1rem, 4vw, 1.875rem);
    font-weight: 900;

@@ -122,7 +122,7 @@ const GameCard: FC<GameCardProps> = ({
                         <span className="released">{released || 'Date TBA'}</span>
                      </div>
                      <div className="card__textWrapper">
-                        <p className="card__eyebrow">Target dossier</p>
+                        <p className="card__eyebrow">Cover pick</p>
                         <h2 className="card__name">{name}</h2>
                         <div className="platform-wrapper">
                            {platforms.map((item) => (

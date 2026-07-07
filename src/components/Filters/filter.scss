@@ -9,13 +9,14 @@
    min-height: 42px;
    width: 100%;
    cursor: pointer;
-   border: 1px solid rgba(168, 179, 207, 0.22);
+   border: 3px solid #15110f;
    border-radius: 999px;
-   background: rgba(255, 255, 255, 0.06);
-   color: #dbe6ff;
+   background: #fffaf0;
+   color: #15110f;
    padding: 9px 14px;
    font-size: 14px;
    font-weight: 800;
+   box-shadow: 3px 3px 0 #15110f;
    transition:
       transform 140ms ease,
       border-color 140ms ease,
@@ -25,17 +26,16 @@
 }
 
 .genres__list .genreItem:hover {
-   transform: translateY(-1px);
-   border-color: rgba(248, 184, 78, 0.44);
-   background-color: rgba(248, 184, 78, 0.12);
-   color: #f8b84e;
+   transform: translate(2px, 2px);
+   background-color: #00a9c8;
+   color: #15110f;
+   box-shadow: 1px 1px 0 #15110f;
 }
 
 .genres__list .activeGenre {
-   border-color: rgba(248, 184, 78, 0.64);
-   background: #f8b84e;
-   color: #160d05;
-   box-shadow: 0 12px 30px rgba(248, 184, 78, 0.18);
+   background: #f04438;
+   color: #fffaf0;
+   box-shadow: 3px 3px 0 #15110f;
 }
 
 .dropdown {
@@ -50,15 +50,14 @@
    top: calc(100% + 8px);
    max-height: min(320px, 52vh);
    overflow-y: auto;
-   border: 1px solid rgba(248, 184, 78, 0.22);
-   background: rgba(8, 13, 26, 0.96);
-   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42);
-   backdrop-filter: blur(18px);
+   border: 3px solid #15110f;
+   background: #fffaf0;
+   box-shadow: 6px 6px 0 #15110f;
 }
 
 .dropdown-menu__item {
    border-radius: 14px;
-   color: #dbe6ff;
+   color: #15110f;
    cursor: pointer;
    transition:
       background-color 140ms ease,
@@ -75,17 +74,18 @@
 .dropdown-menu__item:hover,
 .dropdown-menu__item:focus-within,
 .dropdown-menu__item[aria-selected='true'] {
-   background-color: rgba(248, 184, 78, 0.14);
-   color: #f8b84e;
+   background-color: #ffd23f;
+   color: #15110f;
 }
 
 .dropdown-toggle {
    min-height: 46px;
-   border: 1px solid rgba(168, 179, 207, 0.24);
-   border-radius: 20px;
-   background: rgba(8, 13, 26, 0.72);
-   color: #f8fafc;
-   font-weight: 800;
+   border: 3px solid #15110f;
+   border-radius: 16px;
+   background: #fff;
+   color: #15110f;
+   font-weight: 900;
+   box-shadow: 3px 3px 0 #15110f;
    transition:
       border-color 140ms ease,
       background-color 140ms ease,
@@ -93,18 +93,17 @@
 }
 
 .dropdown-toggle:hover {
-   border-color: rgba(248, 184, 78, 0.46);
-   background-color: rgba(248, 184, 78, 0.1);
-   color: #f8b84e;
+   background-color: #ffd23f;
+   color: #15110f;
 }
 
 .swiper-scrollbar {
-   background-color: rgba(168, 179, 207, 0.2) !important;
-   height: 6px !important;
+   background-color: rgba(21, 17, 15, 0.16) !important;
+   height: 8px !important;
 }
 
 .swiper-scrollbar-drag {
-   background-color: #f8b84e !important;
+   background-color: #f04438 !important;
    cursor: grab;
    width: 100%;
 }

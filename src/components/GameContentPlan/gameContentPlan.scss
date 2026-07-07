@@ -5,7 +5,7 @@
 }
 
 .gameContentPlan__platform:hover {
-  transform: translateY(-2px);
+  transform: translate(2px, 2px);
 }
 
 .gameContentPlan__platform--selected {
@@ -18,7 +18,7 @@
   inset: 12px auto 12px 0;
   width: 4px;
   border-radius: 999px;
-   background: #f8b84e;
+    background: #f04438;
 }
 
 @media (prefers-reduced-motion: reduce) {

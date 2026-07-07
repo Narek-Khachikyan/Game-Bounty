@@ -51,7 +51,7 @@ const FavoritesCard: FC<GameData> = ({
                            <span className="released">{released || 'Date TBA'}</span>
                         </div>
                         <div className="card__textWrapper">
-                           <p className="card__eyebrow">Saved bounty</p>
+                           <p className="card__eyebrow">Pinned cover</p>
                            <h2 className="card__name">{name}</h2>
                            <div className="platform-wrapper">
                               {platforms.map((item) => (
@@ -73,7 +73,7 @@ const FavoritesCard: FC<GameData> = ({
             </div>
          </div>
          {actionError ? (
-            <p className="mt-3 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-100">
+            <p className="mt-3 rounded-arcade border-[3px] border-arcade-ink bg-arcade-red px-4 py-3 text-sm font-black text-white">
                {actionError}
             </p>
          ) : null}

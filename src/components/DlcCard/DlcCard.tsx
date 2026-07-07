@@ -24,7 +24,7 @@ const DlcCard: FC<DlcProps> = ({ name, background_image, rating, released }) => 
                   <span className="dlcCard__released">{released || 'TBA'}</span>
                </div>
                <div className="dlcCard__infoWrapper flex-1">
-                  <p className="dlcCard__name text-base font-black text-bounty-ink sm:text-xl">{name}</p>
+                  <p className="dlcCard__name text-base font-black text-arcade-ink sm:text-xl">{name}</p>
                </div>
             </div>
          </div>

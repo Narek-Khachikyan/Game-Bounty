@@ -77,7 +77,7 @@ const GameDetails = () => {
          {gamesInfoDataError && (
             <div
                role="alert"
-               className="bounty-panel rounded-3xl px-5 py-6 text-center text-lg text-red-100">
+                className="bounty-panel rounded-arcade px-5 py-6 text-center text-lg font-black text-arcade-red">
                <p>
                   {isConfigurationError
                      ? 'Configuration error: missing RAWG_API_KEY on the server. Add it to the server environment and restart the app.'
@@ -96,22 +96,22 @@ const GameDetails = () => {
             </div>
          )}
          {showEmptyState && (
-            <p className="bounty-panel rounded-3xl px-5 py-6 text-center text-lg text-bounty-ink">
-               Game details not found.
-            </p>
+             <p className="bounty-panel rounded-arcade px-5 py-6 text-center text-lg font-black text-arcade-ink">
+                Game details not found.
+             </p>
          )}
          {gamesInfoData && (
             <div className="content flex flex-col justify-center gap-6">
-               <section className="imgWrapper bounty-panel rounded-dossier p-3 sm:p-4">
+                <section className="imgWrapper bounty-panel rounded-arcade p-3 sm:p-4">
                   <img
                      src={gamesInfoData.background_image}
                      alt={gamesInfoData.name ? `${gamesInfoData.name} cover` : 'Game cover'}
                   />
                   <div className="gameInfoHero">
-                     <p className="bounty-kicker">Game intelligence dossier</p>
-                     <h1 className="mt-3 max-w-4xl text-4xl font-black leading-[0.95] tracking-[-0.06em] text-bounty-ink sm:text-6xl">
-                        {gamesInfoData.name}
-                     </h1>
+                      <p className="bounty-kicker">Feature cover</p>
+                      <h1 className="arcade-title mt-3 max-w-4xl text-4xl leading-[0.86] text-white sm:text-6xl lg:text-7xl">
+                         {gamesInfoData.name}
+                      </h1>
                      <div className="mt-5 flex flex-wrap gap-2">
                         <span className="gameInfoBadge">Released {gamesInfoData.released || 'TBA'}</span>
                         <span className="gameInfoBadge gameInfoBadge--score">
@@ -123,10 +123,10 @@ const GameDetails = () => {
                      </div>
                   </div>
                </section>
-               <section className="gameInfoWrapper bounty-panel rounded-dossier p-4 sm:p-6">
+                <section className="gameInfoWrapper bounty-panel rounded-arcade p-4 sm:p-6">
                   {hasScreenshots ? (
                      <Swiper
-                        className="genres__list flex gap-3 items-center pb-4"
+                         className="genres__list screenshotRail flex gap-3 items-center pb-4"
                         data-aos="fade-up"
                         modules={[Autoplay]}
                         autoplay={false}
@@ -170,26 +170,26 @@ const GameDetails = () => {
                         ))}
                      </Swiper>
                   ) : showScreenshotsFallback ? (
-                     <p className="mb-4 rounded-2xl border border-bounty-line bg-white/5 px-4 py-3 text-base text-bounty-muted">
-                        No screenshots available.
-                     </p>
+                      <p className="mb-4 rounded-arcade border-[3px] border-arcade-ink bg-arcade-paper px-4 py-3 text-base font-bold text-arcade-muted">
+                         No screenshots available.
+                      </p>
                   ) : screenShotsError ? (
                      <p
                         role="alert"
-                        className="mb-4 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-base text-red-100">
-                        Screenshots are unavailable right now.
-                     </p>
+                         className="mb-4 rounded-arcade border-[3px] border-arcade-ink bg-arcade-red px-4 py-3 text-base font-black text-white">
+                         Screenshots are unavailable right now.
+                      </p>
                   ) : null}
                   <div className="textWrapper">
-                     <p className="bounty-kicker">Platform coverage</p>
-                     <ul className="my-3 flex flex-wrap gap-2 text-sm text-bounty-ink">
+                      <p className="bounty-kicker">Platform rack</p>
+                      <ul className="my-4 flex flex-wrap gap-2 text-sm text-arcade-ink">
                         {gamesInfoData.platforms.map((item) => (
                            <li
                               key={item.platform.id}
                               className={`rounded-full border px-3 py-1 font-bold ${
                                  item.platform.id === selectedPlatformId
-                                    ? 'border-bounty-amber bg-bounty-amber text-contract-ink'
-                                    : 'border-bounty-line bg-white/5 text-bounty-muted'
+                                    ? 'border-arcade-ink bg-arcade-red text-white shadow-[3px_3px_0_#15110f]'
+                                    : 'border-arcade-ink bg-arcade-panel text-arcade-muted'
                               }`}>
                               {item.platform.name}
                            </li>
@@ -197,19 +197,19 @@ const GameDetails = () => {
                      </ul>
                   </div>
                   <div className="infoWrapper">
-                     <h2 className="mt-6 text-2xl font-black tracking-[-0.04em] text-bounty-ink">
-                        Briefing notes
-                     </h2>
-                     <p className="gameInfo__descr mt-3 text-base text-bounty-muted">
-                        {gamesInfoData.description}
-                     </p>
-                     <div className="achivments flex items-center gap-1 my-2">
-                        <p className="text-base font-bold text-bounty-ink sm:text-xl">Achievement count</p>
-                        <p className="rounded-full bg-bounty-amber px-3 py-1 text-base font-black text-contract-ink">
-                           {gamesInfoData.achievements_count}
-                        </p>
+                      <h2 className="arcade-title mt-6 text-3xl text-arcade-ink sm:text-4xl">
+                         Feature Notes
+                      </h2>
+                      <p className="gameInfo__descr mt-3 text-base text-arcade-muted">
+                         {gamesInfoData.description}
+                      </p>
+                      <div className="achivments my-5 flex flex-wrap items-center gap-3">
+                         <p className="arcade-stat">
+                            <span>Achievements</span>
+                            <span>{gamesInfoData.achievements_count}</span>
+                         </p>
                         <img
-                           className="achivments__img"
+                            className="achivments__img"
                            src={achivments}
                            alt="Achievements"
                            loading="lazy"
@@ -218,16 +218,16 @@ const GameDetails = () => {
                      {isSecondaryLoading ? (
                         <p
                            aria-live="polite"
-                           className="my-4 rounded-2xl border border-bounty-line bg-white/5 px-4 py-3 text-base text-bounty-muted">
-                           Loading related content...
-                        </p>
+                            className="my-4 rounded-arcade border-[3px] border-arcade-ink bg-arcade-paper px-4 py-3 text-base font-bold text-arcade-muted">
+                            Loading related content...
+                         </p>
                      ) : null}
                      {hasSecondaryError ? (
                         <p
                            role="alert"
-                           className="my-4 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-base text-red-100">
-                           Some related content could not be loaded. The main game details are still available.
-                        </p>
+                            className="my-4 rounded-arcade border-[3px] border-arcade-ink bg-arcade-red px-4 py-3 text-base font-black text-white">
+                            Some related content could not be loaded. The main game details are still available.
+                         </p>
                      ) : null}
                      <GameContentPlan
                         dlcItems={dlcData?.results ?? []}

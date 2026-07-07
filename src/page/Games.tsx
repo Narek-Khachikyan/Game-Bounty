@@ -33,29 +33,34 @@ const Games = () => {
 
    return (
       <main className="games py-8 sm:py-12">
-         <section className="bounty-panel rounded-dossier px-5 py-6 sm:px-8 sm:py-9">
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:items-end">
-               <div>
-                  <p className="bounty-kicker">Live bounty board</p>
-                  <h1 className="mt-3 max-w-3xl text-4xl font-black leading-[0.95] tracking-[-0.06em] text-bounty-ink sm:text-6xl">
-                     Track the next game worth chasing.
+         <section className="bounty-panel overflow-hidden rounded-arcade px-5 py-6 sm:px-8 sm:py-9">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.12fr)_minmax(320px,0.88fr)] lg:items-end">
+                <div>
+                  <p className="bounty-kicker">Arcade Magazine / Issue 01</p>
+                  <h1 className="arcade-title mt-4 max-w-4xl text-5xl leading-[0.86] text-arcade-ink sm:text-7xl lg:text-8xl">
+                     Find the next game that deserves a weekend.
                   </h1>
-                  <p className="bounty-copy mt-5 max-w-2xl text-base sm:text-lg">
-                     Search RAWG contracts, filter by genre and platform, then save the games you want to return to.
+                  <p className="bounty-copy mt-5 max-w-2xl text-base sm:text-xl">
+                     Browse the RAWG catalog like a loud arcade magazine: scan covers, jump genres, then pin the games worth replaying.
                   </p>
-               </div>
-               <label className="block">
-                  <span className="bounty-kicker">Search contracts</span>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                     <span className="arcade-chip bg-arcade-yellow">Cover scan</span>
+                     <span className="arcade-chip bg-arcade-blue text-white">RAWG powered</span>
+                     <span className="arcade-chip bg-arcade-panel">Save shelf</span>
+                  </div>
+                </div>
+                <label className="block">
+                  <span className="bounty-kicker">Search the issue</span>
                   <input
-                     className="searchInput mt-3 w-full rounded-3xl border border-bounty-line bg-bounty-canvas/70 px-5 py-4 text-base font-semibold text-bounty-ink shadow-inner outline-none transition-colors placeholder:text-bounty-muted focus:border-bounty-amber"
+                     className="searchInput mt-3 w-full rounded-arcade border-[3px] border-arcade-ink bg-white px-5 py-4 text-lg font-black text-arcade-ink shadow-arcade outline-none transition-colors placeholder:text-arcade-muted focus:bg-arcade-yellow"
                      type="search"
                      value={query}
                      placeholder="Search by game title..."
                      onChange={(event) => setQuery(event.target.value)}
                   />
-               </label>
-            </div>
-         </section>
+                </label>
+             </div>
+          </section>
 
          <section className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_280px]">
             <FilterByGenres setFilterByGenres={setFilterByGenres} />
@@ -65,29 +70,29 @@ const Games = () => {
             />
          </section>
 
-         <div className="titleSearch my-8 flex flex-wrap items-end justify-between gap-4">
+         <div className="titleSearch my-8 flex flex-wrap items-end justify-between gap-4 border-y-[3px] border-arcade-ink bg-arcade-ink px-4 py-4 text-arcade-paper">
             <div>
-               <p className="bounty-kicker">Available targets</p>
-               <h2 className="games-title mt-2 text-2xl font-black tracking-[-0.04em] text-bounty-ink sm:text-3xl md:text-4xl">
-                  Popular game contracts
+               <p className="text-xs font-black uppercase tracking-[0.22em] text-arcade-yellow">Now on the rack</p>
+               <h2 className="arcade-title mt-1 text-2xl sm:text-4xl">
+                  Poster Grid
                </h2>
             </div>
-            <p className="rounded-full border border-bounty-line bg-white/5 px-4 py-2 text-sm font-bold text-bounty-muted">
+            <p className="rounded-full border-2 border-arcade-paper bg-arcade-red px-4 py-2 text-sm font-black uppercase tracking-[0.12em] text-white">
                {isLoading ? 'Scanning...' : `${gamesData?.results.length ?? 0} shown`}
             </p>
          </div>
 
          {gamesDataError && (
-            <p className="bounty-panel rounded-3xl px-5 py-6 text-center text-base text-red-100">
+            <p className="bounty-panel rounded-arcade px-5 py-6 text-center text-base font-black text-arcade-red">
                {isConfigurationError
                   ? 'Configuration error: missing RAWG_API_KEY on the server. Add it to the server environment and restart the app.'
                   : 'Failed to load games. Please try again later.'}
             </p>
          )}
          {!gamesDataError && !isLoading && !hasResults && (
-            <div className="bounty-panel rounded-3xl px-5 py-10 text-center">
-               <p className="text-2xl font-black text-bounty-ink">No contracts matched.</p>
-               <p className="bounty-copy mt-3">Try another title, genre, or platform filter.</p>
+            <div className="bounty-panel rounded-arcade px-5 py-10 text-center">
+               <p className="arcade-title text-3xl text-arcade-ink">No games made this issue.</p>
+               <p className="bounty-copy mx-auto mt-3 max-w-xl">Try another title, genre, or platform filter to refill the poster rack.</p>
             </div>
          )}
          <div className="games__content grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

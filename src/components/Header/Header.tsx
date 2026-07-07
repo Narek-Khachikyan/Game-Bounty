@@ -47,13 +47,14 @@ const Header = ({
                   <Link to={'/'} className="header__logo" aria-label="Game-Bounty home">
                      <span className="header__logo-mark" aria-hidden="true">GB</span>
                      <span className="header__logo-text sm:text-xl md:text-2xl">Game-Bounty</span>
+                     <span className="header__issue" aria-hidden="true">Arcade Catalog</span>
                   </Link>
                </div>
                <nav className="header__nav" aria-label="Primary navigation">
                   <ul className="header__nav-list">
                      <li className="header__nav-item relative">
                         <Link to={'/favorites'} className={favoritesLinkClassName}>
-                           <span>Saved Bounties</span>
+                           <span>Saved Shelf</span>
                            <span className="count absolute text-sm" aria-label={`${count} saved bounties`}>
                               {count}
                            </span>
@@ -66,7 +67,7 @@ const Header = ({
                      currentUser ? (
                         <div className="header__account">
                            <span className="header__session">
-                              <span className="header__session-label">Signed in</span>
+                              <span className="header__session-label">Player pass</span>
                               <span className="header__session-text" title={authLabel}>
                                  {authLabel}
                               </span>
@@ -81,12 +82,12 @@ const Header = ({
                         </div>
                      ) : (
                         <Link to={'/auth'} className={signInLinkClassName}>
-                           Sign In
+                           Player Pass
                         </Link>
                      )
                   ) : (
                      <span className="header__session header__session--pending">
-                        Checking session...
+                           Checking pass...
                      </span>
                   )}
                   <label className="video-toggle">
@@ -99,12 +100,12 @@ const Header = ({
                      />
                      <span className="video-toggle__content">
                         <span className="sm:text-sm md:text-base font-medium">
-                           Cinematic board
+                           Motion cover
                         </span>
                         {animatedBackgroundBlockedReason ? (
                            <span
                               id={animatedBackgroundStatusId}
-                              className="video-toggle__status text-xs text-bounty-muted">
+                              className="video-toggle__status text-xs text-arcade-muted">
                               {animatedBackgroundBlockedReason}
                            </span>
                         ) : null}
