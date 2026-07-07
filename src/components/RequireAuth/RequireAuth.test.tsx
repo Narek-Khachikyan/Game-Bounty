@@ -1,22 +1,24 @@
-import { Route, Routes } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 import { screen } from '@testing-library/react';
 import RequireAuth from './RequireAuth';
 import { renderWithProviders } from '../../test/renderWithProviders';
 
-const ProtectedRoutes = () => (
-   <Routes>
-      <Route
-         path="/favorites"
-         element={
+const ProtectedRoutes = () =>
+   useRoutes([
+      {
+         path: '/favorites',
+         element: (
             <RequireAuth>
                <h1>Protected favorites</h1>
             </RequireAuth>
-         }
-      />
-      <Route path="/auth" element={<h1>Auth route</h1>} />
-   </Routes>
-);
+         ),
+      },
+      {
+         path: '/auth',
+         element: <h1>Auth route</h1>,
+      },
+   ]);
 
 describe('RequireAuth', () => {
    it('shows a polite loading checkpoint while auth is restoring', () => {
@@ -27,8 +29,8 @@ describe('RequireAuth', () => {
          route: '/favorites',
       });
 
-      expect(screen.getByText('Checking your session...')).toBeInTheDocument();
-      expect(screen.getByText('Checking your session...').closest('section')).toHaveAttribute(
+      expect(screen.getByText('Checking your pass...')).toBeInTheDocument();
+      expect(screen.getByText('Checking your pass...').closest('section')).toHaveAttribute(
          'aria-live',
          'polite',
       );

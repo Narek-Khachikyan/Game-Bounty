@@ -20,15 +20,15 @@ const FilterByGenres = ({ setFilterByGenres }: FilterByGenresProps) => {
    };
 
    return (
-      <div className="genres bounty-panel rounded-3xl px-4 py-5 sm:px-6">
+      <div className="genres bounty-panel rounded-arcade px-4 py-5 sm:px-6">
          <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
             <div>
-               <p className="bounty-kicker">Target class</p>
-               <h2 className="filter-heading mt-1 text-xl font-black tracking-[-0.03em] text-bounty-ink sm:text-2xl">
+               <p className="bounty-kicker">Magazine sections</p>
+               <h2 className="filter-heading arcade-title mt-2 text-2xl text-arcade-ink sm:text-3xl">
                   Genres
                </h2>
             </div>
-            <p className="text-sm font-semibold text-bounty-muted">Drag the rail to scan more</p>
+            <p className="text-sm font-black uppercase tracking-[0.12em] text-arcade-muted">Drag the rail</p>
          </div>
          <Swiper
             className="genres__list flex gap-3 items-center pb-8"

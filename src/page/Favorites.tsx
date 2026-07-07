@@ -39,15 +39,15 @@ const Favorites: React.FC = () => {
 
    return (
       <main className="favorites py-8 sm:py-12">
-         <section className="bounty-panel mb-8 rounded-dossier px-5 py-6 sm:px-8 sm:py-9">
+         <section className="bounty-panel mb-8 rounded-arcade px-5 py-6 sm:px-8 sm:py-9">
             <div className="textWrapper flex flex-wrap items-end justify-between gap-4">
                <div>
-                  <p className="bounty-kicker">Saved contracts</p>
-                  <h1 className="mt-2 text-3xl font-black tracking-[-0.05em] text-bounty-ink sm:text-5xl">
-                     Saved Bounties
+                  <p className="bounty-kicker">Saved shelf</p>
+                  <h1 className="arcade-title mt-3 text-4xl leading-[0.9] text-arcade-ink sm:text-6xl">
+                     Your Replay Rack
                   </h1>
                   <p className="bounty-copy mt-3 max-w-2xl">
-                     Your Firebase-backed shortlist of games to inspect, compare, and return to later.
+                     Your Firebase-backed shelf of games to inspect, compare, and return to when the weekend opens up.
                   </p>
                </div>
                {cartItems.length === 0 ? null : (
@@ -67,7 +67,7 @@ const Favorites: React.FC = () => {
          {actionError ? (
             <p
                role="alert"
-               className="mb-6 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-100">
+                className="mb-6 rounded-arcade border-[3px] border-arcade-ink bg-arcade-red px-4 py-3 text-sm font-black text-white">
                {actionError}
             </p>
          ) : null}
@@ -75,20 +75,20 @@ const Favorites: React.FC = () => {
          {favoritesStatus === 'loading' ? (
             <p
                aria-live="polite"
-               className="bounty-panel my-8 rounded-3xl px-5 py-8 text-center text-2xl font-black text-bounty-ink">
-               Loading your favorites...
+                className="bounty-panel my-8 rounded-arcade px-5 py-8 text-center text-2xl font-black text-arcade-ink">
+               Pulling games from your shelf...
             </p>
          ) : favoritesStatus === 'error' ? (
             <p
                role="alert"
-               className="bounty-panel my-8 rounded-3xl px-5 py-8 text-center text-xl text-red-100">
+                className="bounty-panel my-8 rounded-arcade px-5 py-8 text-center text-xl font-black text-arcade-red">
                We could not load your favorites right now. Try refreshing the page.
             </p>
          ) : cartItems.length === 0 ? (
-            <div className="bounty-panel my-8 rounded-dossier px-5 py-10 text-center">
-               <p className="text-3xl font-black tracking-[-0.04em] text-bounty-ink">No saved bounties yet.</p>
+            <div className="bounty-panel my-8 rounded-arcade px-5 py-10 text-center">
+               <p className="arcade-title text-4xl leading-[0.9] text-arcade-ink">No games pinned yet.</p>
                <p className="bounty-copy mx-auto mt-3 max-w-xl">
-                  Return to the catalog and save a game contract when something looks worth chasing.
+                  Return to the catalog and pin a cover when something looks worth replaying.
                </p>
             </div>
          ) : (

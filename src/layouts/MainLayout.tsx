@@ -30,7 +30,7 @@ const MainLayout = () => {
    }, []);
 
    return (
-      <div className="mainWrapper bg-blue-950">
+      <div className="mainWrapper">
          {isVideoAllowed ? (
             <video className="bgVideo" autoPlay muted loop playsInline aria-hidden="true">
                <source src={bgVideo} type="video/mp4" />

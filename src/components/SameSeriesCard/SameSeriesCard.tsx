@@ -23,7 +23,7 @@ const SameSeriesCard: FC<SameSeriesProps> = ({ name, released, background_image,
                   <span className="sameSeries__released">{released || 'TBA'}</span>
                </div>
                <div className="flex-1">
-                  <p className="sameSeries__name text-base font-black text-bounty-ink sm:text-xl">{name}</p>
+                  <p className="sameSeries__name text-base font-black text-arcade-ink sm:text-xl">{name}</p>
                </div>
             </div>
          </div>

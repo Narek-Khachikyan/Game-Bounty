@@ -1,5 +1,8 @@
 .sameSeries__container {
-   border-radius: 22px;
+   border: 3px solid #15110f;
+   border-radius: 16px;
+   background: #fffaf0;
+   box-shadow: 4px 4px 0 #15110f;
    overflow: hidden;
 }
 
@@ -9,7 +12,7 @@
 
 .sameSeries__img img {
    height: 213px;
-   border: 1px solid rgba(168, 179, 207, 0.18);
+   border-bottom: 3px solid #15110f;
    object-fit: cover;
 }
 
@@ -20,21 +23,22 @@
    display: inline-flex;
    min-height: 30px;
    align-items: center;
-   border: 1px solid rgba(248, 184, 78, 0.32);
+    border: 2px solid #15110f;
    border-radius: 999px;
-   background: rgba(8, 13, 26, 0.78);
-   color: #f8fafc;
+    background: #fffaf0;
+    color: #15110f;
    padding: 5px 8px;
    font-size: 12px;
    font-weight: 900;
    letter-spacing: 0.08em;
    text-transform: uppercase;
-   backdrop-filter: blur(10px);
+    box-shadow: 2px 2px 0 #15110f;
 }
 
 .sameSeries__metacritic {
-   left: 10px;
-   color: #f8b84e;
+    left: 10px;
+    background: #ffd23f;
+    color: #15110f;
 }
 
 .sameSeries__released {

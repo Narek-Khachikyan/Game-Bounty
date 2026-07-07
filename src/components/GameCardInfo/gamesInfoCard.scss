@@ -9,8 +9,10 @@
    inset: 0;
    z-index: 1;
    content: '';
-   border-radius: 24px;
-   background: linear-gradient(180deg, rgba(8, 13, 26, 0.12), rgba(8, 13, 26, 0.9));
+   border-radius: 16px;
+   background:
+      linear-gradient(180deg, rgba(21, 17, 15, 0.04), rgba(21, 17, 15, 0.76)),
+      linear-gradient(90deg, rgba(240, 68, 56, 0.28), transparent 42%);
 }
 
 .imgWrapper img {
@@ -18,7 +20,8 @@
    width: 100%;
    max-height: 580px;
    object-fit: cover;
-   border-radius: 24px;
+   border: 3px solid #15110f;
+   border-radius: 16px;
 }
 
 .gameInfoHero {
@@ -33,21 +36,21 @@
    display: inline-flex;
    align-items: center;
    min-height: 34px;
-   border: 1px solid rgba(168, 179, 207, 0.24);
+   border: 3px solid #15110f;
    border-radius: 999px;
-   background: rgba(8, 13, 26, 0.78);
-   color: #f8fafc;
+   background: #fffaf0;
+   color: #15110f;
    padding: 7px 11px;
    font-size: 12px;
    font-weight: 900;
    letter-spacing: 0.08em;
    text-transform: uppercase;
-   backdrop-filter: blur(12px);
+   box-shadow: 3px 3px 0 #15110f;
 }
 
 .gameInfoBadge--score {
-   border-color: rgba(248, 184, 78, 0.42);
-   color: #f8b84e;
+   background: #ffd23f;
+   color: #15110f;
 }
 
 .gameInfoWrapper {
@@ -58,6 +61,7 @@
    width: 40px;
    height: 40px;
    animation: achivments 1.8s infinite ease-in-out;
+   filter: drop-shadow(3px 3px 0 #15110f);
 }
 
 @keyframes achivments {
@@ -78,8 +82,8 @@
 }
 
 .hoverActivity:hover {
-   background-color: rgba(248, 184, 78, 0.16);
-   color: #f8b84e;
+   background-color: #ffd23f;
+   color: #15110f;
 }
 
 .display-none {
@@ -91,6 +95,7 @@
    overflow-y: auto;
    padding-right: 8px;
    line-height: 1.75;
+   font-weight: 650;
 }
 
 .screenshots__img {
@@ -98,8 +103,13 @@
    width: 100%;
    aspect-ratio: 16 / 9;
    height: auto;
-   border: 1px solid rgba(168, 179, 207, 0.18);
+   border: 3px solid #15110f;
+   box-shadow: 4px 4px 0 #15110f;
    object-fit: cover;
+}
+
+.screenshotRail {
+   padding-inline: 4px;
 }
 
 @media (max-width: 640px) {
