@@ -1,17 +1,42 @@
-.sameSeries__img{
-  position: relative;
-  img{
-    height: 213px;
-    object-fit: cover;
-  }
+.sameSeries__container {
+   border-radius: 22px;
+   overflow: hidden;
 }
-.sameSeries__metacritic,.sameSeries__released{
-  position: absolute;
-  top: 0;
+
+.sameSeries__img {
+   position: relative;
 }
-.sameSeries__metacritic{
-  left: 0;
+
+.sameSeries__img img {
+   height: 213px;
+   border: 1px solid rgba(168, 179, 207, 0.18);
+   object-fit: cover;
 }
-.sameSeries__released{
-  right: 0;
+
+.sameSeries__metacritic,
+.sameSeries__released {
+   position: absolute;
+   top: 10px;
+   display: inline-flex;
+   min-height: 30px;
+   align-items: center;
+   border: 1px solid rgba(248, 184, 78, 0.32);
+   border-radius: 999px;
+   background: rgba(8, 13, 26, 0.78);
+   color: #f8fafc;
+   padding: 5px 8px;
+   font-size: 12px;
+   font-weight: 900;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   backdrop-filter: blur(10px);
+}
+
+.sameSeries__metacritic {
+   left: 10px;
+   color: #f8b84e;
+}
+
+.sameSeries__released {
+   right: 10px;
 }

@@ -20,10 +20,16 @@ const FilterByGenres = ({ setFilterByGenres }: FilterByGenresProps) => {
    };
 
    return (
-      <div className="genres mb-2">
-         <p className="filter-heading text-white mb-4 text-2xl sm:text-2xl md:text-3xl">
-            Sort By: Genres
-         </p>
+      <div className="genres bounty-panel rounded-3xl px-4 py-5 sm:px-6">
+         <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+            <div>
+               <p className="bounty-kicker">Target class</p>
+               <h2 className="filter-heading mt-1 text-xl font-black tracking-[-0.03em] text-bounty-ink sm:text-2xl">
+                  Genres
+               </h2>
+            </div>
+            <p className="text-sm font-semibold text-bounty-muted">Drag the rail to scan more</p>
+         </div>
          <Swiper
             className="genres__list flex gap-3 items-center pb-8"
             modules={[Scrollbar]}
@@ -57,10 +63,11 @@ const FilterByGenres = ({ setFilterByGenres }: FilterByGenresProps) => {
                   <button
                      type="button"
                      onClick={() => handleClick(item.name.toLowerCase(), index)}
+                     aria-pressed={isActive === index}
                      className={
                         isActive === index
-                           ? 'genreItem bg-white text-violet-950 py-1 px-2 text-center activeGenre rounded-2xl'
-                           : 'genreItem bg-white text-violet-950 py-1 px-2 text-center rounded-2xl'
+                           ? 'genreItem activeGenre'
+                           : 'genreItem'
                      }>
                      {item.name}
                   </button>

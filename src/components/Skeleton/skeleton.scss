@@ -1,52 +1,26 @@
-.filterSkeleton{
-  border-radius: 15px;
-  width: 65px;
-  height: 24px;
-
+.filterSkeleton {
+   border-radius: 999px;
+   width: 72px;
+   height: 28px;
 }
 
-.GamesInfoCardSkeleton{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  animation: textAnimation 6s infinite ease-in-out;
-  p{
-    background-color: white;
-    box-shadow: 0px 0px 300px rgb(214, 16, 197);
-    padding: 15px 20px;
-    border-radius: 15px;
-    color: rgb(82,22,203);
-    color: linear-gradient(90deg, rgba(82,22,203,1) 0%, rgba(109,21,203,1) 48%, rgba(197,15,232,1) 100%);
-
-  }
-}
-@keyframes textAnimation {
-  0%{
-    transform: translateY(-10px);
-  }
-  25%{
-    transform: translateY(0px);
-  }
-  50%{
-    transform: translateY(10px);
-  }
-  75%{
-    transform: translateY(0px);
-  }
-  100%{
-    transform: translateY(-10px);
-  }
+.GamesInfoCardSkeleton,
+.GameBoundy {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 40vh;
 }
 
-.GameBoundy{
-  p{
-    background-color: white;
-    box-shadow: 0px 0px 300px rgb(214, 16, 197);
-    padding: 15px 20px;
-    border-radius: 15px;
-    color: rgb(82,22,203);
-    color: linear-gradient(90deg, rgba(82,22,203,1) 0%, rgba(109,21,203,1) 48%, rgba(197,15,232,1) 100%);
-
-  }
+.GamesInfoCardSkeleton p,
+.GameBoundy p {
+   border: 1px solid rgba(248, 184, 78, 0.24);
+   border-radius: 999px;
+   background: rgba(17, 26, 47, 0.9);
+   box-shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
+   color: #f8b84e;
+   padding: 14px 22px;
+   font-size: clamp(1.1rem, 4vw, 1.875rem);
+   font-weight: 900;
+   letter-spacing: -0.04em;
 }

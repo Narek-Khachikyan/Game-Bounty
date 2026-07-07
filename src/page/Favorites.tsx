@@ -38,47 +38,60 @@ const Favorites: React.FC = () => {
    }
 
    return (
-      <div className="favorites py-10">
-         <div className="textWrapper mb-8 flex items-center justify-between">
-            <h2 className="text-white text-2xl sm:text-2xl md:text-3xl">Favorites</h2>
+      <main className="favorites py-8 sm:py-12">
+         <section className="bounty-panel mb-8 rounded-dossier px-5 py-6 sm:px-8 sm:py-9">
+            <div className="textWrapper flex flex-wrap items-end justify-between gap-4">
+               <div>
+                  <p className="bounty-kicker">Saved contracts</p>
+                  <h1 className="mt-2 text-3xl font-black tracking-[-0.05em] text-bounty-ink sm:text-5xl">
+                     Saved Bounties
+                  </h1>
+                  <p className="bounty-copy mt-3 max-w-2xl">
+                     Your Firebase-backed shortlist of games to inspect, compare, and return to later.
+                  </p>
+               </div>
             {cartItems.length === 0 ? null : (
                <button
-                  className="clear-btn text-white bg-violet-900 text-sm md:text-xl py-3 px-2"
+                  className="clear-btn bounty-button bounty-button--danger px-5 py-3 text-sm"
                   onClick={() => {
                      void handleClearCart();
                   }}
                   disabled={isClearing || favoritesStatus !== 'ready'}>
-                  {isClearing ? 'CLEARING...' : 'CLEAR FAVORITES'}
+                  {isClearing ? 'Clearing...' : 'Clear saved'}
                </button>
             )}
-         </div>
+            </div>
+         </section>
 
          {actionError ? (
-            <p className="mb-6 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700">
+            <p className="mb-6 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-100">
                {actionError}
             </p>
          ) : null}
 
          {favoritesStatus === 'loading' ? (
-            <p className="text-violet-950 text-3xl my-8 text-center bg-white py-2 rounded-2xl">
+            <p className="bounty-panel my-8 rounded-3xl px-5 py-8 text-center text-2xl font-black text-bounty-ink">
                Loading your favorites...
             </p>
          ) : favoritesStatus === 'error' ? (
-            <p className="text-red-700 text-xl my-8 text-center bg-white py-4 rounded-2xl">
+            <p className="bounty-panel my-8 rounded-3xl px-5 py-8 text-center text-xl text-red-100">
                We could not load your favorites right now. Try refreshing the page.
             </p>
          ) : cartItems.length === 0 ? (
-            <p className="text-violet-950 text-3xl my-8 text-center bg-white py-2 rounded-2xl">
-               Favorites is empty
-            </p>
+            <div className="bounty-panel my-8 rounded-dossier px-5 py-10 text-center">
+               <p className="text-3xl font-black tracking-[-0.04em] text-bounty-ink">No saved bounties yet.</p>
+               <p className="bounty-copy mx-auto mt-3 max-w-xl">
+                  Return to the catalog and save a game contract when something looks worth chasing.
+               </p>
+            </div>
          ) : (
-            <ul className=" flex flex-col gap-8">
+            <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                {cartItems.map((item: GameData) => (
                   <FavoritesCard key={item.id} {...item} />
                ))}
             </ul>
          )}
-      </div>
+      </main>
    );
 };
 

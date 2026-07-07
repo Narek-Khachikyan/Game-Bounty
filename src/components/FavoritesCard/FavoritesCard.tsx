@@ -35,10 +35,10 @@ const FavoritesCard: FC<GameData> = ({
    };
 
    return (
-      <div>
+      <li>
          <div className="card">
             <div className="card__container">
-               <Link to={`/game/${id}`}>
+               <Link to={`/game/${id}`} className="card__link">
                   <div className="card__content">
                      <div className="card__wrapper">
                         <img
@@ -46,15 +46,16 @@ const FavoritesCard: FC<GameData> = ({
                            alt={name ? `${name} cover` : 'Game cover'}
                            loading="lazy"
                         />
-                        <p className="raiting bg-white text-violet-800 py-1 px-3">
-                           {metacritic ?? 'N/A'}
-                        </p>
-                        <p className="released bg-white text-violet-800 py-1 px-3">{released}</p>
-                        <div className="card__textWrapper bg-white py-3 px-2">
-                           <p className="card__name text-violet-900">{name}</p>
-                           <div className="platform-wrapper grid grid-cols-2 grid-rows-1">
+                        <div className="card__badges" aria-label="Game metadata">
+                           <span className="raiting">Score {metacritic ?? 'N/A'}</span>
+                           <span className="released">{released || 'Date TBA'}</span>
+                        </div>
+                        <div className="card__textWrapper">
+                           <p className="card__eyebrow">Saved bounty</p>
+                           <h2 className="card__name">{name}</h2>
+                           <div className="platform-wrapper">
                               {platforms.map((item) => (
-                                 <p key={item.platform.id}>{item.platform.name}</p>
+                                 <span key={item.platform.id}>{item.platform.name}</span>
                               ))}
                            </div>
                         </div>
@@ -62,7 +63,7 @@ const FavoritesCard: FC<GameData> = ({
                   </div>
                </Link>
                <button
-                  className="cardButton bg-white text-violet-950"
+                  className="cardButton"
                   onClick={() => {
                      void onClickRemove();
                   }}
@@ -72,11 +73,11 @@ const FavoritesCard: FC<GameData> = ({
             </div>
          </div>
          {actionError ? (
-            <p className="mt-3 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700">
+            <p className="mt-3 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-100">
                {actionError}
             </p>
          ) : null}
-      </div>
+      </li>
    );
 };
 

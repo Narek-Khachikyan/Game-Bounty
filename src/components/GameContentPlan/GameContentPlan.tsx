@@ -71,10 +71,11 @@ const GameContentPlan: FC<GameContentPlanProps> = ({
    return (
       <section className="gameContentPlan mt-8">
          <div className="gameContentPlan__header mb-6">
-            <p className="text-2xl text-violet-950 sm:text-3xl">
+            <p className="bounty-kicker">Compatibility dossier</p>
+            <h2 className="mt-2 text-2xl font-black tracking-[-0.04em] text-bounty-ink sm:text-3xl">
                Platform Compatibility &amp; Content Plan
-            </p>
-            <p className="mt-2 text-base text-violet-900">
+            </h2>
+            <p className="bounty-copy mt-2 text-base">
                Review system requirements by platform, then jump into DLC or continue the series.
             </p>
          </div>
@@ -82,10 +83,10 @@ const GameContentPlan: FC<GameContentPlanProps> = ({
             className={`grid gap-6 ${
                hasRelatedContent ? 'xl:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]' : ''
             }`}>
-            <div className="rounded-3xl border border-violet-200 bg-violet-50/70 p-4 sm:p-6">
+            <div className="rounded-3xl border border-bounty-line bg-bounty-panel/70 p-4 sm:p-6">
                <div className="mb-4 flex items-center justify-between gap-3">
-                  <p className="text-xl text-violet-950 sm:text-2xl">Platforms</p>
-                  <p className="text-sm text-violet-700">Release and system requirements</p>
+                  <h3 className="text-xl font-black text-bounty-ink sm:text-2xl">Platforms</h3>
+                  <p className="text-sm text-bounty-muted">Release and system requirements</p>
                </div>
                {sortedPlatforms.length > 0 ? (
                   <div className="grid gap-4">
@@ -98,15 +99,15 @@ const GameContentPlan: FC<GameContentPlanProps> = ({
                               key={item.platform.id}
                               className={`gameContentPlan__platform rounded-3xl border p-4 ${
                                  isSelected
-                                    ? 'gameContentPlan__platform--selected border-violet-900 bg-white shadow-lg'
-                                    : 'border-violet-200 bg-white/80'
+                                    ? 'gameContentPlan__platform--selected border-bounty-amber bg-bounty-canvas/70 shadow-signal'
+                                    : 'border-bounty-line bg-white/5'
                               }`}>
                               <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
                                  <div>
-                                    <p className="text-lg font-semibold text-violet-950">
+                                    <p className="text-lg font-black text-bounty-ink">
                                        {item.platform.name}
                                     </p>
-                                    <p className="text-sm text-violet-700">
+                                    <p className="text-sm text-bounty-muted">
                                        Released:{' '}
                                        {item.released_at?.trim()
                                           ? item.released_at
@@ -114,25 +115,25 @@ const GameContentPlan: FC<GameContentPlanProps> = ({
                                     </p>
                                  </div>
                                  {isSelected ? (
-                                    <span className="rounded-full bg-violet-900 px-3 py-1 text-xs uppercase tracking-[0.2em] text-white">
+                                    <span className="rounded-full bg-bounty-amber px-3 py-1 text-xs font-black uppercase tracking-[0.2em] text-contract-ink">
                                        Catalog focus
                                     </span>
                                  ) : null}
                               </div>
                               <div className="grid gap-3 md:grid-cols-2">
-                                 <div className="rounded-2xl bg-violet-100/70 p-4">
-                                    <p className="mb-2 text-sm uppercase tracking-[0.2em] text-violet-700">
+                                 <div className="rounded-2xl border border-bounty-line bg-bounty-canvas/60 p-4">
+                                    <p className="mb-2 text-sm font-black uppercase tracking-[0.2em] text-bounty-amber">
                                        Minimum
                                     </p>
-                                    <p className="whitespace-pre-line text-sm text-violet-950">
+                                    <p className="whitespace-pre-line text-sm text-bounty-muted">
                                        {getDisplayValue(requirements?.minimum)}
                                     </p>
                                  </div>
-                                 <div className="rounded-2xl bg-violet-100/70 p-4">
-                                    <p className="mb-2 text-sm uppercase tracking-[0.2em] text-violet-700">
+                                 <div className="rounded-2xl border border-bounty-line bg-bounty-canvas/60 p-4">
+                                    <p className="mb-2 text-sm font-black uppercase tracking-[0.2em] text-bounty-amber">
                                        Recommended
                                     </p>
-                                    <p className="whitespace-pre-line text-sm text-violet-950">
+                                    <p className="whitespace-pre-line text-sm text-bounty-muted">
                                        {getDisplayValue(requirements?.recommended)}
                                     </p>
                                  </div>
@@ -142,7 +143,7 @@ const GameContentPlan: FC<GameContentPlanProps> = ({
                      })}
                   </div>
                ) : (
-                  <p className="rounded-2xl bg-white px-4 py-5 text-violet-950">
+                  <p className="rounded-2xl border border-bounty-line bg-white/5 px-4 py-5 text-bounty-muted">
                      No platforms with complete minimum and recommended requirements were
                      specified for this game.
                   </p>
@@ -152,12 +153,12 @@ const GameContentPlan: FC<GameContentPlanProps> = ({
             {hasRelatedContent ? (
                <div className="grid gap-6">
                   {hasSameSeries ? (
-                     <section className="rounded-3xl border border-violet-200 bg-white p-4 sm:p-6">
+                     <section className="rounded-3xl border border-bounty-line bg-white/5 p-4 sm:p-6">
                         <div className="mb-4">
-                           <p className="text-xl text-violet-950 sm:text-2xl">
+                           <h3 className="text-xl font-black text-bounty-ink sm:text-2xl">
                               What to play next in this series
-                           </p>
-                           <p className="mt-2 text-sm text-violet-700">
+                           </h3>
+                           <p className="mt-2 text-sm text-bounty-muted">
                               Jump to another entry without losing your platform context.
                            </p>
                         </div>
@@ -176,10 +177,10 @@ const GameContentPlan: FC<GameContentPlanProps> = ({
                   ) : null}
 
                   {hasDlc ? (
-                     <section className="rounded-3xl border border-violet-200 bg-white p-4 sm:p-6">
+                     <section className="rounded-3xl border border-bounty-line bg-white/5 p-4 sm:p-6">
                         <div className="mb-4">
-                           <p className="text-xl text-violet-950 sm:text-2xl">DLC for this game</p>
-                           <p className="mt-2 text-sm text-violet-700">
+                           <h3 className="text-xl font-black text-bounty-ink sm:text-2xl">DLC for this game</h3>
+                           <p className="mt-2 text-sm text-bounty-muted">
                               Explore related add-ons and expansions from the same release page.
                            </p>
                         </div>
