@@ -1,5 +1,13 @@
+.skeleton-card {
+   display: block;
+   width: 100%;
+   max-width: 100%;
+   height: auto;
+   aspect-ratio: 1;
+}
+
 .filterSkeleton {
-   border-radius: 999px;
+   border-radius: 8px;
    width: 72px;
    height: 28px;
 }
@@ -14,13 +22,13 @@
 
 .GamesInfoCardSkeleton p,
 .GameBoundy p {
-   border: 3px solid #15110f;
-   border-radius: 999px;
-   background: #ffd23f;
-   box-shadow: 5px 5px 0 #15110f;
-   color: #15110f;
-   padding: 14px 22px;
-   font-size: clamp(1.1rem, 4vw, 1.875rem);
-   font-weight: 900;
-   letter-spacing: -0.04em;
+   border: 1px solid var(--line, #343434);
+   border-radius: 8px;
+   background: var(--panel, #151515);
+   color: var(--text, #efefef);
+   padding: 16px 24px;
+   font-size: 16px;
+   line-height: 1.5;
+   font-weight: 400;
+   text-align: center;
 }

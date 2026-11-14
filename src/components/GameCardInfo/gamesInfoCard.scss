@@ -20,7 +20,7 @@
    width: 100%;
    max-height: 580px;
    object-fit: cover;
-   border: 1px solid #304056;
+   border: 1px solid var(--line);
    border-radius: 16px;
 }
 
@@ -36,10 +36,10 @@
    display: inline-flex;
    align-items: center;
    min-height: 34px;
-   border: 1px solid #304056;
+   border: 1px solid var(--line);
    border-radius: 999px;
-   background: #182332;
-   color: #f1f5fb;
+   background: var(--panel);
+   color: var(--text);
    padding: 7px 11px;
    font-size: 12px;
    font-weight: 900;
@@ -49,8 +49,8 @@
 }
 
 .gameInfoBadge--score {
-   background: #263b57;
-   color: #f1f5fb;
+   background: #242020;
+   color: var(--text);
 }
 
 .gameInfoWrapper {
@@ -61,7 +61,7 @@
    width: 40px;
    height: 40px;
    animation: achivments 1.8s infinite ease-in-out;
-   filter: drop-shadow(3px 3px 0 #304056);
+   filter: drop-shadow(3px 3px 0 var(--line));
 }
 
 @keyframes achivments {
@@ -82,8 +82,8 @@
 }
 
 .hoverActivity:hover {
-   background-color: #263b57;
-   color: #f1f5fb;
+   background-color: #242020;
+   color: var(--text);
 }
 
 .display-none {
@@ -103,7 +103,7 @@
    width: 100%;
    aspect-ratio: 16 / 9;
    height: auto;
-   border: 1px solid #304056;
+   border: 1px solid var(--line);
    box-shadow: none;
    object-fit: cover;
 }

@@ -53,11 +53,12 @@ export const gameApi = createApi({
    endpoints: (builder) => ({
       getGamesData: builder.query<
          Games,
-         { filterByGenres: string; debouncedQuery: string; filterByPlatforms: number }
+         { filterByGenres: string; debouncedQuery: string; filterByPlatforms: number; page?: number }
       >({
-         query: ({ filterByGenres, debouncedQuery, filterByPlatforms }) => {
+         query: ({ filterByGenres, debouncedQuery, filterByPlatforms, page = 1 }) => {
             const params = new URLSearchParams({
                page_size: '12',
+               page: String(page),
             });
 
             if (filterByGenres.trim()) {

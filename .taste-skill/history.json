@@ -1,0 +1,20 @@
+{
+  "palettes": [
+    "black-crimson"
+  ],
+  "types": [
+    "familjen"
+  ],
+  "dealt": [
+    "familjen",
+    "manrope",
+    "onest"
+  ],
+  "moments": [
+    {
+      "id": "cursor-spotlight",
+      "at": "2026-11-14T08:00:21.861Z",
+      "seed": "0d4139cb"
+    }
+  ]
+}

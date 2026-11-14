@@ -1,0 +1,11 @@
+{
+ "page": null,
+ "url": "http://127.0.0.1:5180/",
+ "root": null,
+ "kind": "software",
+ "category": "game catalog",
+ "primary": "Search games",
+ "rounds": 3,
+ "start": "2026-11-14T08:00:21.556Z",
+ "by": "gate.mjs --start"
+}

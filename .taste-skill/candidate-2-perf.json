@@ -1,0 +1,304 @@
+{
+ "page": "http://127.0.0.1:5180/",
+ "partial": false,
+ "results": [
+  {
+   "w": 1440,
+   "rows": [
+    {
+     "name": "host CPU load (before/after)",
+     "value": "11/12 %",
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "total transfer",
+     "value": "12992.6 KiB",
+     "verdict": "FAIL",
+     "note": "html 1.9K  css 70.2K  js 868.1K  font 38.1K  img 2838.9K  media 9169.8K  other 5.5K"
+    },
+    {
+     "name": "requests",
+     "value": 28,
+     "verdict": "PASS",
+     "note": "27 by load"
+    },
+    {
+     "name": "images bytes",
+     "value": "2838.9 KiB",
+     "verdict": "FAIL",
+     "note": "9 files"
+    },
+    {
+     "name": "largest image",
+     "value": "463.5 KiB",
+     "verdict": "WARN",
+     "note": "1145360/library_hero.jpg"
+    },
+    {
+     "name": "JS parsed",
+     "value": "867.4 KiB",
+     "verdict": "WARN",
+     "note": "5 files, 868.1K gz"
+    },
+    {
+     "name": "CSS",
+     "value": "70.2 KiB",
+     "verdict": "PASS",
+     "note": "4 files"
+    },
+    {
+     "name": "font families",
+     "value": 2,
+     "verdict": "PASS",
+     "note": "Familjen Grotesk, IBM Plex Mono"
+    },
+    {
+     "name": "font files",
+     "value": 3,
+     "verdict": "PASS",
+     "note": "38.1K"
+    },
+    {
+     "name": "font bytes",
+     "value": "38.1 KiB",
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "images without width+height",
+     "value": 1,
+     "verdict": "WARN",
+     "note": "library_hero.jpg"
+    },
+    {
+     "name": "below-fold images not lazy",
+     "value": 0,
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "oversized images (natural > 2.2x shown)",
+     "value": 9,
+     "verdict": "FAIL",
+     "note": "library_hero.jpg 1920px for 805; library_hero.jpg 1920px for 316; library_hero.jpg 1920px for 316"
+    },
+    {
+     "name": "WebGL live at load",
+     "value": 0,
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "WebGL live at bottom",
+     "value": 0,
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "WebGL peak live",
+     "value": 0,
+     "verdict": "PASS",
+     "note": "0 contexts made in all"
+    },
+    {
+     "name": "long tasks",
+     "value": 0,
+     "verdict": "PASS",
+     "note": "runs 3, 0..0, max 0ms"
+    },
+    {
+     "name": "blocking time",
+     "value": "0 ms",
+     "verdict": "PASS",
+     "note": "runs 3, 0..0 ms; at load 0ms"
+    },
+    {
+     "name": "FCP (CPU, relative)",
+     "value": "176 ms",
+     "verdict": "PASS",
+     "note": "runs 3, 172..476"
+    },
+    {
+     "name": "LCP (CPU, relative)",
+     "value": "264 ms",
+     "verdict": "PASS",
+     "note": "runs 3, 232..656, img"
+    },
+    {
+     "name": "layout shift",
+     "value": "0.092",
+     "verdict": "PASS",
+     "note": "runs 3, 0.092..0.094; at load 0.092"
+    },
+    {
+     "name": "modules loaded, never mounted",
+     "value": 0,
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "broken requests",
+     "value": 0,
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "page height",
+     "value": "1.9 screens",
+     "verdict": "PASS",
+     "note": "DOM 265 nodes"
+    }
+   ]
+  },
+  {
+   "w": 390,
+   "rows": [
+    {
+     "name": "host CPU load (before/after)",
+     "value": "11/12 %",
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "total transfer",
+     "value": "12991.8 KiB",
+     "verdict": "FAIL",
+     "note": "html 1.9K  css 69.8K  js 868.1K  font 38.1K  img 2838.9K  media 9169.8K  other 5.2K"
+    },
+    {
+     "name": "requests",
+     "value": 27,
+     "verdict": "PASS",
+     "note": "22 by load"
+    },
+    {
+     "name": "images bytes",
+     "value": "2838.9 KiB",
+     "verdict": "FAIL",
+     "note": "9 files"
+    },
+    {
+     "name": "largest image",
+     "value": "463.5 KiB",
+     "verdict": "WARN",
+     "note": "1145360/library_hero.jpg"
+    },
+    {
+     "name": "JS parsed",
+     "value": "867.4 KiB",
+     "verdict": "WARN",
+     "note": "5 files, 868.1K gz"
+    },
+    {
+     "name": "CSS",
+     "value": "69.8 KiB",
+     "verdict": "PASS",
+     "note": "4 files"
+    },
+    {
+     "name": "font families",
+     "value": 2,
+     "verdict": "PASS",
+     "note": "Familjen Grotesk, IBM Plex Mono"
+    },
+    {
+     "name": "font files",
+     "value": 3,
+     "verdict": "PASS",
+     "note": "38.1K"
+    },
+    {
+     "name": "font bytes",
+     "value": "38.1 KiB",
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "images without width+height",
+     "value": 1,
+     "verdict": "WARN",
+     "note": "library_hero.jpg"
+    },
+    {
+     "name": "below-fold images not lazy",
+     "value": 0,
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "oversized images (natural > 2.2x shown)",
+     "value": 9,
+     "verdict": "FAIL",
+     "note": "library_hero.jpg 1920px for 150; library_hero.jpg 1920px for 356; library_hero.jpg 1920px for 356"
+    },
+    {
+     "name": "WebGL live at load",
+     "value": 0,
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "WebGL live at bottom",
+     "value": 0,
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "WebGL peak live",
+     "value": 0,
+     "verdict": "PASS",
+     "note": "0 contexts made in all"
+    },
+    {
+     "name": "long tasks",
+     "value": 0,
+     "verdict": "PASS",
+     "note": "runs 3, 0..0, max 0ms"
+    },
+    {
+     "name": "blocking time",
+     "value": "0 ms",
+     "verdict": "PASS",
+     "note": "runs 3, 0..0 ms; at load 0ms"
+    },
+    {
+     "name": "FCP (CPU, relative)",
+     "value": "164 ms",
+     "verdict": "PASS",
+     "note": "runs 3, 160..180"
+    },
+    {
+     "name": "LCP (CPU, relative)",
+     "value": "256 ms",
+     "verdict": "PASS",
+     "note": "runs 3, 240..264, img"
+    },
+    {
+     "name": "layout shift",
+     "value": "0.000",
+     "verdict": "PASS",
+     "note": "runs 3, 0.000..0.000; at load 0.000"
+    },
+    {
+     "name": "modules loaded, never mounted",
+     "value": 0,
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "broken requests",
+     "value": 0,
+     "verdict": "PASS",
+     "note": ""
+    },
+    {
+     "name": "page height",
+     "value": "5 screens",
+     "verdict": "PASS",
+     "note": "DOM 265 nodes"
+    }
+   ]
+  }
+ ]
+}

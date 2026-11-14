@@ -106,7 +106,11 @@ const normalizeFavoriteDocument = (value: unknown): NormalizedFavorite | null =>
 };
 
 const sanitizeGameData = (game: GameData): GameData => ({
-   ...game,
+   id: game.id,
+   name: game.name,
+   released: game.released,
+   background_image: game.background_image,
+   metacritic: game.metacritic,
    platforms: game.platforms
       .map((platformEntry) => normalizePlatformEntry(platformEntry))
       .filter((platformEntry): platformEntry is PlatformEntry => platformEntry !== null),

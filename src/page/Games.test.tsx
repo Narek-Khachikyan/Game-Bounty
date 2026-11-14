@@ -136,4 +136,39 @@ describe('game discovery context and recovery', () => {
       renderDiscovery('/?q=keeping#game-17');
       expect(document.getElementById('game-17')).toHaveFocus();
    });
+   it('continues the catalog and resets the page when filters change', async () => {
+      useCatalog({ currentData: { results: [game], next: '/api/rawg/games?page=3' } });
+      renderDiscovery('/?page=2&genre=action&platform=4');
+      const user = userEvent.setup();
+      await user.click(screen.getByRole('button', { name: 'Next page' }));
+      expect(currentUrl().searchParams.get('page')).toBe('3');
+      expect(currentUrl().searchParams.get('genre')).toBe('action');
+      expect(useGetGamesDataQuery).toHaveBeenLastCalledWith({
+         filterByGenres: 'action', debouncedQuery: '', filterByPlatforms: 4, page: 3,
+      });
+      await user.click(screen.getByRole('button', { name: 'RPG' }));
+      expect(currentUrl().searchParams.has('page')).toBe(false);
+      expect(currentUrl().searchParams.get('genre')).toBe('rpg');
+   });
+
+   it('does not repeat the spotlight game in the results grid', () => {
+      renderDiscovery();
+      expect(screen.getByRole('heading', { name: game.name })).toBeInTheDocument();
+      expect(screen.queryByRole('article')).not.toBeInTheDocument();
+   });
+
+   it('names and removes a platform filter while retaining the search', async () => {
+      renderDiscovery('/?q=keeping&platform=187');
+      await userEvent.setup().click(screen.getByRole('button', { name: 'Remove platform PlayStation 5' }));
+      expect(currentUrl().searchParams.get('q')).toBe('keeping');
+      expect(currentUrl().searchParams.has('platform')).toBe(false);
+   });
+
+   it('retains a save action and focus target for the spotlight game', async () => {
+      renderDiscovery();
+      expect(document.getElementById(`game-${game.id}`)).toHaveAttribute('tabindex', '-1');
+      await userEvent.setup().click(screen.getByRole('button', { name: `Sign in to save ${game.name}` }));
+      expect(currentUrl().searchParams.get('next')).toBe('/#game-17');
+   });
+
 });

@@ -1,119 +1,23 @@
-.card {
-  min-width: 0;
-  height: 100%;
-}
-.card__container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border: 1px solid #304056;
-  border-radius: 10px;
-  background: #182332;
-  overflow: hidden;
-  transition: border-color 140ms ease;
-}
-.card:hover .card__container,
-.card:focus-within .card__container {
-  border-color: #8bb4e6;
-}
-.card__link {
-  flex: 1;
-  display: block;
-  min-width: 0;
-}
-.card__wrapper {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-.card__wrapper img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  background: #263b57;
-}
-.card__badges {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  order: 2;
-  padding: 0 16px 16px;
-}
-.raiting {
-  display: inline-flex;
-  border: 1px solid #52796d;
-  border-radius: 4px;
-  color: #a5decb;
-  padding: 3px 6px;
-  font-size: 10px;
-  font-weight: 750;
-}
-.released {
-  color: #afbdd0;
-  font-size: 10px;
-}
-.card__textWrapper {
-  padding: 17px 16px 12px;
-}
-.card__name {
-  color: #f1f5fb;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.4;
-  letter-spacing: -0.03em;
-  overflow-wrap: anywhere;
-}
-.platform-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 8px;
-  color: #afbdd0;
-  font-size: 10px;
-  line-height: 1.6;
-  margin-top: 8px;
-}
-.cardButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 10px 16px;
-  margin: 0 12px 12px;
-  width: calc(100% - 24px);
-  border: 1px solid #3d506a;
-  border-radius: 6px;
-  color: #c3ddff;
-  background: #202e41;
-  font-size: 12px;
-  font-weight: 700;
-}
-.cardButton:hover {
-  background: #304767;
-  color: #fff;
-}
-.cardButton:disabled {
-  opacity: 0.6;
-  cursor: wait;
-}
-.card-error {
-  color: #ffd5dc;
-  background: #562b38;
-  margin: 0 12px 12px;
-  border: 1px solid #bb7788;
-  padding: 12px;
-  font-size: 12px;
-  line-height: 1.6;
-  border-radius: 6px;
-}
-.clear-btn {
-  cursor: pointer;
-  border-radius: 7px;
-}
-@media (prefers-reduced-motion: reduce) {
-  .card__container {
-    transition: none;
-  }
+.card { min-width:0; height:100%; }
+.card__container { position:relative; display:flex; flex-direction:column; height:100%; border:1px solid var(--line,#343434); border-radius:8px; background:var(--panel,#151515); overflow:hidden; }
+.card:hover .card__container, .card:focus-within .card__container { border-color:#777; }
+.card__link { flex:1; display:block; min-width:0; }
+.card__wrapper { display:flex; flex-direction:column; position:relative; }
+.card__image { aspect-ratio:16/10; overflow:hidden; }
+.card__wrapper img { width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; background:#232323; }
+.card__badges { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px; order:2; padding:0 16px 16px; }
+.raiting { color:#d4e7c9; font-size:13px; line-height:1.5; }
+.released { color:var(--muted,#aaa); font-size:13px; line-height:1.5; }
+.card__textWrapper { padding:16px; }
+.card__name { color:var(--text,#efefef); font-size:23px; font-weight:500; line-height:1.15; letter-spacing:-.03em; overflow-wrap:anywhere; }
+.platform-wrapper { display:flex; flex-wrap:wrap; gap:4px 10px; color:var(--muted,#aaa); font-size:13px; line-height:1.5; margin-top:10px; }
+.cardButton { display:flex; align-items:center; justify-content:space-between; gap:8px; min-height:44px; padding:10px 16px; margin:0; width:100%; border-top:1px solid var(--line,#343434); color:var(--text,#efefef); background:transparent; font-size:14px; font-weight:500; }
+.add-button::after { content:'+'; font-size:20px; color:#f4b8bf; }
+.remove-button::after { content:'−'; font-size:20px; color:#f4b8bf; }
+.cardButton:hover { background:#292929; }
+.cardButton:disabled { opacity:.6; cursor:wait; }
+.card-error { color:#ffccd2; background:#421620; margin:12px; border:1px solid #bb7788; padding:12px; font-size:14px; line-height:1.5; border-radius:4px; }
+.clear-btn { cursor:pointer; border-radius:4px; }
+@media(min-width:761px) {
+ .card__textWrapper { order:-1; min-height:116px; }
 }
