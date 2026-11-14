@@ -40,7 +40,7 @@ const GameCard: FC<GameCardProps> = ({
       : `/game/${id}`;
 
    const handleAuthRedirect = () => {
-      const nextPath = `${location.pathname}${location.search}${location.hash}`;
+      const nextPath = `${location.pathname}${location.search}#game-${id}`;
       navigate(buildAuthRedirectPath(nextPath));
    };
 
@@ -104,10 +104,10 @@ const GameCard: FC<GameCardProps> = ({
             : 'Remove'
          : isSubmitting
             ? 'Saving...'
-            : 'Add Game';
+            : !currentUser ? 'Sign in to save' : 'Save game';
 
    return (
-      <article className="card" data-aos="fade-up">
+      <article className="card" id={`game-${id}`} tabIndex={-1}>
          <div className="card__container">
             <Link to={gameDetailsPath} className="card__link">
                <div className="card__content">
@@ -122,8 +122,8 @@ const GameCard: FC<GameCardProps> = ({
                         <span className="released">{released || 'Date TBA'}</span>
                      </div>
                      <div className="card__textWrapper">
-                        <p className="card__eyebrow">Cover pick</p>
-                        <h2 className="card__name">{name}</h2>
+
+                        <h3 className="card__name">{name}</h3>
                         <div className="platform-wrapper">
                            {platforms.map((item) => (
                               <span key={item.platform.id}>{item.platform.name}</span>
@@ -146,7 +146,7 @@ const GameCard: FC<GameCardProps> = ({
             ) : (
                <button
                   className="add-button cardButton"
-                  aria-label={`Add ${name} to favorites`}
+                  aria-label={currentUser ? `Add ${name} to favorites` : `Sign in to save ${name}`}
                   onClick={() => {
                      void addFavorites();
                   }}
@@ -157,7 +157,7 @@ const GameCard: FC<GameCardProps> = ({
             {actionError ? (
                <p
                   role="alert"
-                  className="mt-3 rounded-2xl border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-100">
+                  className="card-error">
                   {actionError}
                </p>
             ) : null}

@@ -81,7 +81,7 @@ const Favorites: React.FC = () => {
          ) : favoritesStatus === 'error' ? (
             <p
                role="alert"
-                className="bounty-panel my-8 rounded-arcade px-5 py-8 text-center text-xl font-black text-arcade-red">
+                className="bounty-panel my-8 rounded-arcade px-5 py-8 text-center text-xl font-black text-red-200">
                We could not load your favorites right now. Try refreshing the page.
             </p>
          ) : cartItems.length === 0 ? (

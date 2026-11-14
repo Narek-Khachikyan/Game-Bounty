@@ -77,10 +77,10 @@ const GameDetails = () => {
          {gamesInfoDataError && (
             <div
                role="alert"
-                className="bounty-panel rounded-arcade px-5 py-6 text-center text-lg font-black text-arcade-red">
+                className="bounty-panel rounded-arcade px-5 py-6 text-center text-lg font-black text-red-200">
                <p>
                   {isConfigurationError
-                     ? 'Configuration error: missing RAWG_API_KEY on the server. Add it to the server environment and restart the app.'
+                     ? 'The game catalog is temporarily unavailable. Please check back later.'
                      : 'Failed to load game details. Please try again later.'}
                </p>
                {!isConfigurationError ? (

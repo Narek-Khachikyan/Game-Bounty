@@ -1,113 +1,208 @@
-import { useState } from 'react';
+import { useEffect } from "react";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import {
-   isRawgProxyConfigurationError,
-   useGetGamesDataQuery,
-} from '../app/redux/features/apiSlice';
-import GameCard from '../components/GameCard/GameCard';
-import { SkeletonCard } from '../components/Skeleton/Skeleton';
-import FilterByGenres from '../components/Filters/FilterByGenres';
-import useDebounce from '../hooks/useDebounce';
-import '../GlobalStyles/globalCardStyles.scss';
-import FilterByPlatforms from '../components/Filters/FilterByPlatforms';
+  isRawgProxyConfigurationError,
+  useGetGamesDataQuery,
+} from "../app/redux/features/apiSlice";
+import GameCard from "../components/GameCard/GameCard";
+import { SkeletonCard } from "../components/Skeleton/Skeleton";
+import FilterByGenres from "../components/Filters/FilterByGenres";
+import FilterByPlatforms from "../components/Filters/FilterByPlatforms";
+import useDebounce from "../hooks/useDebounce";
+import "../GlobalStyles/globalCardStyles.scss";
 
 const Games = () => {
-   const [query, setQuery] = useState('');
-   const debouncedQuery = useDebounce(query, 500);
-   const [filterByGenres, setFilterByGenres] = useState('action');
-   const [filterByPlatforms, setFilterByPlatforms] = useState(1);
-   const {
-      data: gamesData,
-      isLoading: gamesDataLoading,
-      isFetching: gamesDataFetching,
-      isError: gamesDataError,
-      error: gamesDataErrorDetails,
-   } = useGetGamesDataQuery({
-      filterByGenres,
-      debouncedQuery,
-      filterByPlatforms,
-   });
-   const isConfigurationError = isRawgProxyConfigurationError(gamesDataErrorDetails);
-   const isLoading = (gamesDataLoading || gamesDataFetching) && !gamesData;
-   const hasResults = (gamesData?.results ?? []).length > 0;
-   const skeletons = [...new Array(12)].map((_, index) => <SkeletonCard key={index} />);
+  const [params, setParams] = useSearchParams();
+  const location = useLocation();
+  const query = params.get("q") || "";
+  const filterByGenres = params.get("genre") || "";
+  const platform = Number(params.get("platform"));
+  const filterByPlatforms =
+    Number.isSafeInteger(platform) && platform > 0 ? platform : 0;
+  const debouncedQuery = useDebounce(query, 500);
+  const {
+    currentData: gamesData,
+    isFetching,
+    isError,
+    error,
+    refetch,
+  } = useGetGamesDataQuery({
+    filterByGenres,
+    debouncedQuery,
+    filterByPlatforms,
+  });
+  const updateFilter = (key: string, value: string) => {
+    setParams(
+      (previous) => {
+        const next = new URLSearchParams(previous);
+        if (value) next.set(key, value);
+        else next.delete(key);
+        return next;
+      },
+      { replace: true },
+    );
+  };
+  const isUpdating = isFetching || query !== debouncedQuery;
+  const results = gamesData?.results ?? [];
+  const featured = !query && !isError ? results[0] : undefined;
+  const hasFilters = !!(query || filterByGenres || filterByPlatforms);
+  useEffect(() => {
+    if (gamesData && location.hash.startsWith("#game-")) {
+      document.getElementById(location.hash.slice(1))?.focus();
+    }
+  }, [gamesData, location.hash]);
 
-   return (
-      <main className="games py-8 sm:py-12">
-         <section className="bounty-panel overflow-hidden rounded-arcade px-5 py-6 sm:px-8 sm:py-9">
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.12fr)_minmax(320px,0.88fr)] lg:items-end">
-                <div>
-                  <p className="bounty-kicker">Arcade Magazine / Issue 01</p>
-                  <h1 className="arcade-title mt-4 max-w-4xl text-5xl leading-[0.86] text-arcade-ink sm:text-7xl lg:text-8xl">
-                     Find the next game that deserves a weekend.
-                  </h1>
-                  <p className="bounty-copy mt-5 max-w-2xl text-base sm:text-xl">
-                     Browse the RAWG catalog like a loud arcade magazine: scan covers, jump genres, then pin the games worth replaying.
-                  </p>
-                  <div className="mt-6 flex flex-wrap gap-2">
-                     <span className="arcade-chip bg-arcade-yellow">Cover scan</span>
-                     <span className="arcade-chip bg-arcade-blue text-white">RAWG powered</span>
-                     <span className="arcade-chip bg-arcade-panel">Save shelf</span>
-                  </div>
-                </div>
-                <label className="block">
-                  <span className="bounty-kicker">Search the issue</span>
-                  <input
-                     className="searchInput mt-3 w-full rounded-arcade border-[3px] border-arcade-ink bg-white px-5 py-4 text-lg font-black text-arcade-ink shadow-arcade outline-none transition-colors placeholder:text-arcade-muted focus:bg-arcade-yellow"
-                     type="search"
-                     value={query}
-                     placeholder="Search by game title..."
-                     onChange={(event) => setQuery(event.target.value)}
-                  />
-                </label>
-             </div>
+  return (
+    <main id="main-content" className="discovery">
+      <div className="discovery-intro">
+        <div>
+          <h1>Find your next world.</h1>
+          <p>Explore games. Keep the ones you want to come back to.</p>
+        </div>
+        <label className="catalog-search">
+          <span className="sr-only">Search games</span>
+          <span aria-hidden="true">⌕</span>
+          <input
+            type="search"
+            value={query}
+            placeholder="Search games…"
+            onChange={(event) => updateFilter("q", event.target.value)}
+          />
+        </label>
+      </div>
+      <div className="discovery-layout">
+        <aside className="discovery-sidebar" aria-label="Browse genres">
+          <FilterByGenres
+            selectedGenre={filterByGenres}
+            setFilterByGenres={(value) => updateFilter("genre", value)}
+          />
+          <div className="shelf-note">
+            <span aria-hidden="true">◇</span>
+            <h2>A good game is worth keeping.</h2>
+            <p>Save your discoveries and build your own collection.</p>
+            <Link to="/favorites">Your saved games</Link>
+          </div>
+        </aside>
+        <div className="discovery-results">
+          {featured && (
+            <section
+              className="featured-game"
+              aria-label="Explore a game from your results"
+            >
+              <img src={featured.background_image} alt="" />
+              <div className="featured-game__content">
+                <p>In your discovery</p>
+                <h2>{featured.name}</h2>
+                <Link
+                  className="feature-link"
+                  to={`/game/${featured.id}${
+                    filterByPlatforms ? `?platform=${filterByPlatforms}` : ""
+                  }`}
+                >
+                  Explore game <span aria-hidden="true">↗</span>
+                </Link>
+              </div>
+            </section>
+          )}
+          <section aria-labelledby="results-title">
+            <div className="results-toolbar">
+              <div>
+                <h2 id="results-title">
+                  {query ? "Search results" : "Discover games"}
+                </h2>
+                <p role="status">
+                  {isUpdating
+                    ? "Finding games…"
+                    : isError
+                    ? "Catalog unavailable"
+                    : `${results.length} games on this page`}
+                </p>
+              </div>
+              <FilterByPlatforms
+                selectedPlatformId={filterByPlatforms}
+                setFilterByPlatforms={(value) =>
+                  updateFilter("platform", value ? String(value) : "")
+                }
+              />
+            </div>
+            <div className="active-filters">
+              <span>
+                {filterByGenres ? `Genre: ${filterByGenres}` : "All genres"}
+                {filterByPlatforms
+                  ? " · Platform filtered"
+                  : " · All platforms"}
+              </span>
+              {hasFilters && (
+                <button type="button" onClick={() => setParams({})}>
+                  Clear search & filters
+                </button>
+              )}
+            </div>
+            {isError ? (
+              <div className="catalog-state" role="alert">
+                <span className="state-icon" aria-hidden="true">
+                  ◇
+                </span>
+                <h3>The next world will have to wait.</h3>
+                <p>
+                  {isRawgProxyConfigurationError(error)
+                    ? "The game catalog is temporarily unavailable. Please check back later."
+                    : "We couldn’t load the games. Check your connection and try again."}
+                </p>
+                <button
+                  className="feature-link"
+                  onClick={() => void refetch()}
+                  disabled={isFetching}
+                >
+                  {isFetching ? "Trying again…" : "Try again"}
+                </button>
+              </div>
+            ) : !isUpdating && !results.length ? (
+              <div className="catalog-state">
+                <h3>No games found.</h3>
+                <p>
+                  Try a different title or clear your filters to explore more
+                  games.
+                </p>
+                {hasFilters && (
+                  <button
+                    className="feature-link"
+                    onClick={() => setParams({})}
+                  >
+                    Clear search & filters
+                  </button>
+                )}
+              </div>
+            ) : (
+              <div className="games__content" aria-busy={isUpdating}>
+                {!gamesData
+                  ? Array.from({ length: 6 }, (_, i) => (
+                      <SkeletonCard key={i} />
+                    ))
+                  : results.map((item) => (
+                      <GameCard
+                        key={item.id}
+                        {...item}
+                        selectedPlatformId={filterByPlatforms}
+                      />
+                    ))}
+              </div>
+            )}
           </section>
-
-         <section className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_280px]">
-            <FilterByGenres setFilterByGenres={setFilterByGenres} />
-            <FilterByPlatforms
-               selectedPlatformId={filterByPlatforms}
-               setFilterByPlatforms={setFilterByPlatforms}
-            />
-         </section>
-
-         <div className="titleSearch my-8 flex flex-wrap items-end justify-between gap-4 border-y-[3px] border-arcade-ink bg-arcade-ink px-4 py-4 text-arcade-paper">
-            <div>
-               <p className="text-xs font-black uppercase tracking-[0.22em] text-arcade-yellow">Now on the rack</p>
-               <h2 className="arcade-title mt-1 text-2xl sm:text-4xl">
-                  Poster Grid
-               </h2>
-            </div>
-            <p className="rounded-full border-2 border-arcade-paper bg-arcade-red px-4 py-2 text-sm font-black uppercase tracking-[0.12em] text-white">
-               {isLoading ? 'Scanning...' : `${gamesData?.results.length ?? 0} shown`}
+          <footer className="catalog-footer">
+            <span>Game-Bounty</span>
+            <p>
+              Game data and imagery from{" "}
+              <a href="https://rawg.io" target="_blank" rel="noreferrer">
+                RAWG
+              </a>
+              .
             </p>
-         </div>
-
-         {gamesDataError && (
-            <p className="bounty-panel rounded-arcade px-5 py-6 text-center text-base font-black text-arcade-red">
-               {isConfigurationError
-                  ? 'Configuration error: missing RAWG_API_KEY on the server. Add it to the server environment and restart the app.'
-                  : 'Failed to load games. Please try again later.'}
-            </p>
-         )}
-         {!gamesDataError && !isLoading && !hasResults && (
-            <div className="bounty-panel rounded-arcade px-5 py-10 text-center">
-               <p className="arcade-title text-3xl text-arcade-ink">No games made this issue.</p>
-               <p className="bounty-copy mx-auto mt-3 max-w-xl">Try another title, genre, or platform filter to refill the poster rack.</p>
-            </div>
-         )}
-         <div className="games__content grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {isLoading
-               ? skeletons
-               : gamesData?.results.map((item) => (
-                    <GameCard
-                       key={item.id}
-                       {...item}
-                       selectedPlatformId={filterByPlatforms}
-                    />
-                 ))}
-         </div>
-      </main>
-   );
+            <a href="#main-content">Back to top ↑</a>
+          </footer>
+        </div>
+      </div>
+    </main>
+  );
 };
-
 export default Games;

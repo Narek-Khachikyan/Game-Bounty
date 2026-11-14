@@ -20,6 +20,7 @@ export type Games = {
 
 export type GenresData = {
    id: number;
+   slug?: string;
    name: string;
    image_background: string;
 };
