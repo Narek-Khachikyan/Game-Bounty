@@ -29,6 +29,7 @@ beforeEach(() => {
 
 afterEach(() => {
    store.dispatch(gameApi.util.resetApiState());
+   vi.useRealTimers();
    vi.unstubAllGlobals();
 });
 
@@ -55,4 +56,48 @@ describe('catalog pagination transport', () => {
          page_size: '12', page: '2', genres: 'rpg', platforms: '4', search: 'wild hunt',
       });
    });
+});
+
+
+describe('API request reuse', () => {
+   it('shares cache entries for whitespace and implicit page one', async () => {
+      await store.dispatch(gameApi.endpoints.getGamesData.initiate({
+         filterByGenres: ' rpg ', debouncedQuery: ' wild hunt ', filterByPlatforms: 4,
+      })).unwrap();
+      await store.dispatch(gameApi.endpoints.getGamesData.initiate({
+         filterByGenres: 'rpg', debouncedQuery: 'wild hunt', filterByPlatforms: 4, page: 1,
+      })).unwrap();
+
+      expect(request).toHaveBeenCalledTimes(1);
+      const url = new URL((request.mock.calls[0][0] as Request).url);
+      expect(url.searchParams.get('search')).toBe('wild hunt');
+      expect(url.searchParams.get('genres')).toBe('rpg');
+   });
+
+   it.each(['getGamesData', 'getGenresData', 'getPlatformsData'] as const)(
+      'reuses %s after a two-minute visit elsewhere and expires it eventually', async (endpoint) => {
+         const initiate = () => endpoint === 'getGamesData'
+            ? store.dispatch(gameApi.endpoints.getGamesData.initiate({
+               filterByGenres: '', debouncedQuery: '', filterByPlatforms: 0,
+            }))
+            : endpoint === 'getGenresData'
+               ? store.dispatch(gameApi.endpoints.getGenresData.initiate())
+               : store.dispatch(gameApi.endpoints.getPlatformsData.initiate());
+         const first = initiate();
+         await first.unwrap();
+         vi.useFakeTimers();
+         first.unsubscribe();
+         await vi.advanceTimersByTimeAsync(120_000);
+         vi.useRealTimers();
+         const second = initiate();
+         await second.unwrap();
+         expect(request).toHaveBeenCalledTimes(1);
+         vi.useFakeTimers();
+         second.unsubscribe();
+         await vi.advanceTimersByTimeAsync((endpoint === 'getGamesData' ? 300 : 3600) * 1000 + 1);
+         vi.useRealTimers();
+         await initiate().unwrap();
+         expect(request).toHaveBeenCalledTimes(2);
+      },
+   );
 });

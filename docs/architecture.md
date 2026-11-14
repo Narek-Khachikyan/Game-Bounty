@@ -21,6 +21,8 @@
 - Data layer (RAWG)
    - RTK Query API slice defines endpoints for games/genres/platforms/details/screenshots/DLC/series (`src/app/redux/features/apiSlice.ts:14`).
    - Game detail route ownership lives in `src/page/GameDetails.tsx:1`; it treats the main game details request as the primary load and keeps screenshots/DLC/same-series as secondary content that can load or fail independently.
+  - RTK Query retains unused game/list/detail responses for five minutes and genres/platforms for one hour. Catalog cache identity trims search/genre whitespace and treats omitted page as page one; distinct pages and filters remain separate.
+  - The shared proxy reuses successful JSON GET responses in a bounded process-local cache and coalesces simultaneous identical reads. See [operations](./operations.md#rawg-request-reuse) for lifetime and deployment limits.
   - Browser requests stay same-origin at `/api/rawg/*` and never embed the RAWG key in the client bundle.
   - Server-side RAWG key injection is centralized in `server/rawgProxy.js:1`, reused by the Vite dev server (`vite.config.ts:1`) and the Netlify Function (`netlify/functions/rawg.js:1`).
 - Favorites data

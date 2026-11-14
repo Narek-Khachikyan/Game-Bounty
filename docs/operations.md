@@ -35,3 +35,12 @@
 - Routes or RAWG proxying fail on deploy: ensure `public/_redirects:1` still routes `/api/rawg/*` before the SPA fallback.
 - Netlify dependency install fails with a Firebase Node engine error: verify the deploy is using Node 20+ and that the repo still uses `npm` rather than an accidental `yarn.lock`.
 - Styling not applying: verify Tailwind content globs in `tailwind.config.js:1` include the file location.
+
+
+## RAWG request reuse
+
+The browser retains unused RTK Query game data for five minutes and taxonomy data (genres/platforms) for one hour. Active subscriptions continue sharing the same entry. Catalog arguments trim outer whitespace and default the page to one before URL generation and cache lookup.
+
+The shared server proxy caches up to 100 successful JSON GET responses and coalesces matching concurrent reads. Game responses expire after 60 seconds; genres/platforms expire after one hour. This cache is process-local: a cold Netlify function or a different instance starts empty, so savings depend on instance reuse. Cache keys include the server API key and Accept header; query parameter ordering and incoming client keys do not create duplicate entries. Errors are never retained, so a retry can reach upstream immediately. Non-GET requests bypass reuse. The cache does not persist game data across deployments.
+
+Client retention trades fewer requests for potentially older catalog data until unused entries expire; a full reload clears client state. Proxy TTLs bound the additional server-side staleness. These are request-count optimizations, not a production latency or billing guarantee.
