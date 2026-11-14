@@ -20,6 +20,20 @@ export const RAWG_PROXY_CONFIGURATION_ERROR_MESSAGE =
    'Missing RAWG_API_KEY. Add it to the server environment and restart the app.';
 const htmlTagPattern = /(<([^>]+)>)/gi;
 
+type CatalogQuery = {
+   filterByGenres: string;
+   debouncedQuery: string;
+   filterByPlatforms: number;
+   page?: number;
+};
+
+const normalizeCatalogQuery = ({ filterByGenres, debouncedQuery, filterByPlatforms, page = 1 }: CatalogQuery) => ({
+   filterByGenres: filterByGenres.trim(),
+   debouncedQuery: debouncedQuery.trim(),
+   filterByPlatforms,
+   page,
+});
+
 const rawgBaseQuery = fetchBaseQuery({
    baseUrl: '/api/rawg',
 });
@@ -50,12 +64,15 @@ const normalizeGameDescription = (description: string): string =>
 export const gameApi = createApi({
    reducerPath: 'gameApi',
    baseQuery: guardedBaseQuery,
+   keepUnusedDataFor: 300,
    endpoints: (builder) => ({
       getGamesData: builder.query<
          Games,
-         { filterByGenres: string; debouncedQuery: string; filterByPlatforms: number; page?: number }
+         CatalogQuery
       >({
-         query: ({ filterByGenres, debouncedQuery, filterByPlatforms, page = 1 }) => {
+         serializeQueryArgs: ({ queryArgs }) => normalizeCatalogQuery(queryArgs),
+         query: (args) => {
+            const { filterByGenres, debouncedQuery, filterByPlatforms, page } = normalizeCatalogQuery(args);
             const params = new URLSearchParams({
                page_size: '12',
                page: String(page),
@@ -83,9 +100,11 @@ export const gameApi = createApi({
       }),
       getGenresData: builder.query<Genres, void>({
          query: () => `/genres`,
+         keepUnusedDataFor: 3600,
       }),
       getPlatformsData: builder.query<PlatformsData, void>({
          query: () => `/platforms`,
+         keepUnusedDataFor: 3600,
       }),
       getScreenShots: builder.query<ScreenShots, string>({
          query: (id) => `/games/${id}/screenshots`,

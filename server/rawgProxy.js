@@ -51,7 +51,7 @@ export const getRawgProxyUpstreamUrl = ({ pathname, search = '', env = process.e
 	return upstreamUrl;
 };
 
-export const proxyRawgRequest = async ({
+const fetchRawgResponse = async ({
 	pathname,
 	search = '',
 	method = 'GET',
@@ -103,3 +103,63 @@ export const proxyRawgRequest = async ({
 		});
 	}
 };
+
+// Each warm server instance owns its cache. No browser storage or API key exposure.
+export const createRawgProxy = ({ now = Date.now, maxEntries = 100 } = {}) => {
+	const cache = new Map();
+	const pending = new Map();
+	const fromEntry = ({ body, status, headers }) => new Response(body, { status, headers });
+
+	return async (request) => {
+		if ((request.method ?? 'GET').toUpperCase() !== 'GET' || !getRawgApiKey(request.env)) {
+			return fetchRawgResponse(request);
+		}
+
+		const url = getRawgProxyUpstreamUrl(request);
+		url.searchParams.sort();
+		const accept = request.headers?.accept ?? request.headers?.Accept ?? '';
+		const key = JSON.stringify([url.toString(), accept]);
+		const cached = cache.get(key);
+		if (cached && cached.expiresAt > now()) {
+			return fromEntry(cached);
+		}
+		cache.delete(key);
+		if (pending.has(key)) {
+			return (await pending.get(key)).clone();
+		}
+
+		const load = async () => {
+			const response = await fetchRawgResponse(request);
+			if (response.ok && response.headers.get('content-type')?.includes('application/json')) {
+				const body = await response.text();
+				JSON.parse(body);
+				const ttl = /^\/api\/(genres|platforms)\/?$/.test(url.pathname) ? 3_600_000 : 60_000;
+				const entry = {
+					body,
+					status: response.status,
+					headers: [...response.headers],
+					expiresAt: now() + ttl,
+				};
+				if (maxEntries > 0) {
+					while (cache.size >= maxEntries) cache.delete(cache.keys().next().value);
+					cache.set(key, entry);
+				}
+				return fromEntry(entry);
+			}
+			return response;
+		};
+
+		const result = load().catch(() => createJsonResponse(502, {
+			code: RAWG_PROXY_UPSTREAM_ERROR_CODE,
+			message: RAWG_PROXY_UPSTREAM_ERROR_MESSAGE,
+		}));
+		pending.set(key, result);
+		try {
+			return (await result).clone();
+		} finally {
+			pending.delete(key);
+		}
+	};
+};
+
+export const proxyRawgRequest = createRawgProxy();

@@ -21,3 +21,8 @@
 - Harness gate: `npm run harness:check` validates required docs, links, and architectural boundary checks.
 - Linting gate: `npm run lint` runs with `--max-warnings 0`.
 - Type-checking gate: `npm run build` runs `tsc` before `vite build`.
+
+
+## API reuse regression checks
+
+`src/app/redux/features/apiSlice.test.ts` checks normalized request identity, distinct pages/filters, reuse after a two-minute absence, and eventual eviction with virtual timers. Proxy tests check upstream request counts, concurrent response independence, expiry, bounded eviction, and failure retry behavior (including malformed successful JSON). Use controlled response fixtures rather than consuming the live RAWG quota; report counts as controlled measurements rather than production telemetry.
