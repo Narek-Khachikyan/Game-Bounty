@@ -109,10 +109,10 @@ const Auth = () => {
             aria-busy="true"
             aria-live="polite">
             <div className="bounty-panel w-full max-w-xl rounded-arcade px-5 py-7 text-center sm:px-8 sm:py-10">
-               <p className="bounty-kicker">Player pass</p>
+               <p className="bounty-kicker">Your collection</p>
                <h1 className="arcade-title mt-4 text-3xl text-arcade-ink">Checking your pass...</h1>
                <p className="bounty-copy mt-3">
-                  Firebase is restoring any saved login before we show the form.
+                  Restoring your session…
                </p>
             </div>
          </section>
@@ -132,7 +132,7 @@ const Auth = () => {
                <h1 className="arcade-title mt-4 text-3xl leading-[0.9] text-arcade-ink sm:text-5xl">
                   Your player shelf is synced.
                </h1>
-               <div className="mt-8 rounded-arcade border-[3px] border-arcade-ink bg-arcade-paper p-6 text-arcade-muted shadow-arcade">
+               <div className="mt-8 rounded-arcade border border-arcade-line bg-arcade-paper p-6 text-arcade-muted shadow-arcade">
                   <p className="bounty-kicker">Account</p>
                   <p className="mt-3 text-2xl font-black text-arcade-ink">
                      {currentUser.displayName || currentUser.email || 'Firebase user'}
@@ -149,7 +149,7 @@ const Auth = () => {
                {authError ? (
                   <p
                      role="alert"
-                     className="mt-6 rounded-arcade border-[3px] border-arcade-ink bg-arcade-red px-4 py-3 text-sm font-black text-white">
+                     className="mt-6 rounded-arcade border border-arcade-line bg-arcade-red px-4 py-3 text-sm font-black text-white">
                      {authError}
                   </p>
                ) : null}
@@ -174,31 +174,31 @@ const Auth = () => {
       <section className="py-6 sm:py-12 min-h-[70vh] flex items-center">
          <div className="grid w-full gap-6 lg:grid-cols-[1.1fr,0.9fr] lg:gap-8">
             <div className="bounty-panel rounded-arcade p-5 sm:p-8">
-               <p className="bounty-kicker">Player pass</p>
+               <p className="bounty-kicker">Your collection</p>
                <h1 className="arcade-title mt-4 max-w-xl text-4xl leading-[0.88] text-arcade-ink sm:text-6xl">
-                  Keep your arcade shelf synced.
+                  Your next adventure, saved.
                </h1>
                <p className="bounty-copy mt-4 max-w-xl text-sm sm:mt-6 sm:text-base">
-                  Favorites belong to your Firebase account instead of this browser, so the same saved covers follow you across devices.
+                  Sign in to save games and keep your collection with you across devices.
                </p>
                <div className="mt-5 grid gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-4">
-                  <div className="rounded-arcade border-[3px] border-arcade-ink bg-arcade-yellow p-4 sm:p-5">
+                  <div className="rounded-arcade border border-arcade-line bg-arcade-yellow p-4 sm:p-5">
                      <p className="text-xs font-black uppercase tracking-[0.18em] text-arcade-ink">Email / Password</p>
                      <p className="mt-2 text-sm font-bold text-arcade-muted sm:mt-3 sm:text-base">
                         Create an account or sign back in with the same credentials.
                      </p>
                   </div>
-                  <div className="rounded-arcade border-[3px] border-arcade-ink bg-arcade-panel p-4 sm:p-5">
+                  <div className="rounded-arcade border border-arcade-line bg-arcade-panel p-4 sm:p-5">
                      <p className="text-xs font-black uppercase tracking-[0.18em] text-arcade-blue">Google</p>
                      <p className="mt-2 text-sm font-bold text-arcade-muted sm:mt-3 sm:text-base">
-                        Use the Google popup flow for a faster one-click sign-in.
+                        Continue with your Google account.
                      </p>
                   </div>
                </div>
             </div>
 
-            <div className="rounded-arcade border-[3px] border-arcade-ink bg-arcade-panel p-5 text-arcade-ink shadow-arcade sm:p-8">
-               <div className="flex rounded-full border-[3px] border-arcade-ink bg-arcade-paper p-1">
+            <div className="rounded-arcade border border-arcade-line bg-arcade-panel p-5 text-arcade-ink shadow-arcade sm:p-8">
+               <div className="flex rounded-full border border-arcade-line bg-arcade-paper p-1">
                   <button
                      type="button"
                      aria-pressed={mode === 'sign-in'}
@@ -232,7 +232,7 @@ const Auth = () => {
                         aria-describedby={authError ? authErrorId : undefined}
                         aria-invalid={authError ? true : undefined}
                         autoComplete="email"
-                        className="rounded-arcade border-[3px] border-arcade-ink bg-white px-4 py-3 text-base font-bold text-arcade-ink outline-none transition-colors focus:bg-arcade-yellow"
+                        className="rounded-arcade border border-arcade-line bg-arcade-paper px-4 py-3 text-base font-bold text-arcade-ink transition-colors focus:bg-arcade-yellow"
                         placeholder="you@example.com"
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
@@ -247,7 +247,7 @@ const Auth = () => {
                         aria-describedby={authError ? authErrorId : undefined}
                         aria-invalid={authError ? true : undefined}
                         autoComplete={isCreateAccountMode ? 'new-password' : 'current-password'}
-                        className="rounded-arcade border-[3px] border-arcade-ink bg-white px-4 py-3 text-base font-bold text-arcade-ink outline-none transition-colors focus:bg-arcade-yellow"
+                        className="rounded-arcade border border-arcade-line bg-arcade-paper px-4 py-3 text-base font-bold text-arcade-ink transition-colors focus:bg-arcade-yellow"
                         placeholder="Enter your password"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
@@ -263,7 +263,7 @@ const Auth = () => {
                            aria-describedby={authError ? authErrorId : undefined}
                            aria-invalid={authError ? true : undefined}
                            autoComplete="new-password"
-                           className="rounded-arcade border-[3px] border-arcade-ink bg-white px-4 py-3 text-base font-bold text-arcade-ink outline-none transition-colors focus:bg-arcade-yellow"
+                           className="rounded-arcade border border-arcade-line bg-arcade-paper px-4 py-3 text-base font-bold text-arcade-ink transition-colors focus:bg-arcade-yellow"
                            placeholder="Repeat your password"
                            value={confirmPassword}
                            onChange={(event) => setConfirmPassword(event.target.value)}
@@ -275,7 +275,7 @@ const Auth = () => {
                      <p
                         id={authErrorId}
                         role="alert"
-                        className="rounded-arcade border-[3px] border-arcade-ink bg-arcade-red px-4 py-3 text-sm font-black text-white">
+                        className="rounded-arcade border border-arcade-line bg-arcade-red px-4 py-3 text-sm font-black text-white">
                         {authError}
                      </p>
                   ) : null}
@@ -304,13 +304,13 @@ const Auth = () => {
                   type="button"
                   onClick={handleGoogleSignIn}
                   disabled={isWorking}
-                  className="w-full rounded-full border-[3px] border-arcade-ink bg-arcade-yellow px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-arcade-ink shadow-[4px_4px_0_#15110f] transition-colors hover:bg-arcade-blue hover:text-white disabled:cursor-wait disabled:opacity-70 sm:tracking-[0.2em]">
+                  className="w-full rounded-full border border-arcade-line bg-arcade-yellow px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-arcade-ink shadow-[4px_4px_0_#15110f] transition-colors hover:bg-arcade-blue hover:text-arcade-paper disabled:cursor-wait disabled:opacity-70 sm:tracking-[0.2em]">
                   {isWorking ? 'Opening Google...' : 'Continue with Google'}
                </button>
 
                <p className="mt-6 text-sm font-semibold text-arcade-muted">
                   Need a different view first?{' '}
-                  <Link to="/" className="font-black text-arcade-red underline underline-offset-4">
+                  <Link to={nextPath} className="font-black text-arcade-blue underline underline-offset-4">
                      Return to the game catalog
                   </Link>
                   .

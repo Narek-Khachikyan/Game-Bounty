@@ -16,10 +16,14 @@ export type GameData = {
 
 export type Games = {
    results: GameData[];
+   count?: number;
+   next?: string | null;
+   previous?: string | null;
 };
 
 export type GenresData = {
    id: number;
+   slug?: string;
    name: string;
    image_background: string;
 };

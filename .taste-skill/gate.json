@@ -1,0 +1,1103 @@
+{
+ "start": "2026-11-14T08:00:21.556Z",
+ "round": 3,
+ "idle": 0,
+ "errors": 0,
+ "status": "open",
+ "history": [
+  {
+   "at": "2026-11-14T08:07:00.066Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 38,
+   "round": 1,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-14T08:17:10.245Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 30,
+   "round": 2,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-14T08:22:08.844Z",
+   "mode": "manual",
+   "status": "open",
+   "fails": 28,
+   "round": 3,
+   "reused": false,
+   "stopHookActive": false
+  }
+ ],
+ "max": 3,
+ "marker": {
+  "page": null,
+  "url": "http://127.0.0.1:5180/",
+  "root": null,
+  "kind": "software",
+  "category": "game catalog",
+  "primary": "Search games",
+  "rounds": 3,
+  "start": "2026-11-14T08:00:21.556Z",
+  "by": "gate.mjs --start"
+ },
+ "manual": true,
+ "roundKey": "c90c80a8376b6d78:da39a3ee",
+ "roundFree": false,
+ "idleFree": false,
+ "blockKey": null,
+ "fp": "c90c80a8376b6d78",
+ "page": "http://127.0.0.1:5180/",
+ "found": {
+  "fails": [
+   {
+    "check": "hero-fill",
+    "where": "main#main-content > div.discovery-controls \"Search games ⌕ Platform All platforms PC\"",
+    "msg": "the next section shows on the first screen: it starts at 245px on a 900px screen (the hero ends at 231px)",
+    "fix": "let the hero fill the first screen alone (min-height: 100svh, less above it): nothing of the next section on load",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "hero-fill"
+    ],
+    "wheres": [
+     "main#main-content > div.discovery-controls \"Search games ⌕ Platform All platforms PC\""
+    ]
+   },
+   {
+    "check": "flush",
+    "where": "article#game-1850570 > div.card__container \"Metacritic 85 17 Sept 2020 Death Strandi\"",
+    "msg": "its last line sits 0px above the lower edge of section, where the ground changes to the footer",
+    "fix": "give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "flush"
+    ],
+    "wheres": [
+     "article#game-1850570 > div.card__container \"Metacritic 85 17 Sept 2020 Death Strandi\""
+    ]
+   },
+   {
+    "check": "card-layout",
+    "where": "div.discovery-layout > div.discovery-results > section > div.games__content \"Metacritic 97 17 Sept 2020 Red Dead Rede\"",
+    "msg": "8 of 8 cards drawn one way (one panel, ground, placement and fragment): copies of one card",
+    "fix": "a card layout at most twice on a page: build the other sections another way",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "card-layout"
+    ],
+    "wheres": [
+     "div.discovery-layout > div.discovery-results > section > div.games__content \"Metacritic 97 17 Sept 2020 Red Dead Rede\""
+    ]
+   },
+   {
+    "check": "button-styles",
+    "where": "section#game-292030 > div.featured-game__content > div.feature-actions > a.feature-link.btn \"View game ↗\"",
+    "msg": "a button pair at two heights: \"View game ↗\" 47px beside \"Save game\" 52px",
+    "fix": "one primary and one secondary button: one shape, one height per size, one label size",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "button-styles"
+    ],
+    "wheres": [
+     "section#game-292030 > div.featured-game__content > div.feature-actions > a.feature-link.btn \"View game ↗\""
+    ]
+   },
+   {
+    "check": "cta",
+    "where": "main#main-content > div.discovery-intro.hero",
+    "msg": "the hero has no button (the nav's does not count)",
+    "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "cta"
+    ],
+    "wheres": [
+     "main#main-content > div.discovery-intro.hero"
+    ]
+   },
+   {
+    "check": "heading-scale",
+    "where": "section#game-292030 > div.featured-game__content > h2 \"The Witcher 3: Wild Hunt\"",
+    "msg": "h2 headings in 2 sizes, 28px (\"Discover games\") to 43.9px (x1.57)",
+    "fix": "size headings by level: the h1 largest, one size per level, each level below the one above",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "heading-scale"
+    ],
+    "wheres": [
+     "section#game-292030 > div.featured-game__content > h2 \"The Witcher 3: Wild Hunt\""
+    ]
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#main-content > div.discovery-layout > div.discovery-results > section / main#main-content > div.discovery-layout > div.discovery-results > footer.catalog-footer",
+    "msg": "70px between these sections, +218% against the median 22px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-gaps"
+    ],
+    "wheres": [
+     "main#main-content > div.discovery-layout > div.discovery-results > section / main#main-content > div.discovery-layout > div.discovery-results > footer.catalog-footer"
+    ]
+   },
+   {
+    "check": "hero-screen",
+    "where": "main#main-content > div.discovery-intro.hero \"Game-Bounty / The catalogGame discovery.\"",
+    "msg": "the hero ends at 231px on a 900px screen, 669px above the fold: it ends at the fold, 1px either way (SR-1)",
+    "fix": "make the hero exactly one screen (height: 100svh, its content fitted inside), never taller or shorter",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "hero-screen"
+    ],
+    "wheres": [
+     "main#main-content > div.discovery-intro.hero \"Game-Bounty / The catalogGame discovery.\""
+    ]
+   },
+   {
+    "check": "hero-screen",
+    "where": "main#main-content > div.discovery-controls \"Search games⌕PlatformAll platformsPCPlay\"",
+    "msg": "669px of the next section shows on the first screen (from 231px on a 900px screen): nothing below the hero shows at load (SR-1)",
+    "fix": "end the hero at the fold so nothing of the next section shows at load (hero height: 100svh)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "hero-screen"
+    ],
+    "wheres": [
+     "main#main-content > div.discovery-controls \"Search games⌕PlatformAll platformsPCPlay\""
+    ]
+   },
+   {
+    "check": "section-height",
+    "where": "main#main-content > div.discovery-controls \"Search games⌕PlatformAll platformsPCPlay\"",
+    "msg": "the section is 102px tall (0.1 screens), 799px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)",
+    "fix": "set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-height"
+    ],
+    "wheres": [
+     "main#main-content > div.discovery-controls \"Search games⌕PlatformAll platformsPCPlay\"",
+     "main#main-content > div.discovery-layout \"Browse genresGenres: All genres +▦All ge\"",
+     "main#main-content > div.discovery-intro.hero \"Game-Bounty / The catalogGame discovery.\""
+    ]
+   },
+   {
+    "check": "section-air",
+    "where": "main#main-content > div.discovery-controls / main#main-content > div.discovery-layout",
+    "msg": "29px of air between the content of these two sections: 128-480px (64-600px WARN) (SR-3)",
+    "fix": "keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-air"
+    ],
+    "wheres": [
+     "main#main-content > div.discovery-controls / main#main-content > div.discovery-layout"
+    ]
+   },
+   {
+    "check": "section-air",
+    "where": "main#main-content > div.discovery-layout > div.discovery-results > footer.catalog-footer \"Game-BountyGame data and imagery from RA\"",
+    "msg": "a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)",
+    "fix": "take the rule out: sections and their parts are parted by their ground and the air between them",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-air"
+    ],
+    "wheres": [
+     "main#main-content > div.discovery-layout > div.discovery-results > footer.catalog-footer \"Game-BountyGame data and imagery from RA\""
+    ]
+   },
+   {
+    "check": "one-section",
+    "where": "main#main-content > div.discovery-controls \"Search games⌕PlatformAll platformsPCPlay\"",
+    "msg": "the screen at scroll 105px (the top of section 1) shows 102px of section 2 and the content of 3 sections, over 24px each beside section 3: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+    "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "one-section"
+    ],
+    "wheres": [
+     "main#main-content > div.discovery-controls \"Search games⌕PlatformAll platformsPCPlay\"",
+     "main#main-content > div.discovery-intro.hero \"Game-Bounty / The catalogGame discovery.\"",
+     "main#main-content > div.discovery-layout \"Browse genresGenres: All genres +▦All ge\""
+    ]
+   },
+   {
+    "check": "one-heading",
+    "where": "section#game-292030 > div.featured-game__content > h2 \"The Witcher 3: Wild Hunt\"",
+    "msg": "the section holds 2 h2 headings: one per section, first in its .wrap (SR-5)",
+    "fix": "give each section one h2, first in its .wrap, and the hero only its h1",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "one-heading"
+    ],
+    "wheres": [
+     "section#game-292030 > div.featured-game__content > h2 \"The Witcher 3: Wild Hunt\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "div#root > div.mainWrapper > header.header \"Skip to contentGBGame-BountyDiscoverSave\"",
+    "msg": "the nav's content runs 20px from the left and 48px from the right (read from its outermost blocks: no .wrap): the page's container starts at 48px; 20 and 48px are not one margin; the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)",
+    "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "div#root > div.mainWrapper > header.header \"Skip to contentGBGame-BountyDiscoverSave\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "main#main-content > div.discovery-intro.hero \"Game-Bounty / The catalogGame discovery.\"",
+    "msg": "the content of section 1 runs 48px from the left and 48px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (and 2 more like it: \"Search games⌕PlatformAll\", \"Browse genresGenres: All\") (SR-6)",
+    "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "main#main-content > div.discovery-intro.hero \"Game-Bounty / The catalogGame discovery.\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "div#root \"Skip to contentGBGame-BountyDiscoverSave\"",
+    "msg": "a <div> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (SR-6)",
+    "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "div#root \"Skip to contentGBGame-BountyDiscoverSave\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "div#root > div.mainWrapper > header.header > a.skip-link \"Skip to content\"",
+    "msg": "a box runs 20-160px, outside the container lines of the nav at 48-1392px: full width is for background layers and grounds only (SR-6)",
+    "fix": "keep it inside the container lines (.wrap): full width is for background layers and grounds only",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "div#root > div.mainWrapper > header.header > a.skip-link \"Skip to content\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "section#game-292030 > div.featured-game__content > p.catalog-kicker \"Catalog spotlight / 01\"",
+    "msg": "3 text blocks start on a left line at x 73, 25px from the container's left: text starts on the container's left, or on one split line (x 618, 732, 846) (also \"The Witcher 3: Wild Hunt\", \"Metacritic 92\") (and 2 more like it: \"The Witcher 3: Wild Hunt\", x 65) (SR-6)",
+    "fix": "start the text on the container's left, or on the one split line every split shares",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "section#game-292030 > div.featured-game__content > p.catalog-kicker \"Catalog spotlight / 01\""
+    ]
+   },
+   {
+    "check": "container-edges",
+    "where": "main#main-content > div.discovery-controls > label.catalog-search > span.search-field \"⌕\"",
+    "msg": "a box over half the container wide runs 48-1128px, not on the container's lines at 48-1392px (SR-6)",
+    "fix": "run the picture or box from the container's left line to its right line, or put it in a row or a split",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "container-edges"
+    ],
+    "wheres": [
+     "main#main-content > div.discovery-controls > label.catalog-search > span.search-field \"⌕\""
+    ]
+   },
+   {
+    "check": "split-pair",
+    "where": "section#game-292030 \"Catalog spotlight / 01The Witcher 3: Wil\"",
+    "msg": "the two columns of the split start 21px apart at the top (centred on each other): a split's columns are top-aligned, 8px either way (SR-8)",
+    "fix": "top-align both columns of the split (align-items: start)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "split-pair"
+    ],
+    "wheres": [
+     "section#game-292030 \"Catalog spotlight / 01The Witcher 3: Wil\""
+    ]
+   },
+   {
+    "check": "flush",
+    "where": "div.discovery-layout > aside.discovery-sidebar > div.genre-browser > button.genre-mobile-toggle \"Genres: All genres +\"",
+    "msg": "its first line sits 0px under the top edge of aside.discovery-sidebar, where the ground changes",
+    "fix": "give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "flush"
+    ],
+    "wheres": [
+     "div.discovery-layout > aside.discovery-sidebar > div.genre-browser > button.genre-mobile-toggle \"Genres: All genres +\""
+    ]
+   },
+   {
+    "check": "flush",
+    "where": "article#game-1086940 > div.card__container \"Metacritic 96 17 Sept 2020 Baldur’s Gate\"",
+    "msg": "its last line sits 0px above the lower edge of section, where the ground changes to the footer",
+    "fix": "give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "flush"
+    ],
+    "wheres": [
+     "article#game-1086940 > div.card__container \"Metacritic 96 17 Sept 2020 Baldur’s Gate\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "div.discovery-intro.hero p.discovery-lead \"Find a game. Check the details.K\"",
+    "msg": "starts at x 1165.8; the lines are 48 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "div.discovery-intro.hero p.discovery-lead \"Find a game. Check the details.K\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "div.discovery-layout p \"9 games on this page\"",
+    "msg": "starts at x 243.5; the lines are 48 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "div.discovery-layout p \"9 games on this page\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "div.discovery-layout p.catalog-kicker \"Catalog spotlight / 01\"",
+    "msg": "starts at x 73; the lines are 48 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "div.discovery-layout p.catalog-kicker \"Catalog spotlight / 01\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "div.discovery-layout h2 \"The Witcher 3: Wild Hunt\"",
+    "msg": "starts at x 73; the lines are 48 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "div.discovery-layout h2 \"The Witcher 3: Wild Hunt\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "footer.catalog-footer p \"Game data and imagery from RAWG.\"",
+    "msg": "starts at x 172.7; the lines are 16 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "footer.catalog-footer p \"Game data and imagery from RAWG.\""
+    ]
+   }
+  ],
+  "warns": [
+   {
+    "check": "flush",
+    "where": "main#main-content > div.discovery-controls > label.catalog-search > span.search-field \"⌕\"",
+    "msg": "its last line sits 12px above the rule on top of aside.discovery-sidebar",
+    "fix": "give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "flush",
+    "where": "div#genre-options > button:nth-of-type(1) \"All genres\"",
+    "msg": "aside.discovery-sidebar and section run together: 15px between their content, on one ground",
+    "fix": "give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-actions",
+    "where": "(the page)",
+    "msg": "the main action \"Search games\" does not read word for word the same in the nav or hero and the closing section",
+    "fix": "few actions, one wording: at most 2 in the hero, the main action word for word in nav, hero and close",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#main-content > div.discovery-intro.hero / main#main-content > div.discovery-controls",
+    "msg": "14px between these sections, -36% against the median 22px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#main-content > div.discovery-controls / main#main-content > div.discovery-layout > aside.discovery-sidebar",
+    "msg": "29px between these sections, +32% against the median 22px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#main-content > div.discovery-layout > aside.discovery-sidebar / main#main-content > div.discovery-layout > div.discovery-results > section",
+    "msg": "15px between these sections, -32% against the median 22px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-set",
+    "where": "div.card__content > div.card__wrapper > div.card__image > img \"library_hero.jpg\"",
+    "msg": "9 photographs in more than one look: lightness from 0.28 to 0.69; saturation from 0.24 to 0.86; warm and cool photographs mixed (b* -20 to +60); the odd one out is library_hero.jpg",
+    "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "label-centre",
+    "where": "section#game-292030 > div.featured-game__content > div.feature-actions > button.add-button.cardButton \"Save game\"",
+    "msg": "its label sits 27px off-centre (17px of room at the left, 44px at the right)",
+    "fix": "centre the label in its button, or fill the empty side with an icon",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-length",
+    "where": "main#main-content > div.discovery-layout > div.discovery-results > section \"Discover games\"",
+    "msg": "1 section over 90 words a screen outside the UI mocks (\"Discover games\" 98); 45 words a screen across the page (148 words in 3.3 screens): a tech page says it in about 80 or fewer",
+    "fix": "cut every section to its heading, one line and the product UI: the UI says the rest; no second paragraph, no list of feature sentences",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "one-section",
+    "where": "main#main-content > div.discovery-intro.hero > div.hero-text > h1 \"Game discovery.\"",
+    "msg": "the screen at scroll 0px (stride 0) shows 126px of section 1 and the heading of section 1 whole and the content of 3 sections, over 24px each beside section 3: a screen shows one section (another may peek 8px, 24px WARN) (it is in a scroll scene: told as a WARN) (SR-4)",
+    "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "heading-scale",
+    "where": "div.card__content > div.card__wrapper > div.card__textWrapper > h3.card__name \"Red Dead Redemption 2\"",
+    "msg": "the h3s (23px) are only 1.13x smaller than the h2s (26px): one level a clear step (1.3x or more) below the other",
+    "fix": "size headings by level: the h1 largest, one size per level, each level below the one above",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   }
+  ],
+  "crashed": [],
+  "seconds": {
+   "consistency": 76,
+   "layout": 14
+  }
+ },
+ "open": [
+  {
+   "check": "hero-fill",
+   "where": "main#main-content > div.discovery-controls \"Search games ⌕ Platform All platforms PC\"",
+   "msg": "the next section shows on the first screen: it starts at 245px on a 900px screen (the hero ends at 231px)",
+   "fix": "let the hero fill the first screen alone (min-height: 100svh, less above it): nothing of the next section on load",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "hero-fill"
+   ],
+   "wheres": [
+    "main#main-content > div.discovery-controls \"Search games ⌕ Platform All platforms PC\""
+   ]
+  },
+  {
+   "check": "flush",
+   "where": "article#game-1850570 > div.card__container \"Metacritic 85 17 Sept 2020 Death Strandi\"",
+   "msg": "its last line sits 0px above the lower edge of section, where the ground changes to the footer",
+   "fix": "give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "flush"
+   ],
+   "wheres": [
+    "article#game-1850570 > div.card__container \"Metacritic 85 17 Sept 2020 Death Strandi\""
+   ]
+  },
+  {
+   "check": "card-layout",
+   "where": "div.discovery-layout > div.discovery-results > section > div.games__content \"Metacritic 97 17 Sept 2020 Red Dead Rede\"",
+   "msg": "8 of 8 cards drawn one way (one panel, ground, placement and fragment): copies of one card",
+   "fix": "a card layout at most twice on a page: build the other sections another way",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "card-layout"
+   ],
+   "wheres": [
+    "div.discovery-layout > div.discovery-results > section > div.games__content \"Metacritic 97 17 Sept 2020 Red Dead Rede\""
+   ]
+  },
+  {
+   "check": "button-styles",
+   "where": "section#game-292030 > div.featured-game__content > div.feature-actions > a.feature-link.btn \"View game ↗\"",
+   "msg": "a button pair at two heights: \"View game ↗\" 47px beside \"Save game\" 52px",
+   "fix": "one primary and one secondary button: one shape, one height per size, one label size",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "button-styles"
+   ],
+   "wheres": [
+    "section#game-292030 > div.featured-game__content > div.feature-actions > a.feature-link.btn \"View game ↗\""
+   ]
+  },
+  {
+   "check": "cta",
+   "where": "main#main-content > div.discovery-intro.hero",
+   "msg": "the hero has no button (the nav's does not count)",
+   "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "cta"
+   ],
+   "wheres": [
+    "main#main-content > div.discovery-intro.hero"
+   ]
+  },
+  {
+   "check": "heading-scale",
+   "where": "section#game-292030 > div.featured-game__content > h2 \"The Witcher 3: Wild Hunt\"",
+   "msg": "h2 headings in 2 sizes, 28px (\"Discover games\") to 43.9px (x1.57)",
+   "fix": "size headings by level: the h1 largest, one size per level, each level below the one above",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "heading-scale"
+   ],
+   "wheres": [
+    "section#game-292030 > div.featured-game__content > h2 \"The Witcher 3: Wild Hunt\""
+   ]
+  },
+  {
+   "check": "section-gaps",
+   "where": "main#main-content > div.discovery-layout > div.discovery-results > section / main#main-content > div.discovery-layout > div.discovery-results > footer.catalog-footer",
+   "msg": "70px between these sections, +218% against the median 22px",
+   "fix": "use one gap between sections (all within 25% of each other)",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-gaps"
+   ],
+   "wheres": [
+    "main#main-content > div.discovery-layout > div.discovery-results > section / main#main-content > div.discovery-layout > div.discovery-results > footer.catalog-footer"
+   ]
+  },
+  {
+   "check": "hero-screen",
+   "where": "main#main-content > div.discovery-intro.hero \"Game-Bounty / The catalogGame discovery.\"",
+   "msg": "the hero ends at 231px on a 900px screen, 669px above the fold: it ends at the fold, 1px either way (SR-1)",
+   "fix": "make the hero exactly one screen (height: 100svh, its content fitted inside), never taller or shorter",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "hero-screen"
+   ],
+   "wheres": [
+    "main#main-content > div.discovery-intro.hero \"Game-Bounty / The catalogGame discovery.\""
+   ]
+  },
+  {
+   "check": "hero-screen",
+   "where": "main#main-content > div.discovery-controls \"Search games⌕PlatformAll platformsPCPlay\"",
+   "msg": "669px of the next section shows on the first screen (from 231px on a 900px screen): nothing below the hero shows at load (SR-1)",
+   "fix": "end the hero at the fold so nothing of the next section shows at load (hero height: 100svh)",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "hero-screen"
+   ],
+   "wheres": [
+    "main#main-content > div.discovery-controls \"Search games⌕PlatformAll platformsPCPlay\""
+   ]
+  },
+  {
+   "check": "section-height",
+   "where": "main#main-content > div.discovery-controls \"Search games⌕PlatformAll platformsPCPlay\"",
+   "msg": "the section is 102px tall (0.1 screens), 799px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)",
+   "fix": "set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-height"
+   ],
+   "wheres": [
+    "main#main-content > div.discovery-controls \"Search games⌕PlatformAll platformsPCPlay\"",
+    "main#main-content > div.discovery-layout \"Browse genresGenres: All genres +▦All ge\"",
+    "main#main-content > div.discovery-intro.hero \"Game-Bounty / The catalogGame discovery.\""
+   ]
+  },
+  {
+   "check": "section-air",
+   "where": "main#main-content > div.discovery-controls / main#main-content > div.discovery-layout",
+   "msg": "29px of air between the content of these two sections: 128-480px (64-600px WARN) (SR-3)",
+   "fix": "keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-air"
+   ],
+   "wheres": [
+    "main#main-content > div.discovery-controls / main#main-content > div.discovery-layout"
+   ]
+  },
+  {
+   "check": "section-air",
+   "where": "main#main-content > div.discovery-layout > div.discovery-results > footer.catalog-footer \"Game-BountyGame data and imagery from RA\"",
+   "msg": "a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)",
+   "fix": "take the rule out: sections and their parts are parted by their ground and the air between them",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-air"
+   ],
+   "wheres": [
+    "main#main-content > div.discovery-layout > div.discovery-results > footer.catalog-footer \"Game-BountyGame data and imagery from RA\""
+   ]
+  },
+  {
+   "check": "one-section",
+   "where": "main#main-content > div.discovery-controls \"Search games⌕PlatformAll platformsPCPlay\"",
+   "msg": "the screen at scroll 105px (the top of section 1) shows 102px of section 2 and the content of 3 sections, over 24px each beside section 3: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+   "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "one-section"
+   ],
+   "wheres": [
+    "main#main-content > div.discovery-controls \"Search games⌕PlatformAll platformsPCPlay\"",
+    "main#main-content > div.discovery-intro.hero \"Game-Bounty / The catalogGame discovery.\"",
+    "main#main-content > div.discovery-layout \"Browse genresGenres: All genres +▦All ge\""
+   ]
+  },
+  {
+   "check": "one-heading",
+   "where": "section#game-292030 > div.featured-game__content > h2 \"The Witcher 3: Wild Hunt\"",
+   "msg": "the section holds 2 h2 headings: one per section, first in its .wrap (SR-5)",
+   "fix": "give each section one h2, first in its .wrap, and the hero only its h1",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "one-heading"
+   ],
+   "wheres": [
+    "section#game-292030 > div.featured-game__content > h2 \"The Witcher 3: Wild Hunt\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "div#root > div.mainWrapper > header.header \"Skip to contentGBGame-BountyDiscoverSave\"",
+   "msg": "the nav's content runs 20px from the left and 48px from the right (read from its outermost blocks: no .wrap): the page's container starts at 48px; 20 and 48px are not one margin; the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)",
+   "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "div#root > div.mainWrapper > header.header \"Skip to contentGBGame-BountyDiscoverSave\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "main#main-content > div.discovery-intro.hero \"Game-Bounty / The catalogGame discovery.\"",
+   "msg": "the content of section 1 runs 48px from the left and 48px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (and 2 more like it: \"Search games⌕PlatformAll\", \"Browse genresGenres: All\") (SR-6)",
+   "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "main#main-content > div.discovery-intro.hero \"Game-Bounty / The catalogGame discovery.\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "div#root \"Skip to contentGBGame-BountyDiscoverSave\"",
+   "msg": "a <div> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (SR-6)",
+   "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "div#root \"Skip to contentGBGame-BountyDiscoverSave\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "div#root > div.mainWrapper > header.header > a.skip-link \"Skip to content\"",
+   "msg": "a box runs 20-160px, outside the container lines of the nav at 48-1392px: full width is for background layers and grounds only (SR-6)",
+   "fix": "keep it inside the container lines (.wrap): full width is for background layers and grounds only",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "div#root > div.mainWrapper > header.header > a.skip-link \"Skip to content\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "section#game-292030 > div.featured-game__content > p.catalog-kicker \"Catalog spotlight / 01\"",
+   "msg": "3 text blocks start on a left line at x 73, 25px from the container's left: text starts on the container's left, or on one split line (x 618, 732, 846) (also \"The Witcher 3: Wild Hunt\", \"Metacritic 92\") (and 2 more like it: \"The Witcher 3: Wild Hunt\", x 65) (SR-6)",
+   "fix": "start the text on the container's left, or on the one split line every split shares",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "section#game-292030 > div.featured-game__content > p.catalog-kicker \"Catalog spotlight / 01\""
+   ]
+  },
+  {
+   "check": "container-edges",
+   "where": "main#main-content > div.discovery-controls > label.catalog-search > span.search-field \"⌕\"",
+   "msg": "a box over half the container wide runs 48-1128px, not on the container's lines at 48-1392px (SR-6)",
+   "fix": "run the picture or box from the container's left line to its right line, or put it in a row or a split",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "container-edges"
+   ],
+   "wheres": [
+    "main#main-content > div.discovery-controls > label.catalog-search > span.search-field \"⌕\""
+   ]
+  },
+  {
+   "check": "split-pair",
+   "where": "section#game-292030 \"Catalog spotlight / 01The Witcher 3: Wil\"",
+   "msg": "the two columns of the split start 21px apart at the top (centred on each other): a split's columns are top-aligned, 8px either way (SR-8)",
+   "fix": "top-align both columns of the split (align-items: start)",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "split-pair"
+   ],
+   "wheres": [
+    "section#game-292030 \"Catalog spotlight / 01The Witcher 3: Wil\""
+   ]
+  },
+  {
+   "check": "flush",
+   "where": "div.discovery-layout > aside.discovery-sidebar > div.genre-browser > button.genre-mobile-toggle \"Genres: All genres +\"",
+   "msg": "its first line sits 0px under the top edge of aside.discovery-sidebar, where the ground changes",
+   "fix": "give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "flush"
+   ],
+   "wheres": [
+    "div.discovery-layout > aside.discovery-sidebar > div.genre-browser > button.genre-mobile-toggle \"Genres: All genres +\""
+   ]
+  },
+  {
+   "check": "flush",
+   "where": "article#game-1086940 > div.card__container \"Metacritic 96 17 Sept 2020 Baldur’s Gate\"",
+   "msg": "its last line sits 0px above the lower edge of section, where the ground changes to the footer",
+   "fix": "give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "flush"
+   ],
+   "wheres": [
+    "article#game-1086940 > div.card__container \"Metacritic 96 17 Sept 2020 Baldur’s Gate\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "div.discovery-intro.hero p.discovery-lead \"Find a game. Check the details.K\"",
+   "msg": "starts at x 1165.8; the lines are 48 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "div.discovery-intro.hero p.discovery-lead \"Find a game. Check the details.K\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "div.discovery-layout p \"9 games on this page\"",
+   "msg": "starts at x 243.5; the lines are 48 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "div.discovery-layout p \"9 games on this page\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "div.discovery-layout p.catalog-kicker \"Catalog spotlight / 01\"",
+   "msg": "starts at x 73; the lines are 48 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "div.discovery-layout p.catalog-kicker \"Catalog spotlight / 01\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "div.discovery-layout h2 \"The Witcher 3: Wild Hunt\"",
+   "msg": "starts at x 73; the lines are 48 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "div.discovery-layout h2 \"The Witcher 3: Wild Hunt\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "footer.catalog-footer p \"Game data and imagery from RAWG.\"",
+   "msg": "starts at x 172.7; the lines are 16 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "footer.catalog-footer p \"Game data and imagery from RAWG.\""
+   ]
+  }
+ ],
+ "waived": [],
+ "warnCount": 11,
+ "at": "2026-11-14T08:22:08.850Z",
+ "openTold": true
+}

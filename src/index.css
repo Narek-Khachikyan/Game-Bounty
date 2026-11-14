@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
    :root {
-      color-scheme: light;
-      background: #fff4d6;
-      color: #15110f;
+      color-scheme: dark;
+      background: #0a0a0a;
+      color: #f1f5fb;
       font-synthesis: none;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
@@ -15,14 +14,14 @@
    }
 
    html {
-      background: #fff4d6;
-      scroll-behavior: smooth;
+      background: #0a0a0a;
+      scroll-behavior: auto;
    }
 
    body {
       min-width: 320px;
       min-height: 100vh;
-      background: #fff4d6;
+      background: #0a0a0a;
    }
 
    a,
@@ -37,13 +36,13 @@
    }
 
    :focus-visible {
-      outline: 4px solid #1769ff;
+      outline: 4px solid #f4b8bf;
       outline-offset: 3px;
    }
 
    ::selection {
-      background: rgba(255, 210, 63, 0.75);
-      color: #15110f;
+      background: #f4b8bf;
+      color: #0a0a0a;
    }
 
    @media (prefers-reduced-motion: reduce) {

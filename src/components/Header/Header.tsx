@@ -3,6 +3,7 @@ import './header.scss';
 import { useAppSelector } from '../../app/hooks';
 import { selectFavoritesCount } from '../../app/redux/selectors/favorites';
 import { useAuth } from '../../hooks/useAuth';
+import { buildAuthRedirectPath } from '../../lib/authRedirect';
 
 interface HeaderProps {
    isAnimatedBackgroundEnabled: boolean;
@@ -16,6 +17,8 @@ const Header = ({
    onAnimatedBackgroundToggle,
 }: HeaderProps) => {
    const location = useLocation();
+   const currentPath = `${location.pathname}${location.search}${location.hash}`;
+   const signInPath = location.pathname === '/auth' ? currentPath : buildAuthRedirectPath(currentPath);
    const count = useAppSelector(selectFavoritesCount);
    const { currentUser, isAuthReady, isWorking, signOutCurrentUser } = useAuth();
    const animatedBackgroundStatusId = animatedBackgroundBlockedReason
@@ -41,20 +44,22 @@ const Header = ({
 
    return (
       <header className="header">
+         <a className="skip-link" href="#page-content">Skip to content</a>
          <div className="header__container">
             <div className="header__content py-4">
                <div className="header__brand">
                   <Link to={'/'} className="header__logo" aria-label="Game-Bounty home">
                      <span className="header__logo-mark" aria-hidden="true">GB</span>
                      <span className="header__logo-text sm:text-xl md:text-2xl">Game-Bounty</span>
-                     <span className="header__issue" aria-hidden="true">Arcade Catalog</span>
+
                   </Link>
                </div>
                <nav className="header__nav" aria-label="Primary navigation">
                   <ul className="header__nav-list">
+                     <li><Link to="/" className={location.pathname === "/" ? "header__nav-link header__nav-link--active" : "header__nav-link"} aria-current={location.pathname === "/" ? "page" : undefined}>Discover</Link></li>
                      <li className="header__nav-item relative">
                         <Link to={'/favorites'} className={favoritesLinkClassName}>
-                           <span>Saved Shelf</span>
+                           <span>Saved games</span>
                            <span className="count absolute text-sm" aria-label={`${count} saved bounties`}>
                               {count}
                            </span>
@@ -67,7 +72,7 @@ const Header = ({
                      currentUser ? (
                         <div className="header__account">
                            <span className="header__session">
-                              <span className="header__session-label">Player pass</span>
+                              <span className="header__session-label">Account</span>
                               <span className="header__session-text" title={authLabel}>
                                  {authLabel}
                               </span>
@@ -81,13 +86,13 @@ const Header = ({
                            </button>
                         </div>
                      ) : (
-                        <Link to={'/auth'} className={signInLinkClassName}>
-                           Player Pass
+                        <Link to={signInPath} className={signInLinkClassName}>
+                           Sign in
                         </Link>
                      )
                   ) : (
                      <span className="header__session header__session--pending">
-                           Checking pass...
+                           Checking session…
                      </span>
                   )}
                   <label className="video-toggle">
@@ -100,7 +105,7 @@ const Header = ({
                      />
                      <span className="video-toggle__content">
                         <span className="sm:text-sm md:text-base font-medium">
-                           Motion cover
+                           Ambient motion
                         </span>
                         {animatedBackgroundBlockedReason ? (
                            <span

@@ -1,82 +1,67 @@
-import { useState } from 'react';
-import { useGetGenresDataQuery } from '../../app/redux/features/apiSlice';
-import { GameBountySkeleton } from '../Skeleton/Skeleton';
-import './filter.scss';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Scrollbar } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/scrollbar';
-
-type FilterByGenresProps = {
-   setFilterByGenres: (value: string) => void;
+import { useState } from "react";
+import { useGetGenresDataQuery } from "../../app/redux/features/apiSlice";
+import "./filter.scss";
+type Props = {
+  selectedGenre: string;
+  setFilterByGenres: (value: string) => void;
 };
-const FilterByGenres = ({ setFilterByGenres }: FilterByGenresProps) => {
-   const { data: genresData, isLoading: genresDataLoading } = useGetGenresDataQuery();
-   const [isActive, setIsActive] = useState(0);
-
-   const handleClick = (name: string, index: number) => {
-      setFilterByGenres(name);
-      setIsActive(index);
-   };
-
-   return (
-      <div className="genres bounty-panel rounded-arcade px-4 py-5 sm:px-6">
-         <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-            <div>
-               <p className="bounty-kicker">Magazine sections</p>
-               <h2 className="filter-heading arcade-title mt-2 text-2xl text-arcade-ink sm:text-3xl">
-                  Genres
-               </h2>
-            </div>
-            <p className="text-sm font-black uppercase tracking-[0.12em] text-arcade-muted">Drag the rail</p>
-         </div>
-         <Swiper
-            className="genres__list flex gap-3 items-center pb-8"
-            modules={[Scrollbar]}
-            scrollbar={{ draggable: true }}
-            spaceBetween={50}
-            breakpoints={{
-               320: {
-                  slidesPerView: 2,
-                  spaceBetween: 10,
-               },
-               425: {
-                  slidesPerView: 2,
-                  spaceBetween: 12,
-               },
-               640: {
-                  slidesPerView: 2,
-                  spaceBetween: 20,
-               },
-               768: {
-                  slidesPerView: 3,
-                  spaceBetween: 30,
-               },
-               1024: {
-                  slidesPerView: 5,
-                  spaceBetween: 40,
-               },
-            }}
-            slidesPerView={3}>
-            {genresData?.results.map((item, index) => (
-               <SwiperSlide key={item.id}>
-                  <button
-                     type="button"
-                     onClick={() => handleClick(item.name.toLowerCase(), index)}
-                     aria-pressed={isActive === index}
-                     className={
-                        isActive === index
-                           ? 'genreItem activeGenre'
-                           : 'genreItem'
-                     }>
-                     {item.name}
-                  </button>
-               </SwiperSlide>
-            ))}
-         </Swiper>
-         {genresDataLoading && <GameBountySkeleton />}
+const FilterByGenres = ({ selectedGenre, setFilterByGenres }: Props) => {
+  const [expanded, setExpanded] = useState(false);
+  const { data, isLoading, isError, refetch } = useGetGenresDataQuery();
+  return (
+    <div
+      className={`genre-browser ${expanded ? "genre-browser--expanded" : ""}`}
+    >
+      <h2 className="genre-desktop-title">Browse genres</h2>
+      <button
+        className="genre-mobile-toggle"
+        aria-expanded={expanded}
+        aria-controls="genre-options"
+        onClick={() => setExpanded(!expanded)}
+      >
+        Genres:{" "}
+        {data?.results.find(
+          (item) => (item.slug || item.name.toLowerCase()) === selectedGenre,
+        )?.name ||
+          selectedGenre ||
+          "All genres"}{" "}
+        <span aria-hidden="true">{expanded ? "−" : "+"}</span>
+      </button>
+      <div className="genre-options" id="genre-options">
+        <button
+          type="button"
+          aria-pressed={!selectedGenre}
+          onClick={() => setFilterByGenres("")}
+        >
+          <span aria-hidden="true">▦</span>All genres
+        </button>
+        {data?.results.map((item) => {
+          const value = item.slug || item.name.toLowerCase();
+          return (
+            <button
+              key={item.id}
+              type="button"
+              aria-pressed={selectedGenre === value}
+              onClick={() => setFilterByGenres(value)}
+            >
+              <span aria-hidden="true">◇</span>
+              {item.name}
+            </button>
+          );
+        })}
       </div>
-   );
+      {isLoading && (
+        <p className="filter-message" role="status">
+          Loading genres…
+        </p>
+      )}
+      {isError && (
+        <p className="filter-message">
+          Genres unavailable.{" "}
+          <button onClick={() => void refetch()}>Retry</button>
+        </p>
+      )}
+    </div>
+  );
 };
-
 export default FilterByGenres;

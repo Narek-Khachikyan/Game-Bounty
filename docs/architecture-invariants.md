@@ -13,7 +13,7 @@ Enforcement: `npm run harness:check` blocks direct `fetch(...)` usage and `impor
 Reason: persisted browser state should have very few owners to avoid divergent storage formats.
 Current owners:
 - `src/hooks/useBackgroundVideoGate.ts` for the background-video preference
-Favorites persistence is not browser-local anymore; it lives in Cloud Firestore via the signed-in Firebase user.
+Favorites persistence is not browser-local anymore; it lives in Cloud Firestore via the signed-in Firebase user. `src/lib/userFavorites.ts` whitelists the six persisted game fields and normalizes platform entries; API result objects may carry additional fields that Firestore rules reject. The persistence regression test verifies this boundary.
 Enforcement: `npm run harness:check` blocks `localStorage` usage elsewhere in tracked `src/` files.
 
 3. The top-level route tree stays centralized in `src/App.tsx`.

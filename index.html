@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-type="software" data-radius="soft" data-buttons="solid" data-motion>
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Game-Bounty</title>
+  <title>Game-Bounty — Game discovery catalog</title>
+  <meta name="description" content="Find games by title, genre and platform. Check the details and save your next collection." />
+  <meta name="page-type" content="software" />
+  <meta name="site-kind" content="gaming" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta property="og:title" content="Game-Bounty — Game discovery" />
+  <meta property="og:description" content="Search the catalog and keep a collection of games to play next." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/share.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/motion/motion.css" />
+  <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
 
 <body>
+  <!-- Software catalog: black-crimson, Familjen Grotesk / IBM Plex Mono; product-stage feature, compact app navigation; cursor-spotlight. -->
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>

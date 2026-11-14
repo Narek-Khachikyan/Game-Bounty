@@ -100,7 +100,7 @@ const GameContentPlan: FC<GameContentPlanProps> = ({
                               className={`gameContentPlan__platform rounded-3xl border p-4 ${
                                  isSelected
                                     ? 'gameContentPlan__platform--selected border-arcade-ink bg-arcade-yellow shadow-arcade'
-                                    : 'border-arcade-ink bg-white'
+                                    : 'border-arcade-ink bg-arcade-paper'
                               }`}>
                               <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
                                  <div>
@@ -122,7 +122,7 @@ const GameContentPlan: FC<GameContentPlanProps> = ({
                               </div>
                               <div className="grid gap-3 md:grid-cols-2">
                                  <div className="rounded-arcade border-[3px] border-arcade-ink bg-arcade-panel p-4">
-                                    <p className="mb-2 text-sm font-black uppercase tracking-[0.2em] text-arcade-red">
+                                    <p className="mb-2 text-sm font-black uppercase tracking-[0.2em] text-red-200">
                                        Minimum
                                     </p>
                                     <p className="whitespace-pre-line text-sm font-semibold text-arcade-muted">
@@ -143,7 +143,7 @@ const GameContentPlan: FC<GameContentPlanProps> = ({
                      })}
                   </div>
                ) : (
-                  <p className="rounded-arcade border-[3px] border-arcade-ink bg-white px-4 py-5 font-bold text-arcade-muted">
+                  <p className="rounded-arcade border-[3px] border-arcade-ink bg-arcade-paper px-4 py-5 font-bold text-arcade-muted">
                      No platforms with complete minimum and recommended requirements were
                      specified for this game.
                   </p>

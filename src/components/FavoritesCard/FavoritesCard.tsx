@@ -63,7 +63,7 @@ const FavoritesCard: FC<GameData> = ({
                   </div>
                </Link>
                <button
-                  className="cardButton"
+                  className="remove-button cardButton btn"
                   aria-label={`Remove ${name} from favorites`}
                   onClick={() => {
                      void onClickRemove();

@@ -2,9 +2,6 @@ import Header from '../components/Header/Header';
 import '../App.css';
 import { Outlet } from 'react-router-dom';
 import bgVideo from '../assets/bgVideo.mp4';
-import { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import useBackgroundVideoGate from '../hooks/useBackgroundVideoGate';
 
 const MainLayout = () => {
@@ -25,9 +22,6 @@ const MainLayout = () => {
                : null
          : null;
 
-   useEffect(() => {
-      AOS.init({ once: true });
-   }, []);
 
    return (
       <div className="mainWrapper">
@@ -43,7 +37,7 @@ const MainLayout = () => {
                updateToggleState(enabled ? 'auto' : 'force-disabled')
             }
          />
-         <div className="container">
+         <div className="container" id="page-content" tabIndex={-1}>
             <Outlet />
          </div>
       </div>

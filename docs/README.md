@@ -9,6 +9,7 @@ This directory is the project system of record for humans and coding agents. Roo
 - [Architecture](./architecture.md)
 - [Architecture invariants](./architecture-invariants.md)
 - [Development standards](./development-standards.md)
+- [UI design and visual QA](./ui-design.md)
 - [Setup](./setup.md)
 - [Operations](./operations.md)
 - [Testing](./testing.md)
